@@ -11,6 +11,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 require("./models/Category");
+require("./models/Item");
 
 // Start our app!
 const app = require('./app');
