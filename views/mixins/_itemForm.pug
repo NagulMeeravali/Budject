@@ -1,0 +1,11 @@
+mixin itemForm(item={})
+  form(action=`/add/${item._id || ''}` method="POST" class="itemForm")
+    label(for="title") Item
+    input(type="text" name="title" value=item.title)
+    label(for="amount") Amount
+    input(type="number" name="amount" value=item.amount)
+    label(for="category") Category
+    select(name="category")
+      each category in categoryList
+        option(value=category._id)= category.title
+    input(type="submit" value="Submit")
