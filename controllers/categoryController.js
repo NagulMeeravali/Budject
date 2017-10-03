@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const Category = mongoose.model('Category');
 
-exports.getCategories = (req, res) => {
-  res.render('index');
+exports.getCategories = async (req, res) => {
+  const categories = await Category.find();
+  res.json(categories);
 };
 
 exports.addCategory = (req, res) => {

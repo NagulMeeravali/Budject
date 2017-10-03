@@ -19,5 +19,6 @@ router.post('/category/add', catchErrors(categoryController.createCategory));
 
 router.get('/add', catchErrors(itemController.addItem));
 router.post(`/add`, catchErrors(itemController.createItem));
+router.get(`/add/:id`, catchErrors(itemController.updateItem));
 
 module.exports = router;
