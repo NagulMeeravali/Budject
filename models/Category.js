@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const slug = require('slugs');
+const slug = require('slug');
 
 const categorySchema = new mongoose.Schema({
   title: {
@@ -26,6 +26,26 @@ const categorySchema = new mongoose.Schema({
   toObject: { virtuals: true },
   }
 );
+
+categorySchema.pre('save', async function(next) {
+  if (!this.isModified('title')) {
+    next();
+    return;
+  };
+
+  this.slug = slug(this.title, {lower: true});
+
+  const slugRegEx = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i'); 
+
+  // pass regex into query
+  const categoriesWithSlug = await this.constructor.find({ slug: slugRegEx });
+
+  if (categoriesWithSlug.length) { // if slug already exists
+    this.slug = `${this.slug}-${categoriesWithSlug.length + 1}`; // create a new slug and with number value at the end
+  }
+
+  next();
+});
 
 // Get entries where the item's category property === category _id property
 categorySchema.virtual('entries', {
