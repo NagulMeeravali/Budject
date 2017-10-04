@@ -17,3 +17,8 @@ exports.updateItem = async (req, res) => {
   const item = await Item.findOne({_id: req.params.id});
   res.render('editItem', { title: `Edit ${item.title}`, item, categoryList});
 }
+
+exports.deleteItem = async (req, res) => {
+  await Item.findByIdAndRemove({ _id: req.params.id });
+  res.json({ message: 'Item deleted'})
+}
