@@ -16,11 +16,11 @@ exports.createCategory = async (req, res) => {
 }
 
 exports.displayCategory = async (req, res) => {
-  const category = await Category.findOne({ _id: req.params.id });
+  const category = await Category.findOne({ slug: req.params.slug });
   res.json({category});
 }
 
 exports.deleteCategory = async (req, res) => {
-  await Category.findByIdAndRemove({ _id: req.params.id });
+  await Category.remove({ slug: req.params.slug });
   res.json({ category });
 }
