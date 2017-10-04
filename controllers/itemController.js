@@ -12,10 +12,16 @@ exports.createItem = async (req, res) => {
   res.json(item);
 }
 
-exports.updateItem = async (req, res) => {
+exports.getItem = async (req, res) => {
   const categoryList = await Category.find();
   const item = await Item.findOne({_id: req.params.id});
   res.render('editItem', { title: `Edit ${item.title}`, item, categoryList});
+}
+
+exports.updateItem = async (req, res) => {
+  const categoryList = await Category.find();
+  const item = await Item.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+  res.redirect(`/add/${item._id}`);
 }
 
 exports.deleteItem = async (req, res) => {

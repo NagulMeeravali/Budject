@@ -14,6 +14,7 @@ router.get('/', (req, res, next) => {
 router.get('/categories', categoryController.getCategories);
 router.get('/category/add', categoryController.addCategory)
 router.post('/category/add', catchErrors(categoryController.createCategory));
+
 router.get('/category/:id', catchErrors(categoryController.displayCategory));
 router.get(`/category/:id/delete`, catchErrors(categoryController.deleteCategory));
 
@@ -21,7 +22,8 @@ router.get(`/category/:id/delete`, catchErrors(categoryController.deleteCategory
 
 router.get('/add', catchErrors(itemController.addItem));
 router.post(`/add`, catchErrors(itemController.createItem));
-router.get(`/add/:id`, catchErrors(itemController.updateItem));
+router.get(`/add/:id`, catchErrors(itemController.getItem));
+router.post(`/add/:id`, catchErrors(itemController.updateItem));
 router.get(`/delete/:id`, catchErrors(itemController.deleteItem));
 
 // User Routes
