@@ -14,6 +14,8 @@ router.get('/', (req, res, next) => {
 router.get('/categories', categoryController.getCategories);
 router.get('/category/add', categoryController.addCategory)
 router.post('/category/add', catchErrors(categoryController.createCategory));
+router.get('/category/:id', catchErrors(categoryController.displayCategory));
+router.get(`/category/:id/delete`, catchErrors(categoryController.deleteCategory));
 
 // Item Routes
 

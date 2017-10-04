@@ -12,6 +12,15 @@ exports.addCategory = (req, res) => {
 
 exports.createCategory = async (req, res) => {
   const category = await (new Category(req.body)).save();
-  res.redirect('/');
+  res.redirect(`/category/${category._id}`);
 }
 
+exports.displayCategory = async (req, res) => {
+  const category = await Category.findOne({ _id: req.params.id });
+  res.json({category});
+}
+
+exports.deleteCategory = async (req, res) => {
+  await Category.findByIdAndRemove({ _id: req.params.id });
+  res.json({ category });
+}
