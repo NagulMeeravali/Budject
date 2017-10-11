@@ -1,12 +1,14 @@
 extends layout
 
+include mixins/_item
+
 block sidebar
   aside
-    ul.category-list
-      each category in categories
-        li
-          a(href=`/category/${category.slug}`)= category.title
+    p test
 
 block content
-  p this is the category landing page
+
+  each entry in category.entries
+    +item(entry)
+
 

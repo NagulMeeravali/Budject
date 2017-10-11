@@ -3,7 +3,7 @@ const Category = mongoose.model('Category');
 
 exports.getCategories = async (req, res) => {
   const categories = await Category.find();
-  res.render('category', {categories});
+  res.render('categoryList', {categories});
 };
 
 exports.addCategory = (req, res) => {
@@ -17,7 +17,7 @@ exports.createCategory = async (req, res) => {
 
 exports.displayCategory = async (req, res) => {
   const category = await Category.findOne({ slug: req.params.slug });
-  res.json({category});
+  res.render('category', { title: `${category.title}`, category });
 }
 
 exports.deleteCategory = async (req, res) => {
