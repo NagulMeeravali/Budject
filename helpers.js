@@ -16,3 +16,7 @@ exports.menu = [
   { slug: '/add', title: 'Add', icon: 'add', },
   { slug: '/map', title: 'Map', icon: 'map', },
 ];
+
+exports.formatPrice = function(cents) {
+  return `$${(cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+}

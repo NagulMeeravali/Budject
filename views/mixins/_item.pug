@@ -1,7 +1,7 @@
 mixin item(item = {})
   .item
     p= item.title
-    p= item.amount
+    p #{h.formatPrice(item.amount)}
     .item-actions
       a(href=`/add/${item._id}`) Edit
       a(href=`/delete/${item._id}`) Delete
