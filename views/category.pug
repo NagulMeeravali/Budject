@@ -1,1 +1,12 @@
-p this is the category landing page
+extends layout
+
+block sidebar
+  aside
+    ul.category-list
+      each category in categories
+        li
+          a(href=`/category/${category.slug}`)= category.title
+
+block content
+  p this is the category landing page
+
