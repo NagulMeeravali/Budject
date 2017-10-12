@@ -60,4 +60,11 @@ function autopopulate(next) {
 categorySchema.pre('find', autopopulate);
 categorySchema.pre('findOne', autopopulate);
 
+// Return sum of money spent per category per month
+categorySchema.statics.getItemsSum = function () {
+  return this.aggregate([
+    { $group: { _id: '_id', count: { $sum: $amount } } },
+  ]);
+}
+
 module.exports = mongoose.model('Category', categorySchema);
