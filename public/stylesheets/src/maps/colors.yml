@@ -1,0 +1,10 @@
+black:
+  base: '#252323'
+blue: 
+  base: '#40798C'
+gray:
+  base: '#748386'
+green:
+  base: '#70A9A1'
+white:
+  base: '#FAFFFD'

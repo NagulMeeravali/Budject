@@ -6,8 +6,16 @@ html
   body
     block header
       header
-        nav
-          p this is a nav item
+        .logo-section.grid-cell.w35
+          a(href="/") Logo
+        .site-title.grid-cell
+          h1= h.siteName
+        nav.grid-cell.w35
+          .menu
+            ul.menu-items
+              each item in h.menu
+                li.menu-item
+                  a(href=item.slug)= item.title
     block sidebar
     block content
     block scripts

@@ -7,14 +7,12 @@ exports.dump = (obj) => JSON.stringify(obj, null, 2);
 
 exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
 
-exports.siteName = `Now That's Delicious!`;
+exports.siteName = `Budgeter`;
 
 exports.menu = [
-  { slug: '/stores', title: 'Stores', icon: 'store', },
-  { slug: '/tags', title: 'Tags', icon: 'tag', },
-  { slug: '/top', title: 'Top', icon: 'top', },
-  { slug: '/add', title: 'Add', icon: 'add', },
-  { slug: '/map', title: 'Map', icon: 'map', },
+  { slug: '/about', title: 'About' },
+  { slug: '/login', title: 'Login' },
+  { slug: '/register', title: 'Register' }
 ];
 
 exports.formatPrice = function(cents) {
