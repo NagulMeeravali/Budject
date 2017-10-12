@@ -1,0 +1,1 @@
+{"version":3,"sources":["_header.css"],"names":[],"mappings":"AAAA,OACE,gBAAiB,AACjB,aAAc,AACd,gBAAkB,CAUnB,AARC,WACE,cAAgB,CAMjB,AAJC,aACE,SAAU,AACV,UAAa,CACd","file":"style.css","sourcesContent":["header {\n  margin-top: 50px;\n  padding: 40px;\n  background: green;\n\n  nav {\n    background: red;\n\n    p {\n      margin: 0;\n      color: white;\n    }\n  }\n}"]}

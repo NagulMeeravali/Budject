@@ -2,9 +2,13 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/dist/style.css')
   body
+    block header
+      header
+        nav
+          p this is a nav item
     block sidebar
     block content
     block scripts
-    script(src="/dist/App.bundle.js")
+    script(src="/javascripts/dist/app.min.js")
