@@ -1,12 +1,13 @@
 mixin itemForm(item={})
   form(action=`/add/${item._id || ''}` method="POST" class="itemForm")
     label(for="title") Item
-    input(type="text" name="title" value=item.title)
+    input(type="text" name="title" value=item.title required)
     label(for="amount") Amount
-    input(type="number" name="amount" value=item.amount)
+    input(type="number" name="amount" value=item.amount required)
     label(for="category") Category
     p= item.category
-    select(name="category")
+    select(name="category" required)
+      option(value="") Select a Category
       each category in categoryList
         option(value=category._id)= category.title
     input(type="submit" value="Submit")

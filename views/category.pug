@@ -8,7 +8,7 @@ block sidebar
     +categories(categories)
 
 block content
-  h1= title
+  h1 #{title} - X/#{h.formatPrice(category.amount)}
 
   each entry in category.entries
     +item(entry)

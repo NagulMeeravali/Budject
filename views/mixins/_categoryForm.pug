@@ -1,0 +1,7 @@
+mixin categoryForm(category={})
+  form(action=`/add/${category._id || ''}` method="POST" class="categoryForm")
+    label(for="title") Category
+    input(type="text" name="title" value=category.title required)
+    label(for="amount") Amount
+    input(type="number" name="amount" value=category.amount required)
+    input(type="submit" value="Submit")

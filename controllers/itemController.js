@@ -9,7 +9,7 @@ exports.addItem = async (req, res) => {
 
 exports.createItem = async (req, res) => {
   const item = await (new Item(req.body)).save();
-  res.json(item);
+  res.redirect('back');
 }
 
 exports.getItem = async (req, res) => {
