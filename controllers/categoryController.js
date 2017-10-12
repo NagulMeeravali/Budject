@@ -16,8 +16,10 @@ exports.createCategory = async (req, res) => {
 }
 
 exports.displayCategory = async (req, res) => {
-  const category = await Category.findOne({ slug: req.params.slug });
-  res.render('category', { title: `${category.title}`, category });
+  const categoriesPromise = Category.find();
+  const categoryPromise = Category.findOne({ slug: req.params.slug });
+  const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
+  res.render('category', { title: `${category.title}`, categories, category });
 }
 
 exports.deleteCategory = async (req, res) => {

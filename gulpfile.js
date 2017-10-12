@@ -29,34 +29,8 @@ var config = require('./gulp/config.json'),
   imagemin = require('gulp-imagemin'),
   svgSymbols = require('gulp-svg-symbols');
 
-gulp.task('default', ['images', 'sprite', 'css', 'js']);
+gulp.task('default', ['css', 'js']);
 gulp.task('compile-all', ['default']);
-
-gulp.task('images', function () {
-  return gulp.src(files.globs.images.src)
-    // .pipe(imagemin())
-    .pipe(gulp.dest(files.paths.images.dist));
-});
-
-gulp.task('compile-sprite', ['images'], function () {
-  return gulp.src(files.globs.sprites.src)
-    .pipe(svgSymbols())
-    .pipe(gulp.dest(files.globs.sprites.dist));
-});
-
-gulp.task('process-sprite-move', ['compile-sprite'], function () {
-  return gulp.src(files.globs.sprite.src)
-    .pipe(rename(files.globs.sprite.dist))
-    .pipe(gulp.dest(files.paths.sprite.dist));
-});
-
-gulp.task('process-sprite-del', ['compile-sprite', 'process-sprite-move'], function () {
-  return del(files.globs.sprites.dist);
-});
-
-gulp.task('sprite', ['compile-sprite', 'process-sprite-move', 'process-sprite-del'], function () {
-  return;
-});
 
 gulp.task('lint-css', function () {
   return gulp.src(files.globs.css.raw)

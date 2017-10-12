@@ -3,4 +3,21 @@
 
 h1 {
   font-family: map(fonts, istok);
+  color: map(colors, black, base);
+}
+
+p {
+  color: map(colors, gray, base);
+}
+
+a {
+  font-family: map(fonts, lora);
+  font-size: 16px;
+  color: map(colors, green, base);
+  text-decoration: none;
+  transition: all .4s ease;
+
+  &:hover, &:active, &:focus {
+    color: map(colors, blue, base);
+  }
 }

@@ -1,12 +1,14 @@
 extends layout
 
+include mixins/_categories
 include mixins/_item
 
 block sidebar
   aside
-    p test
+    +categories(categories)
 
 block content
+  
 
   each entry in category.entries
     +item(entry)

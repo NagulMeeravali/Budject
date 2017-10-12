@@ -18,6 +18,8 @@ router.post('/category/add', catchErrors(categoryController.createCategory));
 router.get('/category/:slug', catchErrors(categoryController.displayCategory));
 router.get(`/category/:slug/delete`, catchErrors(categoryController.deleteCategory));
 
+// Need routes for sub-categories
+
 // Item Routes
 
 router.get('/add', catchErrors(itemController.addItem));

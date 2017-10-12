@@ -1,0 +1,17 @@
+.item {
+  padding: 20px;
+  margin: 0 auto;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  max-width: 80%;
+  background: map(colors, white, base);
+  border: 1px solid map(colors, black, base);
+
+  .item-actions {
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}

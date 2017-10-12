@@ -1,0 +1,3 @@
+body {
+  background: map(colors, white, light);
+}

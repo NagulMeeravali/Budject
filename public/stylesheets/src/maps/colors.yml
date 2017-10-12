@@ -7,4 +7,5 @@ gray:
 green:
   base: '#70A9A1'
 white:
-  base: '#FAFFFD'
+  base: '#FFFFFF'
+  light: '#FAFFFD'

@@ -3,9 +3,10 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/dist/style.css')
-  body
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+  body.grid
     block header
-      header
+      header.grid-cell.w100
         .logo-section.grid-cell.w35
           a(href="/") Logo
         .site-title.grid-cell
@@ -16,7 +17,9 @@ html
               each item in h.menu
                 li.menu-item
                   a(href=item.slug)= item.title
-    block sidebar
-    block content
+    aside.grid-cell.w30
+      block sidebar
+    div.body.grid-cell.w65
+      block content
     block scripts
     script(src="/javascripts/dist/app.min.js")
