@@ -1,5 +1,5 @@
 mixin categoryForm(category={})
-  form(action=`/add/${category._id || ''}` method="POST" class="categoryForm")
+  form(action=`/category/${category.slug}/edit` method="POST" class="categoryForm")
     label(for="title") Category
     input(type="text" name="title" value=category.title required)
     label(for="amount") Amount

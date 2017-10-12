@@ -14,11 +14,9 @@ router.get('/', (req, res, next) => {
 router.get('/categories', categoryController.getCategories);
 router.get('/category/add', categoryController.addCategory)
 router.post('/category/add', catchErrors(categoryController.createCategory));
-
 router.get('/category/:slug', catchErrors(categoryController.displayCategory));
-
-// need category edit route
-router.get('/category/:slug/edit', categoryController.addCategory);
+router.get('/category/:slug/edit', catchErrors(categoryController.getCategory));
+router.post('/category/:slug/edit', catchErrors(categoryController.updateCategory));
 router.get(`/category/:slug/delete`, catchErrors(categoryController.deleteCategory));
 
 // Need routes for sub-categories

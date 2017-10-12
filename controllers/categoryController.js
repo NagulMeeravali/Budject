@@ -20,6 +20,11 @@ exports.getCategory = async (req, res) => {
   res.render('editCategory', { title: `Edit ${category.title}`, category});
 }
 
+exports.updateCategory = async (req, res) => {
+  const category = await Category.findOneAndUpdate({ slug: req.params.slug }, req.body, { new: true });
+  res.redirect(`/category/${category.slug}`);
+}
+
 exports.displayCategory = async (req, res) => {
   const categoriesPromise = Category.find().sort({title:1});
   const categoryPromise = Category.findOne({ slug: req.params.slug });
