@@ -3,7 +3,7 @@ mixin item(item = {})
     p= item.title
     p #{h.formatPrice(item.amount)}
     .item-actions
-      a(href=`/add/${item._id}` title="edit") 
+      a(href=`/add/${item._id}` title="Edit") 
         != h.icon('edit')
-      a(href=`/delete/${item._id}` title="delete")
+      a(href=`/delete/${item._id}` title="Delete")
         != h.icon('delete')

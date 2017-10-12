@@ -13,13 +13,11 @@ const categorySchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  color: {
-    type: String,
-    unique: true,
+  amount: {
+    type: Number,
     trim: true
   },
   creator: String,
-  items: Array
   },
   {
   toJSON: { virtuals: true },

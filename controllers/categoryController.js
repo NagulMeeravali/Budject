@@ -12,11 +12,11 @@ exports.addCategory = (req, res) => {
 
 exports.createCategory = async (req, res) => {
   const category = await (new Category(req.body)).save();
-  res.redirect(`/category/${category._id}`);
+  res.redirect(`/category/${category.slug}`);
 }
 
 exports.displayCategory = async (req, res) => {
-  const categoriesPromise = Category.find();
+  const categoriesPromise = Category.find().sort({title:1});
   const categoryPromise = Category.findOne({ slug: req.params.slug });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
   res.render('category', { title: `${category.title}`, categories, category });
