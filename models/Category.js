@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const slug = require('slug');
+mongoose.set('debug', true)
 
 const categorySchema = new mongoose.Schema({
   title: {
@@ -17,7 +18,7 @@ const categorySchema = new mongoose.Schema({
     type: Number,
     trim: true
   },
-  creator: String,
+  creator: String
   },
   {
   toJSON: { virtuals: true },
@@ -48,7 +49,7 @@ categorySchema.pre('save', async function(next) {
 // Get entries where the item's category property === category _id property
 categorySchema.virtual('entries', {
   ref: 'Item', // what model to link?
-  localField: '_id', // which field on the store?
+  localField: '_id', // which field on the item?
   foreignField: 'category' // which field on the review?
 });
 
@@ -61,10 +62,6 @@ categorySchema.pre('find', autopopulate);
 categorySchema.pre('findOne', autopopulate);
 
 // Return sum of money spent per category per month
-categorySchema.statics.getItemsSum = function () {
-  return this.aggregate([
-    { $group: { _id: '_id', count: { $sum: $amount } } },
-  ]);
-}
+
 
 module.exports = mongoose.model('Category', categorySchema);
