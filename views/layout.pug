@@ -17,6 +17,8 @@ html
               each item in h.menu
                 li.menu-item
                   a(href=item.slug)= item.title
+          .mobile-menu
+            != h.icon('menu')
     aside.grid-cell.w30
       block sidebar
     div.body.grid-cell.w65

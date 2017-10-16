@@ -18,6 +18,7 @@ const categorySchema = new mongoose.Schema({
     type: Number,
     trim: true
   },
+  items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
   creator: String
   },
   {

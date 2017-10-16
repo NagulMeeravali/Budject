@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+const db = mongoose.connection;
 const Category = mongoose.model('Category');
+const Item = mongoose.model('Item');
 
 exports.getCategories = async (req, res) => {
   const categories = await Category.find().sort({ title: 1 });

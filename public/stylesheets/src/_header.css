@@ -1,4 +1,5 @@
 header {
+  padding: 0 25px;
   display: flex;
   justify-content: space-between;
   background: map(colors, white, base);
@@ -11,14 +12,34 @@ header {
   }
 
   .menu {
+    display: block;
+    width: 100%;
+    @media <=map(bp, tablet) {
+      display: none;
+    }
+
     .menu-items {
       margin: 0;
       padding: 0;
+      display: flex;
+      justify-content: space-around;
       list-style-type: none;
 
       .menu-item {
         display: inline-block;
       }
+    }
+  }
+
+  .mobile-menu {
+    display: none;
+    @media <=map(bp, tablet) {
+      display: block;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
     }
   }
 }
