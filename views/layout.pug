@@ -18,7 +18,17 @@ html
                 li.menu-item
                   a(href=item.slug)= item.title
           .mobile-menu
-            != h.icon('menu')
+            .mobile-menu-toggle
+              a(href="#" class="mobile-menu-toggle")
+                .icon
+                  .bar.top
+                  .bar.middle
+                  .bar.bottom
+      ul.mobile-menu-items
+        each item in h.menu
+          li.menu-item
+            a(href=item.slug)= item.title
+
     aside.grid-cell.w30
       block sidebar
     div.body.grid-cell.w65
