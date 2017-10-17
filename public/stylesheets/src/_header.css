@@ -43,24 +43,15 @@ header {
     }
 
     .mobile-menu-toggle {
-      position: absolute;
       cursor: pointer;
 
       .bar {
         margin: 6px 0;
         display: block;
-        width: 24px;
+        width: 28px;
         height: 2px;
         background: map(colors, black, base);
         transition: all .7s ease;
-
-        &.top {
-          width: 32px;
-        }
-
-        &.bottom {
-          width: 18px;
-        }
       }
     }
   }
@@ -68,17 +59,16 @@ header {
 
 .mobile-menu-items {
   position: absolute;
-  top: 0;
+  top: -32%;
   left: 0;
   margin: 0;
   padding: 0;
   display: none;
   width: 100%;
-  background: rgba(map(colors, white, light), .9);
+  background: rgba(map(colors, white, base), .9);
   transition: all .7s ease;
-  visibility: hidden;
-  opacity: 0;
-  height: 0;
+  max-height: 0;
+  overflow: hidden;
   @media <=map(bp, tablet) {
     display: block;
   }
@@ -103,14 +93,11 @@ header {
     width: 0 !important;
   }
   .bar.bottom {
-    width: 32px !important;
     transform: translateY(-9px) rotate(-45deg);
   }
 
   .mobile-menu-items {
     top: 65px;
-    visibility: visible;
-    opacity: 1;
-    height: auto;
+    max-height: 500px;
   }
 } 
