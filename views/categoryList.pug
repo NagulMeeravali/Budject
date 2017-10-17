@@ -5,8 +5,12 @@ block sidebar
     ul.category-list
       each category in categories
         li
-          a(href=`/category/${category.slug}`)= category.title
+          a(href=`/category/${category.slug}`) 
+            span #{category.title} (#{h.formatPrice(category.amount)})
+          a.icon(href=`/add/${category._id}` title="Edit") 
+            != h.icon('edit')
 
 block content
   p this is the category landing page
+  a.btn(href="/category/add") Add Category
 

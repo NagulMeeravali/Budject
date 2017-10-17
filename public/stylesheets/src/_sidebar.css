@@ -1,0 +1,52 @@
+aside {
+  padding-right: 25px;
+
+  .category-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+      position: relative;
+
+      &:hover, &:active, &:focus {
+        a {
+          background: map(colors, blue, base);
+
+          &.icon {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+      }
+
+      a {
+        margin: 10px 0;
+        padding: 15px 20px;
+        display: block;
+        background: map(colors, green, base);
+        color: map(colors, white, base);
+
+        &.icon {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          padding: 0;
+          margin: 0;
+          display: inline-block;
+          background: none;
+          width: 20px;
+          height: 20px;
+          visibility: hidden;
+          opacity: 0;
+          transform: translate(-50%,-50%);
+          transition: all .5s ease-in-out;
+
+          svg {
+            fill: map(colors, white, base);
+          }
+        }
+      }
+    }
+  }
+}
