@@ -24,4 +24,20 @@ const itemSchema = new mongoose.Schema({
   }
 });
 
+itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category) {
+  return this.aggregate([
+    {
+      $match: {
+        category: mongoose.Types.ObjectId(category)
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        sum: { $sum: "$amount"}
+      }
+    }
+  ]);
+}
+
 module.exports = mongoose.model('Item', itemSchema);
