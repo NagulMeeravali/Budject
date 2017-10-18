@@ -30,8 +30,31 @@ exports.updateCategory = async (req, res) => {
 exports.displayCategory = async (req, res) => {
   const categoriesPromise = Category.find().sort({title:1});
   const categoryPromise = Category.findOne({ slug: req.params.slug });
+  const sumAmount = function(category) {
+    Item.aggregate([
+      {
+        $match: {
+          category: mongoose.Types.ObjectId(category)
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          sum: { $sum: "$amount"}
+        }
+      }
+    ], function(err, result) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(typeof(result));
+      return result;
+    })
+  }
+
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
-  res.render('category', { title: `${category.title}`, categories, category });
+
+  res.render('category', { title: `${category.title}`, categories, category, sumAmount });
 }
 
 exports.deleteCategory = async (req, res) => {

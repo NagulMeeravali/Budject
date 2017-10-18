@@ -8,8 +8,12 @@ block sidebar
     +categories(categories)
 
 block content
+  != h.dump(sumAmount(category._id))
   != h.dump(category)
   h1 #{title} - test/#{h.formatPrice(category.amount)}
+
+  each entry in category.entries
+    +item(entry)
 
 
 

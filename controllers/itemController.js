@@ -28,3 +28,8 @@ exports.deleteItem = async (req, res) => {
   await Item.findByIdAndRemove({ _id: req.params.id });
   res.json({ message: 'Item deleted'})
 }
+
+exports.sumAmount = async(req, res, next) => {
+  const sum = Item.sumAmount();
+  next();
+}
