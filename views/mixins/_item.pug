@@ -1,5 +1,6 @@
 mixin item(item = {})
   .item
+    p= h.moment(item.date).utc().format("MM/DD/YY")
     p= item.title
     p #{h.formatPrice(item.amount)}
     .item-actions

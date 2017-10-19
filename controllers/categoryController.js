@@ -35,7 +35,7 @@ exports.displayCategory = async (req, res) => {
   const itemSum = await Item.sumItemsByCategory(category._id)
   console.log(typeof(itemSum))
 
-  res.render('category', { title: `Category: ${category.title}`, categories, category, itemSum: itemSum[0] });
+  res.render('category', { title: `${category.title}`, categories, category, itemSum: itemSum[0] });
 }
 
 exports.deleteCategory = async (req, res) => {
