@@ -26,6 +26,8 @@
     dateInput.value = today;
   }
 
-  todayDate();
+  if (document.querySelector('input[type="date"]')) {
+    todayDate();
+  }
 
 }());

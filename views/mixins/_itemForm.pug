@@ -3,7 +3,7 @@ mixin itemForm(item={})
     label(for="title") Item
     input(type="text" name="title" value=item.title required)
     label(for="amount") Amount
-    input(type="number" name="amount" value=item.amount required)
+    input(type="number" name="amount" value=item.amount step=".01" min="0.00" required)
     label(for="date") Date
     input(type="date" name="date" value=item.date required)
     label(for="category") Category

@@ -15,6 +15,6 @@ exports.menu = [
   { slug: '/register', title: 'Register' }
 ];
 
-exports.formatPrice = function(cents) {
-  return `$${(cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+exports.formatPrice = function(amount) {
+  return `$${(amount).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
 }

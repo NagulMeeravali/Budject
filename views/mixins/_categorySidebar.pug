@@ -5,5 +5,5 @@ mixin categorySidebar(category = {})
         li
           a(href=`/category/${category.slug}`) 
             span #{category.title} (#{h.formatPrice(category.amount)})
-          a.icon(href=`/add/${category._id}` title="Edit") 
+          a.icon(href=`/category/${category.slug}/edit` title="Edit") 
             != h.icon('edit')
