@@ -2,10 +2,10 @@ extends layout
 
 include mixins/_categories
 include mixins/_item
+include mixins/_categorySidebar
 
 block sidebar
-  aside
-    +categories(categories)
+  +categorySidebar()
 
 block content
   h1 #{title} - #{h.formatPrice(itemSum.sum)}/#{h.formatPrice(category.amount)}

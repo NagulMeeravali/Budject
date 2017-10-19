@@ -1,0 +1,9 @@
+mixin categorySidebar(category = {})
+  aside
+    ul.category-list
+      each category in categories
+        li
+          a(href=`/category/${category.slug}`) 
+            span #{category.title} (#{h.formatPrice(category.amount)})
+          a.icon(href=`/add/${category._id}` title="Edit") 
+            != h.icon('edit')
