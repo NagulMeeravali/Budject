@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
+const moment = require('moment');
 
 const itemSchema = new mongoose.Schema({
   title: {
@@ -35,6 +36,28 @@ itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category) {
       $group: {
         _id: null,
         sum: { $sum: "$amount"}
+      }
+    }
+  ]);
+}
+
+// Static method - count number of items per category per month
+itemSchema.statics.numItemsByCategory = function numItemsByCategory(category) {
+
+  const convertedDate = new Date("date");
+  const startOfMonth = moment().startOf('month');
+  const endOfMonth = moment().endOf('month');
+
+  return this.aggregate([
+    {
+      $match: {
+        category: mongoose.Types.ObjectId(category),
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        count: { $sum: 1}
       }
     }
   ]);

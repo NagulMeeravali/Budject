@@ -32,10 +32,11 @@ exports.displayCategory = async (req, res) => {
   const categoryPromise = Category.findOne({ slug: req.params.slug });
 
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
-  const itemSum = await Item.sumItemsByCategory(category._id)
-  console.log(typeof(itemSum))
+  const itemSum = await Item.sumItemsByCategory(category._id);
+  const numItems = await Item.numItemsByCategory(category._id);
+  console.log(numItems);
 
-  res.render('category', { title: `${category.title}`, categories, category, itemSum: itemSum[0] });
+  res.render('category', { title: `${category.title}`, categories, category, itemSum: itemSum[0], numItems: numItems[0] });
 }
 
 exports.deleteCategory = async (req, res) => {

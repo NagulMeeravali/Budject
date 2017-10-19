@@ -65,10 +65,11 @@ header {
   padding: 0;
   display: none;
   width: 100%;
-  background: rgba(map(colors, white, base), .9);
+  background: rgba(map(colors, white, base), .96);
   transition: all .7s ease;
   max-height: 0;
   overflow: hidden;
+  z-index: 1;
   @media <=map(bp, tablet) {
     display: block;
   }

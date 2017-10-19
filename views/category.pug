@@ -8,6 +8,7 @@ block sidebar
   +categorySidebar()
 
 block content
+  p #{numItems}
   h1 #{title} - #{h.moment().utc().format("MMMM")}, #{h.moment().utc().format("YYYY")}
   h3 #{h.formatPrice(itemSum.sum)}/#{h.formatPrice(category.amount)}
 
