@@ -18,4 +18,15 @@
   };
 
   mobileMenuToggle();
+
+  // Add today's date as value to date input
+
+  function todayDate() {
+    var today = moment().format('YYYY-MM-DD');
+    var dateInput = document.querySelector('input[type="date"]');
+
+    dateInput.value = today;
+  }
+
+  todayDate();
 })();

@@ -2,8 +2,8 @@
   padding: 20px;
   margin: 0 auto;
   display: flex;
-  align-self: center;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
   max-width: 80%;
   background: map(colors, white, base);
   border: 1px solid map(colors, black, base);
@@ -12,6 +12,24 @@
     svg {
       width: 25px;
       height: 25px;
+      transition: all .4s ease;
+      fill: map(colors, green, base);
+    }
+
+    a {
+      &:hover, &:active, &:focus {
+        svg {
+          fill: map(colors, blue, base);
+        }
+      }
+
+      &.icon-delete {
+        &:hover, &:active, &:focus {
+          svg {
+            fill: map(colors, red, base);
+          }
+        }
+      }
     }
   }
 }

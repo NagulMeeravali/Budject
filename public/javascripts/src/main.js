@@ -17,4 +17,15 @@
 
   mobileMenuToggle();
 
+  // Add today's date as value to date input
+
+  function todayDate() {
+    const today = moment().format('YYYY-MM-DD');
+    const dateInput = document.querySelector('input[type="date"]');
+
+    dateInput.value = today;
+  }
+
+  todayDate();
+
 }());

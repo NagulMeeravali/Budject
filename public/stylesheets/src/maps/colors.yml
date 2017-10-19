@@ -6,6 +6,8 @@ gray:
   base: '#748386'
 green:
   base: '#70A9A1'
+red: 
+  base: '#DB504A'
 white:
   base: '#FFFFFF'
   light: '#FAFFFD'
