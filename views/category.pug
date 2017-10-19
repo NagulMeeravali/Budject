@@ -8,11 +8,7 @@ block sidebar
     +categories(categories)
 
 block content
-
-  != h.dump(itemSum)
-  
-  != h.dump(category)
-  h1 #{title} - #{itemSum}/#{h.formatPrice(category.amount)}
+  h1 #{title} - #{h.formatPrice(itemSum.sum)}/#{h.formatPrice(category.amount)}
 
   each entry in category.entries
     +item(entry)
