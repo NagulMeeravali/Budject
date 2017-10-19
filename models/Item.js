@@ -52,6 +52,7 @@ itemSchema.statics.numItemsByCategory = function numItemsByCategory(category) {
     {
       $match: {
         category: mongoose.Types.ObjectId(category),
+        date: { $gte: new Date(startOfMonth), $lte: new Date(endOfMonth) }
       }
     },
     {
