@@ -26,10 +26,14 @@ const itemSchema = new mongoose.Schema({
 });
 
 itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category) {
+  const startOfMonth = moment().startOf('month');
+  const endOfMonth = moment().endOf('month');
+
   return this.aggregate([
     {
       $match: {
-        category: mongoose.Types.ObjectId(category)
+        category: mongoose.Types.ObjectId(category),
+        date: { $gte: new Date(startOfMonth), $lte: new Date(endOfMonth) }
       }
     },
     {
@@ -43,8 +47,6 @@ itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category) {
 
 // Static method - count number of items per category per month
 itemSchema.statics.numItemsByCategory = function numItemsByCategory(category) {
-
-  const convertedDate = new Date("date");
   const startOfMonth = moment().startOf('month');
   const endOfMonth = moment().endOf('month');
 
