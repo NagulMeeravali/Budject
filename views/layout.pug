@@ -45,6 +45,11 @@ html
         const picker = new Pikaday({ 
           field: document.querySelector('.datepicker'),
           minDate: moment(oldestItemDate).toDate(),
-          maxDate: moment(newestItemDate).toDate()
+          maxDate: moment(newestItemDate).toDate(),
+          onSelect: function() {
+            document.querySelector('.datepicker').innerHTML = this.getMoment().format('MMMM YYYY');
+              //- startDate = this.getDate();
+              //- updateStartDate();
+          }
         });
       }

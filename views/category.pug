@@ -17,7 +17,7 @@ block content
       .category-items.grid-cell.w40
         .budget-meta 
           .month-details
-            h3 #{h.moment().utc().format("MMMM")}, #{h.moment().utc().format("YYYY")}
+            h3.datepicker #{h.moment().utc().format("MMMM")} #{h.moment().utc().format("YYYY")}
             p #{numItems.count} transactions this month
           p
             span.budget-spent #{h.formatPrice(itemSum.sum)} 
@@ -25,8 +25,8 @@ block content
             span.budget-goal #{h.formatPrice(category.amount)}
         .filter-options.grid
           .filter.grid-cell
-            select.datepicker
-              option(value="") Choose a month
+            //- select.datepicker
+            //-   option(value="") Choose a month
 
           .search.grid-cell
             .search-bar
