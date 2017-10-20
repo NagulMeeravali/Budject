@@ -3,6 +3,7 @@
 (function () {
   'use strict';
 
+  alert('!{oldestItem}')
   // Mobile Menu Toggle Functionality
   const mobileMenuIcon = document.querySelector('.mobile-menu-toggle');
 

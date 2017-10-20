@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 const db = mongoose.connection;
 const Category = mongoose.model('Category');
 const Item = mongoose.model('Item');
@@ -30,14 +31,15 @@ exports.updateCategory = async (req, res) => {
 exports.displayCategory = async (req, res) => {
   const categoriesPromise = Category.find().sort({title:1});
   const categoryPromise = Category.findOne({ slug: req.params.slug });
-
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
+  
+  const oldestItem = await Item.getItemsByCat(category._id).sort({"date": 1}).limit(1);
+  const newestItem = await Item.getItemsByCat(category._id).sort({ "date": -1 }).limit(1);
   const itemSum = await Item.sumItemsByCategory(category._id);
   const numItems = await Item.numItemsByCategory(category._id);
   const itemsByCatAndMonth = await Item.getItemsByCatAndMonth(category._id);
-  console.log(itemsByCatAndMonth);
 
-  res.render('category', { title: `${category.title}`, categories, category, itemSum: itemSum[0], numItems: numItems[0], itemsByCatAndMonth: itemsByCatAndMonth });
+  res.render('category', { title: `${category.title}`, categories, category, oldestItem, itemSum: itemSum[0], numItems: numItems[0], itemsByCatAndMonth, oldestItem, newestItem });
 }
 
 exports.deleteCategory = async (req, res) => {
