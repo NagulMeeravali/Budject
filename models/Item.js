@@ -25,6 +25,20 @@ const itemSchema = new mongoose.Schema({
   }
 });
 
+itemSchema.statics.getItemsByCatAndMonth = function getItemsByCatAndMonth(category) {
+  const startOfMonth = moment().startOf('month');
+  const endOfMonth = moment().endOf('month');
+
+  return this.aggregate([
+    {
+      $match: {
+        category: mongoose.Types.ObjectId(category),
+        date: { $gte: new Date(startOfMonth), $lte: new Date(endOfMonth) }
+      }
+    }
+  ]);
+}
+
 itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category) {
   const startOfMonth = moment().startOf('month');
   const endOfMonth = moment().endOf('month');

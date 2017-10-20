@@ -29,10 +29,9 @@ html
           li.menu-item
             a(href=item.slug)= item.title
 
-    aside.grid-cell.w30
-      block sidebar
-    div.body.grid-cell.w65
-      block content
+    block sidebar
+    block content
+      div.body.grid-cell
     block scripts
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     script(src="/javascripts/dist/app.min.js")

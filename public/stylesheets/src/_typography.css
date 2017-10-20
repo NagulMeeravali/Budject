@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Istok+Web:400,700');
 @import url('https://fonts.googleapis.com/css?family=Lora:400,700');
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
   font-family: map(fonts, istok);
   color: map(colors, black, base);
+}
+
+h5 {
+  font-size: 18px;
+  line-height: 24px;
 }
 
 p {

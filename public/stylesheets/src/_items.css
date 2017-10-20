@@ -1,12 +1,18 @@
 .item {
+  margin-bottom: 15px;
   padding: 20px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  max-width: 80%;
   background: map(colors, white, base);
   border: 1px solid map(colors, black, base);
+
+  .item-meta {
+    h5 {
+      margin: 0;
+    }
+  }
 
   .item-actions {
     svg {

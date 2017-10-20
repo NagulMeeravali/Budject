@@ -34,9 +34,10 @@ exports.displayCategory = async (req, res) => {
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
   const itemSum = await Item.sumItemsByCategory(category._id);
   const numItems = await Item.numItemsByCategory(category._id);
-  console.log(numItems);
+  const itemsByCatAndMonth = await Item.getItemsByCatAndMonth(category._id);
+  console.log(itemsByCatAndMonth);
 
-  res.render('category', { title: `${category.title}`, categories, category, itemSum: itemSum[0], numItems: numItems[0] });
+  res.render('category', { title: `${category.title}`, categories, category, itemSum: itemSum[0], numItems: numItems[0], itemsByCatAndMonth: itemsByCatAndMonth });
 }
 
 exports.deleteCategory = async (req, res) => {

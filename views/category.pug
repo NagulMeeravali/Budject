@@ -4,28 +4,40 @@ include mixins/_categories
 include mixins/_item
 include mixins/_categorySidebar
 
-block sidebar
-  +categorySidebar()
-
 block content
-  p #{numItems}
-  h1 #{title} - #{h.moment().utc().format("MMMM")}, #{h.moment().utc().format("YYYY")}
-  h3 #{h.formatPrice(itemSum.sum)}/#{h.formatPrice(category.amount)}
+  .back-bar
+    a(href="/categories") See All Categories
+  .container.grid-cell.w100.category
+    != h.dump(category)
+    .budget-title
+      h1 #{title}
 
-  //- Number of transactions this month
-  p #{numItems.count} transactions this month
+    .grid.category-details
+      .category-items.grid-cell.w40
+        .budget-meta 
+          .month-details
+            h3 #{h.moment().utc().format("MMMM")}, #{h.moment().utc().format("YYYY")}
+            p #{numItems.count} transactions this month
+          p
+            span.budget-spent #{h.formatPrice(itemSum.sum)} 
+            | of 
+            span.budget-goal #{h.formatPrice(category.amount)}
+        .filter-options.grid
+          .filter.grid-cell
+            select
+              option(value="") Choose a month
 
-  .filter-options
-    .filter
-    //- Date
+          .search.grid-cell
+            .search-bar
+              input(type="text" placeholder="Search")
 
-    .search
-      .search-bar
-        input(type="text" placeholder="Search")
+        - const entries = itemsByCatAndMonth
+        - entries.sort(function(a, b) { return b.date - a.date })
+        each entry in entries
+          +item(entry)
 
-  each entry in category.entries
-    +item(entry)
-
+      .category-charts.grid-cell.w50
+        p charts go here
 
 
 

@@ -1,8 +1,10 @@
 mixin item(item = {})
   .item
-    p= h.moment(item.date).utc().format("MM/DD/YY")
-    p= item.title
-    p #{h.formatPrice(item.amount)}
+    .item-meta
+      h5.item-title= item.title
+      p.item-date= h.moment(item.date).utc().format("MMM d, YYYY")
+    .item-price
+      p.price #{h.formatPrice(item.amount)}
     .item-actions
       a(href=`/add/${item._id}` title="Edit" class="icon-edit") 
         != h.icon('edit')
