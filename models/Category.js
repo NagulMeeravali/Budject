@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const slug = require('slug');
-mongoose.set('debug', true)
+
 
 const categorySchema = new mongoose.Schema({
   title: {

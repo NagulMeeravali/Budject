@@ -46,20 +46,12 @@
   changeBudgetColor();
 
   // Datepicker
-  // if (document.querySelector('.datepicker')) {
+  if (document.querySelector('.datepicker')) {
+    // const oldestItemDate = '!{oldestItem[0].date}'
+    // const newestItemDate = '!{newestItem[0].date}'
 
-  //   // const oldestItemDate = '!{oldestItem[0].date}'
-  //   // const newestItemDate = '!{newestItem[0].date}'
 
-  //   const picker = new Pikaday({ 
-  //     field: document.querySelector('.datepicker'),
-  //     onSelect: function() {
-  //       document.querySelector('.datepicker').innerHTML = this.getMoment().format('MMMM YYYY');
-  //         //- startDate = this.getDate();
-  //         //- updateStartDate();
-  //     }
-  //   });
-  // }
+  }
 
 
 }());

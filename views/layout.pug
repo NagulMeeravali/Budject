@@ -36,5 +36,18 @@ html
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="/javascripts/vendor/pikaday.js"></script>
     script(src="/javascripts/dist/app.min.js")
+    script.
+      if (document.querySelector('.datepicker')) {
+        const oldestItemDate = '!{oldestItemDate}';
+        const newestItemDate = '!{newestItemDate}';
 
+        const picker = new Pikaday({ 
+          field: document.querySelector('.datepicker'),
+          minDate: moment(oldestItemDate).toDate(),
+          maxDate: moment(newestItemDate).toDate(),
+          onSelect: function() {
+            document.querySelector('.datepicker').innerHTML = this.getMoment().format('MMMM YYYY');
+          }
+        });
+      }
       

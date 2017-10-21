@@ -44,7 +44,7 @@ exports.displayCategory = async (req, res) => {
   const numItems = await Item.numItemsByCategory(category._id, startDate, endDate);
   const itemsByCatAndMonth = await Item.getItemsByCatAndMonth(category._id, startDate, endDate);
   
-  res.render('category', { title: `${category.title}`, month, year, categories, category, oldestItem, itemSum: itemSum[0], numItems: numItems[0], itemsByCatAndMonth, oldestItem, newestItem });
+  res.render('category', { title: `${category.title}`, month, year, categories, category, oldestItem, itemSum: itemSum[0], numItems: numItems[0], itemsByCatAndMonth, oldestItemDate: oldestItem[0].date, newestItemDate: newestItem[0].date });
 }
 
 exports.deleteCategory = async (req, res) => {
