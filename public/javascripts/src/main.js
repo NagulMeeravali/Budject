@@ -45,13 +45,4 @@
   
   changeBudgetColor();
 
-  // Datepicker
-  if (document.querySelector('.datepicker')) {
-    // const oldestItemDate = '!{oldestItem[0].date}'
-    // const newestItemDate = '!{newestItem[0].date}'
-
-
-  }
-
-
 }());

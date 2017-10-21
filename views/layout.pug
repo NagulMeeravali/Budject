@@ -47,6 +47,7 @@ html
           maxDate: moment(newestItemDate).toDate(),
           onSelect: function() {
             document.querySelector('.datepicker').innerHTML = this.getMoment().format('MMMM YYYY');
+            window.location = `${window.location.href.split('?')[0]}?month=${this.getMoment().month()+1}&year=${this.getMoment().year()}`;
           }
         });
       }
