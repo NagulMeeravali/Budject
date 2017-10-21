@@ -11,16 +11,18 @@ block content
     .budget-title
       h1 #{title}
 
-      != h.dump(oldestItem)
-
     .grid.category-details
       .category-items.grid-cell.w40
         .budget-meta 
           .month-details
             h3.datepicker #{month} #{year}
-            p #{numItems.count} transactions this month
+            if numItems
+              p #{numItems.count} transactions this month
           p
-            span.budget-spent #{h.formatPrice(itemSum.sum)} 
+            if itemSum
+              span.budget-spent #{h.formatPrice(itemSum.sum)} 
+            else
+              span.budget-spent #{h.formatPrice(0)}
             | of 
             span.budget-goal #{h.formatPrice(category.amount)}
         .filter-options.grid
@@ -33,6 +35,9 @@ block content
               input(type="text" placeholder="Search")
 
         - const entries = itemsByCatAndMonth
+        if entries.length === 0
+          p There are no transactions available for this month. 
+        
         - entries.sort(function(a, b) { return b.date - a.date })
         each entry in entries
           +item(entry)

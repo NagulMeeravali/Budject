@@ -51,18 +51,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   changeBudgetColor();
 
   // Datepicker
-  if (document.querySelector('.datepicker')) {
+  // if (document.querySelector('.datepicker')) {
 
-    var oldestItemDate = '!{oldestItem[0].date}';
-    var newestItemDate = '!{newestItem[0].date}';
+  //   // const oldestItemDate = '!{oldestItem[0].date}'
+  //   // const newestItemDate = '!{newestItem[0].date}'
 
-    var picker = new Pikaday({
-      field: document.querySelector('.datepicker'),
-      onSelect: function onSelect() {
-        document.querySelector('.datepicker').innerHTML = this.getMoment().format('MMMM YYYY');
-        //- startDate = this.getDate();
-        //- updateStartDate();
-      }
-    });
-  }
+  //   const picker = new Pikaday({ 
+  //     field: document.querySelector('.datepicker'),
+  //     onSelect: function() {
+  //       document.querySelector('.datepicker').innerHTML = this.getMoment().format('MMMM YYYY');
+  //         //- startDate = this.getDate();
+  //         //- updateStartDate();
+  //     }
+  //   });
+  // }
+
 })();

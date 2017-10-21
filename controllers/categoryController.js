@@ -29,8 +29,6 @@ exports.updateCategory = async (req, res) => {
 }
 
 exports.displayCategory = async (req, res) => {
-
-  // console.log(moment().year(req.query.year).month(req.query.month-1).startOf('month').format('MMM'))
   const startDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).startOf('month') : moment().startOf('month');
   const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
   const month = startDate.format('MMMM');
