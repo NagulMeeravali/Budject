@@ -3,7 +3,6 @@
 (function () {
   'use strict';
 
-  alert('!{oldestItem}')
   // Mobile Menu Toggle Functionality
   const mobileMenuIcon = document.querySelector('.mobile-menu-toggle');
 
@@ -45,6 +44,22 @@
   }
   
   changeBudgetColor();
+
+  // Datepicker
+  if (document.querySelector('.datepicker')) {
+
+    // const oldestItemDate = '!{oldestItem[0].date}'
+    // const newestItemDate = '!{newestItem[0].date}'
+
+    const picker = new Pikaday({ 
+      field: document.querySelector('.datepicker'),
+      onSelect: function() {
+        document.querySelector('.datepicker').innerHTML = this.getMoment().format('MMMM YYYY');
+          //- startDate = this.getDate();
+          //- updateStartDate();
+      }
+    });
+  }
 
 
 }());

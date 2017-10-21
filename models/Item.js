@@ -35,29 +35,23 @@ itemSchema.statics.getItemsByCat = function getItemsByCat(category) {
   ]);
 }
 
-itemSchema.statics.getItemsByCatAndMonth = function getItemsByCatAndMonth(category) {
-  const startOfMonth = moment().startOf('month');
-  const endOfMonth = moment().endOf('month');
-
+itemSchema.statics.getItemsByCatAndMonth = function getItemsByCatAndMonth(category, start, end) {
   return this.aggregate([
     {
       $match: {
         category: mongoose.Types.ObjectId(category),
-        date: { $gte: new Date(startOfMonth), $lte: new Date(endOfMonth) }
+        date: { $gte: new Date(start), $lte: new Date(end) }
       }
     }
   ]);
 }
 
-itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category) {
-  const startOfMonth = moment().startOf('month');
-  const endOfMonth = moment().endOf('month');
-
+itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category, start, end) {
   return this.aggregate([
     {
       $match: {
         category: mongoose.Types.ObjectId(category),
-        date: { $gte: new Date(startOfMonth), $lte: new Date(endOfMonth) }
+        date: { $gte: new Date(start), $lte: new Date(end) }
       }
     },
     {
@@ -70,15 +64,12 @@ itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category) {
 }
 
 // Static method - count number of items per category per month
-itemSchema.statics.numItemsByCategory = function numItemsByCategory(category) {
-  const startOfMonth = moment().startOf('month');
-  const endOfMonth = moment().endOf('month');
-
+itemSchema.statics.numItemsByCategory = function numItemsByCategory(category, start, end) {
   return this.aggregate([
     {
       $match: {
         category: mongoose.Types.ObjectId(category),
-        date: { $gte: new Date(startOfMonth), $lte: new Date(endOfMonth) }
+        date: { $gte: new Date(start), $lte: new Date(end) }
       }
     },
     {
