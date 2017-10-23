@@ -34,12 +34,14 @@
     const budgetDetails = [...document.querySelectorAll('.budget-meta')];
 
     budgetDetails.forEach(detail => {
+      const parent = detail.parentElement;
       const budgetSpentElement = detail.querySelector('.budget-spent');
       const budgetSpent = Number(budgetSpentElement.textContent.replace(/[^0-9\.-]+/g, ""));
       const budgetGoal = Number(detail.querySelector('.budget-goal').textContent.replace(/[^0-9\.-]+/g, ""));
-      const budgetClass = budgetSpent >= budgetGoal ? 'overspend' : 'underspend';
+      const budgetClass = budgetSpent > budgetGoal ? 'overspend' : 'underspend';
 
-      return budgetSpentElement.classList.add(budgetClass);
+      budgetSpentElement.classList.add(budgetClass);
+      parent.classList.add(budgetClass);
     });
   }
   

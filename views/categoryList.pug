@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_categorySidebar
+include mixins/_categories
 
 block sidebar
   //- +categorySidebar()
@@ -9,22 +10,7 @@ block content
   div.grid-cell.w100.container.category-list
     p this is the category landing page
     a.btn(href="/category/add") Add Category
-    ul.grid
-      each category, index in categories
-        li.grid-cell.w30.category
-          h3 #{category.title} 
-          - const itemSum = itemArr[index][1].sum || 0     
-          - const percentSpent = (itemSum / category.amount) * 100
-          p.budget-meta
-            span.budget-spent #{h.formatPrice(itemSum)}
-            |  of 
-            span.budget-goal #{h.formatPrice(category.amount)}
-            |  spent
-          p #{percentSpent}% of budget used
-          - const numTransactions = itemArr[index][0].count || 0   
-          p #{numTransactions} Transaction#{numTransactions === 1 ? '' : 's'}
-          a(href=`/category/${category.slug}`) View
-            
+    +categories()
             
           
 

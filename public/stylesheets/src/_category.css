@@ -36,12 +36,88 @@
     list-style-type: none;
 
     li.category {
+      padding: 15px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       background: map(colors, white, base);
       border: 1px solid map(colors, gray, base);
+
+      &.underspend {
+        border-color: map(colors, green, base);
+      }
+
+      &.overspend {
+        border-color: map(colors, red, base);
+
+        .progress-bar {
+          .progress-fill {
+            background: map(colors, red, base);
+          }
+        }
+      }
+
+      .category-top {
+        margin-bottom: 20px;
+        display: flex;
+        width: 100%;
+
+        .category-title {
+          h3 {
+            margin: 0;
+          }
+
+          p {
+            margin: 0;
+            font-size: 14px;
+          }
+        }
+
+        .budget-meta {
+          margin: 0;
+          text-align: right;
+
+          .budget-spent {
+            display: block;
+            font-size: 24px;
+            font-weight: 700;
+            color: map(colors, gray, base);
+
+            &.underspend {
+              color: map(colors, green, light);
+            }
+
+            &.overspend {
+              color: map(colors, red, base);
+            }
+          }
+
+          .budget-goal {
+            color: map(colors, black, base);
+            font-weight: 700;
+          }
+        }
+      }
+
+      .progress-bar {
+        height: 20px;
+        border: 1px solid map(colors, gray, base);
+        width: 100%;
+        overflow: hidden;
+        
+        .progress-fill {
+          background: linear-gradient(to left top, map(colors, green, light), map(colors, green, base));
+          height: 20px;
+        }
+      }
+
+      .budget-percent {
+        margin: 5px 0 0;
+        font-size: 12px;
+        width: 100%;
+        text-align: left;
+      }
     }
   }
 }
@@ -90,6 +166,7 @@
         display: block;
         font-size: 24px;
         font-weight: 700;
+        color: map(colors, gray, base);
 
         &.underspend {
           color: map(colors, green, light);
