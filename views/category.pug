@@ -18,7 +18,9 @@ block content
       .category-items.grid-cell.w40
         .budget-meta 
           .month-details
-            h3.datepicker #{month} #{year}
+            h3.datepicker 
+              span #{month} #{year} 
+              != h.icon('caret-down')
             if numItems
               p #{numItems.count} transactions this month
           p

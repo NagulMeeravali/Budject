@@ -43,6 +43,27 @@
       justify-content: space-between;
       font-size: 14px;
 
+      h3.datepicker {
+        display: flex;
+        align-items: center;
+
+        svg {
+          position: relative;
+          top: -1px;
+          margin-left: 6px;
+          width: 15px;
+          height: 15px;
+        }
+
+        &:hover, &:active, &:focus {
+          color: map(colors, blue, base);
+
+          svg {
+            fill: map(colors, blue, base);
+          }
+        }
+      }
+
       .budget-spent {
         display: block;
         font-size: 24px;

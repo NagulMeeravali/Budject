@@ -49,12 +49,4 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   changeBudgetColor();
-
-  // Datepicker
-  if (document.querySelector('.datepicker')) {
-    // const oldestItemDate = '!{oldestItem[0].date}'
-    // const newestItemDate = '!{newestItem[0].date}'
-
-
-  }
 })();
