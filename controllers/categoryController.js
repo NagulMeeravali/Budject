@@ -10,7 +10,7 @@ exports.getCategories = async (req, res) => {
   const categories = await Category.find().sort({ title: 1 });
   const countArr = await Promise.all(categories.map(async (category) => {
     const count = await Item.numItemsByCategory(category._id, startDate, endDate);
-    return count[0];
+    return count[0] || '0';
   }));
 
   res.render('categoryList', {categories, countArr});

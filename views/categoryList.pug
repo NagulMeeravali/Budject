@@ -15,7 +15,7 @@ block content
           a(href=`/category/${category.slug}`) 
             h3 #{category.title} 
             p (#{h.formatPrice(category.amount)})
-            - numTransactions = countArr[index].count
+            - let numTransactions = countArr[index].count || 0            
             p #{numTransactions} Transaction#{numTransactions === 1 ? '' : 's'}
             
           
