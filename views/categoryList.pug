@@ -14,9 +14,11 @@ block content
         li.grid-cell.one-third.category
           a(href=`/category/${category.slug}`) 
             h3 #{category.title} 
-            p (#{h.formatPrice(category.amount)})
-            - let numTransactions = countArr[index].count || 0            
+            - const itemSum = itemArr[index][1].sum || 0     
+            p (#{h.formatPrice(itemSum)} / #{h.formatPrice(category.amount)})
+            - const numTransactions = itemArr[index][0].count || 0   
             p #{numTransactions} Transaction#{numTransactions === 1 ? '' : 's'}
+            
             
           
 
