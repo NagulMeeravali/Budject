@@ -3,10 +3,20 @@ extends layout
 include mixins/_categorySidebar
 
 block sidebar
-  +categorySidebar()
+  //- +categorySidebar()
 
 block content
-  div.grid-cell.w65
+  div.grid-cell.w100.container.category-list
     p this is the category landing page
     a.btn(href="/category/add") Add Category
+    ul.grid
+      each category, index in categories
+        li.grid-cell.one-third.category
+          a(href=`/category/${category.slug}`) 
+            h3 #{category.title} 
+            p (#{h.formatPrice(category.amount)})
+            - numTransactions = countArr[index].count
+            p #{numTransactions} Transaction#{numTransactions === 1 ? '' : 's'}
+            
+          
 

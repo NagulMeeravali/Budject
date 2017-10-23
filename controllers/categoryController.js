@@ -5,8 +5,15 @@ const Category = mongoose.model('Category');
 const Item = mongoose.model('Item');
 
 exports.getCategories = async (req, res) => {
+  const startDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).startOf('month') : moment().startOf('month');
+  const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
   const categories = await Category.find().sort({ title: 1 });
-  res.render('categoryList', {categories});
+  const countArr = await Promise.all(categories.map(async (category) => {
+    const count = await Item.numItemsByCategory(category._id, startDate, endDate);
+    return count[0];
+  }));
+
+  res.render('categoryList', {categories, countArr});
 };
 
 exports.addCategory = (req, res) => {
