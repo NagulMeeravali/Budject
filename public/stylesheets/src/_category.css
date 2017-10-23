@@ -30,22 +30,18 @@
   ul {
     padding: 0;
     margin: 0;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 15px;
     list-style-type: none;
 
     li.category {
-      a {
-        padding: 50px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: map(colors, green, base);
-
-        * {
-          color: map(colors, white, base);
-        }
-      }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: map(colors, white, base);
+      border: 1px solid map(colors, gray, base);
     }
   }
 }
