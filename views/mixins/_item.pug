@@ -1,11 +1,11 @@
 mixin item(item = {})
-  .item
-    .item-meta
+  .item.grid
+    .item-meta.grid-cell
       h5.item-title= item.title
       p.item-date= h.moment(item.date).utc().format("MMM d, YYYY")
-    .item-price
+    .item-price.grid-cell
       p.price #{h.formatPrice(item.amount)}
-    .item-actions
+    .item-actions.grid-cell
       a(href=`/add/${item._id}` title="Edit" class="icon-edit") 
         != h.icon('edit')
       a(href=`/delete/${item._id}` title="Delete" class="icon-delete")

@@ -19,7 +19,8 @@ const categorySchema = new mongoose.Schema({
     trim: true
   },
   items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
-  creator: String
+  creator: String,
+  icon: String
   },
   {
   toJSON: { virtuals: true },

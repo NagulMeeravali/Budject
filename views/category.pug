@@ -6,7 +6,10 @@ include mixins/_categorySidebar
 
 block content
   .back-bar
-    a(href="/categories") See All Categories
+    .container
+      a(href="/categories") 
+        != h.icon('arrow-left')
+        | See All Categories
   .container.grid-cell.w100.category
     .budget-title
       h1 #{title}
@@ -25,14 +28,6 @@ block content
               span.budget-spent #{h.formatPrice(0)}
             | of 
             span.budget-goal #{h.formatPrice(category.amount)}
-        .filter-options.grid
-          .filter.grid-cell
-            //- select.datepicker
-            //-   option(value="") Choose a month
-
-          .search.grid-cell
-            .search-bar
-              input(type="text" placeholder="Search")
 
         - const entries = itemsByCatAndMonth
         if entries.length === 0

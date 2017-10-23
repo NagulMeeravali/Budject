@@ -8,13 +8,22 @@
   background: map(colors, white, base);
   border: 1px solid map(colors, black, base);
 
+  > div {
+    display: flex;
+    justify-content: center;
+  }
+
   .item-meta {
-    h5 {
+    flex-direction: column;
+
+    h5, p {
       margin: 0;
     }
   }
 
   .item-actions {
+    justify-content: flex-end;
+    
     svg {
       width: 25px;
       height: 25px;

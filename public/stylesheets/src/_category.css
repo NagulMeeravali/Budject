@@ -1,5 +1,32 @@
-.category {
+.back-bar {
+  display: block;
+  width: 100%;
+  background: map(colors, blue, base);
 
+  a {
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    color: map(colors, white, base); 
+
+    svg {
+      margin-right: 10px;
+      fill: map(colors, white, base);
+      width: 18px;
+      height: 18px;
+      transform: translateX(0px);
+      transition: all .5s ease;
+    }
+
+    &:hover, &:active, &:focus {
+      svg {
+        transform: translateX(-5px);
+      }
+    }   
+  }
+}
+
+.category {
   .budget-title {
     h1 {
       margin-bottom: 0;
