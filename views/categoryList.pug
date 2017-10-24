@@ -8,8 +8,12 @@ block sidebar
 
 block content
   div.grid-cell.w100.container.category-list
-    p this is the category landing page
-    a.btn(href="/category/add") Add Category
+    h1 Categories
+    h3.datepicker 
+      span #{month} #{year} 
+      != h.icon('caret-down')
+    p.add-btn
+      a.btn(href="/category/add") Add Category
     +categories()
             
           

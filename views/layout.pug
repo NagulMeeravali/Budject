@@ -41,14 +41,16 @@ html
         const oldestItemDate = '!{oldestItemDate}';
         const newestItemDate = '!{newestItemDate}';
 
-        const picker = new Pikaday({ 
-          field: document.querySelector('.datepicker'),
-          minDate: moment(oldestItemDate).toDate(),
-          maxDate: moment(newestItemDate).toDate(),
-          onSelect: function() {
-            document.querySelector('.datepicker span').innerHTML = this.getMoment().format('MMMM YYYY');
-            window.location = `${window.location.href.split('?')[0]}?month=${this.getMoment().month()+1}&year=${this.getMoment().year()}`;
-          }
-        });
+        if (oldestItemDate !== newestItemDate) {
+          const picker = new Pikaday({ 
+            field: document.querySelector('.datepicker'),
+            minDate: moment(oldestItemDate).toDate(),
+            maxDate: moment(newestItemDate).toDate(),
+            onSelect: function() {
+              document.querySelector('.datepicker span').innerHTML = this.getMoment().format('MMMM YYYY');
+              window.location = `${window.location.href.split('?')[0]}?month=${this.getMoment().month()+1}&year=${this.getMoment().year()}`;
+            }
+          });
+        }
       }
       

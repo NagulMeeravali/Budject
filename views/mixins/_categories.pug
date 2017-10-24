@@ -16,4 +16,8 @@ mixin categories()
         .progress-bar
           .progress-fill(style=`width: ${percentSpent}%`)
         p.budget-percent #{percentSpent}% of budget used
-        a(href=`/category/${category.slug}`) View
+        .btn-row
+          a.btn(href=`/category/${category.slug}`) View
+          //- if user
+          a.btn(href=`/category/${category.slug}/edit`) Edit
+          

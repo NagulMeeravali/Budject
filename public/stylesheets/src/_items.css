@@ -16,8 +16,19 @@
   .item-meta {
     flex-direction: column;
 
-    h5, p {
+    h5 {
       margin: 0;
+    }
+
+    p {
+      margin: 0;
+      font-size: 12px;
+    }
+  }
+
+  .item-price {
+    p {
+      color: map(colors, red, base);
     }
   }
 

@@ -39,11 +39,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var budgetDetails = [].concat(_toConsumableArray(document.querySelectorAll('.budget-meta')));
 
     budgetDetails.forEach(function (detail) {
-      var parent = detail.parentElement;
+      var parent = detail.parentElement.parentElement;
       var budgetSpentElement = detail.querySelector('.budget-spent');
       var budgetSpent = Number(budgetSpentElement.textContent.replace(/[^0-9\.-]+/g, ""));
       var budgetGoal = Number(detail.querySelector('.budget-goal').textContent.replace(/[^0-9\.-]+/g, ""));
-      var budgetClass = budgetSpent >= budgetGoal ? 'overspend' : 'underspend';
+      var budgetClass = budgetSpent > budgetGoal ? 'overspend' : 'underspend';
 
       budgetSpentElement.classList.add(budgetClass);
       parent.classList.add(budgetClass);

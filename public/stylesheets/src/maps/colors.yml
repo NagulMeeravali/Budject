@@ -8,6 +8,8 @@ green:
   base: '#70A9A1'
   dark: '#A3B18A'
   light: '#17B890'
+orange:
+  base: '#CE8D66'
 red: 
   base: '#DB504A'
 white:

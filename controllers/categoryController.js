@@ -7,6 +7,8 @@ const Item = mongoose.model('Item');
 exports.getCategories = async (req, res) => {
   const startDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).startOf('month') : moment().startOf('month');
   const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
+  const month = startDate.format('MMMM');
+  const year = startDate.format('YYYY');
   const categories = await Category.find().sort({ title: 1 });
   const itemArr = await Promise.all(categories.map(async (category) => {
     const count = await Item.numItemsByCategory(category._id, startDate, endDate);
@@ -14,7 +16,7 @@ exports.getCategories = async (req, res) => {
     return [(count[0] || '0'), itemSum[0] || '0'];
   }));
 
-  res.render('categoryList', {categories, itemArr});
+  res.render('categoryList', {categories, itemArr, month, year});
 };
 
 exports.addCategory = (req, res) => {
@@ -46,8 +48,15 @@ exports.displayCategory = async (req, res) => {
   const categoryPromise = Category.findOne({ slug: req.params.slug });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
   
-  const oldestItem = await Item.getItemsByCat(category._id).sort({"date": 1}).limit(1);
-  const newestItem = await Item.getItemsByCat(category._id).sort({ "date": -1 }).limit(1);
+
+  let oldestItem = await Item.getItemsByCat(category._id).sort({"date": 1}).limit(1);
+  if (oldestItem.length === 0) {
+    oldestItem = [{'date': new Date()}];
+  }
+  let newestItem = await Item.getItemsByCat(category._id).sort({ "date": -1 }).limit(1);
+  if (newestItem.length === 0) {
+    newestItem = [{'date': new Date()}];
+  }
   const itemSum = await Item.sumItemsByCategory(category._id, startDate, endDate);
   const numItems = await Item.numItemsByCategory(category._id, startDate, endDate);
   const itemsByCatAndMonth = await Item.getItemsByCatAndMonth(category._id, startDate, endDate);

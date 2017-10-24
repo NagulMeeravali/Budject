@@ -34,7 +34,7 @@
     const budgetDetails = [...document.querySelectorAll('.budget-meta')];
 
     budgetDetails.forEach(detail => {
-      const parent = detail.parentElement;
+      const parent = detail.parentElement.parentElement;
       const budgetSpentElement = detail.querySelector('.budget-spent');
       const budgetSpent = Number(budgetSpentElement.textContent.replace(/[^0-9\.-]+/g, ""));
       const budgetGoal = Number(detail.querySelector('.budget-goal').textContent.replace(/[^0-9\.-]+/g, ""));

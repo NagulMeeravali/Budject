@@ -31,4 +31,21 @@ a {
   &:hover, &:active, &:focus {
     color: map(colors, blue, base);
   }
+
+  &.btn {
+    padding: 8px 25px;
+    display: inline-block;
+    font-weight: 700;
+    border: 2px solid map(colors, green, base);
+    background: transparent;
+    text-transform: uppercase;
+    transition: all .4s ease;
+    letter-spacing: 0.1em;
+
+    &:hover, &:active, &:focus {
+      background: map(colors, blue, base);
+      border-color: map(colors, blue, base);
+      color: map(colors, white, base);
+    }
+  }
 }
