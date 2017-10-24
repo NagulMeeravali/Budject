@@ -63,6 +63,19 @@ itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category, st
   ]);
 }
 
+itemSchema.statics.getItemsByQueriedYear = function getItemsByQueriedYear(category, start, end) {
+  console.log(moment(start).startOf('year'))
+  console.log(moment(end).endOf('year'))
+  return this.aggregate([
+    {
+      $match: {
+        category: mongoose.Types.ObjectId(category),
+        date: { $gte: new Date(moment(start).startOf('year')), $lte: new Date(moment(end).endOf('year')) }
+      }
+    }
+  ]);
+}
+
 // Static method - count number of items per category per month
 itemSchema.statics.numItemsByCategory = function numItemsByCategory(category, start, end) {
   return this.aggregate([

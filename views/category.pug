@@ -39,7 +39,9 @@ block content
           +item(entry)
 
       .category-charts.grid-cell.w50
-        p charts go here
+        != h.dump(getItemsByQueriedYear)
+        each entry in entries
+          p= entry.amount
 
 
 

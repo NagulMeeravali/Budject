@@ -1,7 +1,6 @@
 .item {
-  margin-bottom: 15px;
   padding: 20px;
-  margin: 0 auto;
+  margin: 0 auto 10px;
   display: flex;
   align-items: center;
   justify-content: space-around;
