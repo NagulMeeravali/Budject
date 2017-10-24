@@ -38,10 +38,14 @@ html
     script(src="/javascripts/dist/app.min.js")
     script.
       if (document.querySelector('.datepicker')) {
+        const numItems = '!{numItems}'
         const oldestItemDate = '!{oldestItemDate}';
         const newestItemDate = '!{newestItemDate}';
 
-        if (oldestItemDate !== newestItemDate) {
+        console.log(numItems.length === 0)
+        console.log(document.querySelector('.category-page') !== null)
+
+        if ((document.querySelector('.category-page') !== null && numItems.length !== 0) || document.querySelector('.category-list') !== null) {
           const picker = new Pikaday({ 
             field: document.querySelector('.datepicker'),
             minDate: moment(oldestItemDate).toDate(),
