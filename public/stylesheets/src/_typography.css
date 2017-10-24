@@ -49,3 +49,23 @@ a {
     }
   }
 }
+
+input[type=submit] {
+  padding: 8px 25px;
+  display: inline-block;
+  font-family: map(fonts, lora);
+  font-weight: 700;
+  color: map(colors, blue, base);
+  border: 2px solid map(colors, green, base);
+  background: transparent;
+  text-transform: uppercase;
+  transition: all .4s ease;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+
+  &:hover, &:active, &:focus {
+    background: map(colors, blue, base);
+    border-color: map(colors, blue, base);
+    color: map(colors, white, base);
+  }
+}

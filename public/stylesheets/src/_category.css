@@ -28,14 +28,14 @@
 
 .category-list {
   h3.datepicker {
-    display: flex;
+    margin: 0;
+    display: inline-block;
     align-items: center;
     transition: all .5s ease;
 
     svg {
       position: relative;
-      top: -1px;
-      margin-left: 6px;
+      top: 2px;
       width: 15px;
       height: 15px;
       transition: all .5s ease;
@@ -185,14 +185,14 @@
       font-size: 14px;
 
       h3.datepicker {
-        display: flex;
+        margin: 0;
+        display: inline-block;
         align-items: center;
         transition: all .5s ease;
 
         svg {
           position: relative;
-          top: -1px;
-          margin-left: 6px;
+          top: 2px;
           width: 15px;
           height: 15px;
           transition: all .5s ease;
