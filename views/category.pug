@@ -29,6 +29,9 @@ block content
               span.budget-spent #{h.formatPrice(0)}
             | of 
             span.budget-goal #{h.formatPrice(category.amount)}
+        p.add-btn
+          a.btn(href="/category/add") Add Item
+
 
         - const entries = itemsByCatAndMonth
         if entries.length === 0
@@ -40,6 +43,7 @@ block content
 
       .category-charts.grid-cell.w50
         != h.dump(getItemsByQueriedYear)
+        svg.line-chart
         each entry in entries
           p= entry.amount
 

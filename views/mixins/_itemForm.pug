@@ -1,16 +1,23 @@
 mixin itemForm(item={})
   form(action=`/add/${item._id || ''}` method="POST" class="itemForm")
-    label(for="title") Item
-    input(type="text" name="title" value=item.title required)
-    label(for="amount") Amount
-    input(type="number" name="amount" value=item.amount step=".01" min="0.00" required)
-    label(for="date") Date
-    input(type="date" name="date" value=item.date required)
-    label(for="category") Category
-    //- Income / Expense
-    p= item.category
-    select(name="category" required)
-      option(value="") Select a Category
-      each category in categoryList
-        option(value=category._id)= category.title
+    .group
+      input(type="text" name="title" value=item.title required)
+      label(for="title") Item
+    .group
+      input(type="number" name="amount" value=item.amount step=".01" min="0.00" required)
+      label(for="amount") Amount
+    .group
+      input(type="date" name="date" value=item.date required)
+      label(for="date") Date
+    .group
+      label(for="category") Category
+      //- Income / Expense
+      p= item.category
+      select(name="category" required)
+        option(value="") Select a Category
+        each category in categoryList
+          - const selected = (JSON.stringify(`${item.category}`) === JSON.stringify(category._id)) ? "test" : ""
+          - console.log(selected)
+
+          option(value=category._id `${selected}`)= category.title
     input(type="submit" value="Submit")

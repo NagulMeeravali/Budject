@@ -4,6 +4,8 @@ const db = mongoose.connection;
 const Category = mongoose.model('Category');
 const Item = mongoose.model('Item');
 const d3 = require('d3');
+const D3Node = require('d3-node');
+const d3n = new D3Node();
 
 exports.getCategories = async (req, res) => {
   const startDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).startOf('month') : moment().startOf('month');
