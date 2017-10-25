@@ -2,11 +2,13 @@ extends layout
 
 block content
   .container
-    form(action="/category/add" method="POST")
-      .form-group
+    h1 Add Category
+    form(action="/category/add" method="POST" class="grid")
+      .form-group.grid-cell
         input(type="text" name="title")
         label(for="title") Category Title
-      .form-group
+      .form-group.grid-cell.amount-field
         input(type="number" name="amount")
         label(for="amount") Amount
-      input(type="submit" value="Submit")
+      .form-group.grid-cell.w100
+        input(type="submit" value="Submit")

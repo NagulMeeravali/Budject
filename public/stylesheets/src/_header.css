@@ -13,6 +13,12 @@ header {
     align-items: center;
   }
 
+  nav {
+    @media <=map(bp, tiny) {
+      flex: 1 !important;
+    }
+  }
+
   .menu {
     display: block;
     width: 100%;

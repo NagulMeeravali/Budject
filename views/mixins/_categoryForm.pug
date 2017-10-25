@@ -1,5 +1,6 @@
 mixin categoryForm(category={})
-  form(action=`/category/${category.slug}/edit` method="POST" class="categoryForm")
+  form(action=`/category/${category.slug}/edit` method="POST" class="categoryForm grid")
+    .form-group
     label(for="title") Category
     input(type="text" name="title" value=category.title required)
     label(for="amount") Amount

@@ -1,54 +1,89 @@
 form {
-  margin-top: 50px !important;
+  margin-top: 40px !important;
 
   .form-group {
     position: relative;
     margin-bottom: 25px;
+    @media <=map(bp, mobile) {
+      margin-bottom: 35px;
+      flex: 0 0 100%;
+    }
+
+    &.amount-field {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        top: 13px;
+        left: 5px;
+        content: '$';
+        font-family: map(fonts, istok);
+        font-size: 14px;
+        color: map(colors, gray, base);
+      }
+    }
 
     input {
       &[type=text], &[type=number] {
-        font-size: 18px;
-        padding: 10px 10px 10px 5px;
         display: block;
-        width: 300px;
-        border: none;
-        border-bottom: 1px solid #757575;
+        padding: 10px 10px 9px 5px;
+        width: 90%;
+        font-family: map(fonts, istok);
+        font-size: 18px;
+        color: map(colors, gray, base);
+        text-indent: 10px;
+        border: 1px solid map(colors, black, base);
 
         &:focus ~ label {
           top:-20px;
-          font-size:14px;
-          color: map(colors, green, light);
+          font-size: 14px;
+          color: map(colors, blue, base);
+          text-indent: 0;
+        }
+
+        &:active, &:focus {
+          border-color: map(colors, blue, base);
+          outline: none;
         }
       }
 
       &[type=date] {
         ~ label {
           top:-20px;
-          font-size:14px;
-          color: map(colors, green, light);
+          font-size: 14px;
+          color: map(colors, blue, base);
         }
       }
 
       &.has-value {
+        &.amount-field {
+          &::before {
+            font-size: 18px;
+          }
+        }
+
         ~ label {
           top:-20px;
-          font-size:14px;
-          color: map(colors, green, light);
+          font-size: 14px;
+          color: map(colors, blue, base);
+          text-indent: 0;
+        }
+
+        input {
+          border-color: map(colors, blue, base);
         }
       }
     }
 
     label {
-      color:#999; 
-      font-size:14px;
-      font-weight:normal;
-      position:absolute;
+      position: absolute;
+      top: 13px;
+      font-family: map(fonts, istok);
+      font-size: 14px;
+      color: map(colors, gray, base); 
       pointer-events:none;
-      left:5px;
-      top:10px;
-      transition:0.2s ease all; 
-      -moz-transition:0.2s ease all; 
-      -webkit-transition:0.2s ease all;
+      text-indent: 15px;
+      transition:0.3s ease all; 
     }
   }
 }
