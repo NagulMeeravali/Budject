@@ -112,6 +112,22 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
   });
 
+  // Add class to parent container when income field is in focus
+  var incomeInput = document.querySelector('input[name=income]');
+
+  function addIncomeInputClass() {
+    console.log(incomeInput);
+    console.log(document.activeElement);
+    if (incomeInput === document.activeElement) {
+      this.parentElement.classList.add('active-element');
+    } else {
+      this.parentElement.classList.remove('active-element');
+    }
+  }
+
+  incomeInput.addEventListener('click', addIncomeInputClass);
+  incomeInput.addEventListener('keydown', addIncomeInputClass);
+
   // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
 
   function changeBudgetColor() {
