@@ -9,6 +9,7 @@ exports.addItem = async (req, res) => {
 
 exports.createItem = async (req, res) => {
   const item = await (new Item(req.body)).save();
+  console.log(item);
   res.redirect('back');
 }
 

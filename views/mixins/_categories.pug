@@ -15,7 +15,7 @@ mixin categories()
             span.budget-goal #{h.formatPrice(category.amount)}
         .progress-bar
           .progress-fill(style=`width: ${percentSpent}%`)
-        p.budget-percent #{percentSpent}% of budget used
+        p.budget-percent #{percentSpent.toFixed(2)}% of budget used
         .btn-row
           a.btn(href=`/category/${category.slug}`) View
           //- if user

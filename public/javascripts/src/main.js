@@ -15,19 +15,6 @@
 
   mobileMenuToggle();
 
-  // Add today's date as value to date input
-
-  function todayDate() {
-    const today = moment().utc().format('YYYY-MM-DD');
-    const dateInput = document.querySelector('input[type="date"]');
-
-    dateInput.value = today;
-  }
-
-  if (document.querySelector('input[type="date"]')) {
-    todayDate();
-  }
-
   // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
 
   function changeBudgetColor() {

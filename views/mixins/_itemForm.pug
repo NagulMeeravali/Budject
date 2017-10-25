@@ -1,20 +1,21 @@
 mixin itemForm(item={})
-  form(action=`/add/${item._id || ''}` method="POST" class="itemForm")
-    .group
+  form(action=`/add/${item._id || ''}` method="POST" class="itemForm grid")
+    .group.grid-cell.w100
       input(type="text" name="title" value=item.title required)
       label(for="title") Item
-    .group
+    .group.grid-cell.w50
       input(type="number" name="amount" value=item.amount step=".01" min="0.00" required)
       label(for="amount") Amount
-    .group
-      input(type="date" name="date" value=item.date required)
+    .group.grid-cell.w50
+      input(type="date" name="date" value=h.moment(item.date).utc().format("YYYY-MM-D") required)
       label(for="date") Date
-    .group
+    .group.grid-cell.w100
       label(for="category") Category
-      //- Income / Expense
-      p= item.category
       select(name="category" required)
         option(value="") Select a Category
         each category in categoryList
           option(value=category._id selected=(JSON.stringify(`${item.category}`) == JSON.stringify(category._id)))= category.title
+      .group.grid-cell.w100
+        textarea(name="description", cols="30", rows="10") #{item.description}
+        label(for="description") Description
     input(type="submit" value="Submit")

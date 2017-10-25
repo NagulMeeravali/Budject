@@ -20,7 +20,12 @@ const itemSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
+    default: Date.now(),
     required: 'Please enter the date this transaction took place.',
+    trim: true
+  },
+  description: {
+    type: String,
     trim: true
   }
 });
@@ -64,8 +69,6 @@ itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category, st
 }
 
 itemSchema.statics.getItemsByQueriedYear = function getItemsByQueriedYear(category, start, end) {
-  console.log(moment(start).startOf('year'))
-  console.log(moment(end).endOf('year'))
   return this.aggregate([
     {
       $match: {

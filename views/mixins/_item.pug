@@ -2,7 +2,7 @@ mixin item(item = {})
   .item.grid
     .item-meta.grid-cell
       h5.item-title= item.title
-      p.item-date= h.moment(item.date).utc().format("MMM d, YYYY")
+      p.item-date= h.moment(item.date).utc().format("MMM D, YYYY")
     .item-price.grid-cell
       p.price -#{h.formatPrice(item.amount)}
     .item-actions.grid-cell
