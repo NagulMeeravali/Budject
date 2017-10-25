@@ -66,6 +66,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var emailValidation = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailValidation.test(email);
   }
+
   var emailInputs = [].concat(_toConsumableArray(document.querySelectorAll('input[type=email]')));
   var _iteratorNormalCompletion2 = true;
   var _didIteratorError2 = false;
@@ -84,7 +85,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       });
     }
 
-    // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
+    // Add validation to password and confirm password fields as you type
   } catch (err) {
     _didIteratorError2 = true;
     _iteratorError2 = err;
@@ -99,6 +100,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       }
     }
   }
+
+  var passwordInput = document.querySelector('input[name=password]');
+  var confirmPasswordInput = document.querySelector('input[name=confirm-password]');
+
+  confirmPasswordInput.addEventListener('keyup', function (e) {
+    if (this.value !== passwordInput.value) {
+      this.classList.add('invalid-input');
+    } else {
+      this.classList.remove('invalid-input');
+    }
+  });
+
+  // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
 
   function changeBudgetColor() {
     var budgetDetails = [].concat(_toConsumableArray(document.querySelectorAll('.budget-meta')));

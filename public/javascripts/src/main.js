@@ -36,6 +36,7 @@
     const emailValidation = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailValidation.test(email);
   }
+
   const emailInputs = [...document.querySelectorAll('input[type=email]')];
   for (const emailInput of emailInputs) {
     emailInput.addEventListener('keydown', function(e) {
@@ -46,6 +47,19 @@
       }
     });
   }
+
+  // Add validation to password and confirm password fields as you type
+
+  const passwordInput = document.querySelector('input[name=password]');
+  const confirmPasswordInput = document.querySelector('input[name=confirm-password]');
+
+  confirmPasswordInput.addEventListener('keyup', function(e) {
+    if (this.value !== passwordInput.value) {
+      this.classList.add('invalid-input');
+    } else {
+      this.classList.remove('invalid-input');
+    }
+  });
 
   // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
 

@@ -1,0 +1,19 @@
+mixin registerForm()
+  form(action=`/register` method="POST" class="grid")
+    .form-group.grid-cell.w50
+      input(type="text" name="name")
+      label(for="name") Name
+    .form-group.grid-cell.w50
+      input(type="email" name="email")
+      label(for="email") Email
+    .form-group.grid-cell.w50
+      input(type="password" name="password")
+      label(for="password") Password
+    .form-group.grid-cell.w50
+      input(type="password" name="confirm-password")
+      label(for="confirm-password") Confirm Password
+    .form-group.grid-cell.w50.amount-field
+      input(type="number" name="income")
+      label(for="income") Income
+    .form-group.grid-cell.w100
+      input(type="submit" value="Submit")
