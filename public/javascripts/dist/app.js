@@ -20,6 +20,46 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   mobileMenuToggle();
 
+  // Add class to form input if input has value
+
+  var formInputs = [].concat(_toConsumableArray(document.querySelectorAll('input:not([type=submit]):not([type=date])')));
+  if (formInputs) {
+    var _loop = function _loop(formInput) {
+      formInput.addEventListener('change', function (e) {
+        if (formInput.value) {
+          this.classList.add('has-value');
+        } else {
+          this.classList.remove('has-value');
+        }
+      });
+    };
+
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = formInputs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var formInput = _step.value;
+
+        _loop(formInput);
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+  }
+
   // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
 
   function changeBudgetColor() {
@@ -39,21 +79,21 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   changeBudgetColor();
 
-  var svg = d3.select("svg.line-chart"),
-      margin = { top: 20, right: 20, bottom: 30, left: 50 },
-      width = +svg.attr("width") - margin.left - margin.right,
-      height = +svg.attr("height") - margin.top - margin.bottom,
-      g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  // const svg = d3.select("svg.line-chart"),
+  // margin = {top: 20, right: 20, bottom: 30, left: 50},
+  // width = +svg.attr("width") - margin.left - margin.right,
+  // height = +svg.attr("height") - margin.top - margin.bottom,
+  // g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  var parseTime = d3.timeParse("%d-%b-%y");
+  // var parseTime = d3.timeParse("%d-%b-%y");
 
-  var x = d3.scaleTime().rangeRound([0, width]);
+  // var x = d3.scaleTime()
+  //     .rangeRound([0, width]);
 
-  var y = d3.scaleLinear().rangeRound([height, 0]);
+  // var y = d3.scaleLinear()
+  //     .rangeRound([height, 0]);
 
-  var line = d3.line().x(function (d) {
-    return x(d.date);
-  }).y(function (d) {
-    return y(d.close);
-  });
+  // var line = d3.line()
+  //     .x(function(d) { return x(d.date); })
+  //     .y(function(d) { return y(d.close); });
 })();

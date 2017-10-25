@@ -1,4 +1,6 @@
 form {
+  margin-top: 50px !important;
+
   .form-group {
     position: relative;
     margin-bottom: 25px;
@@ -11,27 +13,42 @@ form {
         width: 300px;
         border: none;
         border-bottom: 1px solid #757575;
+
+        &:focus ~ label {
+          top:-20px;
+          font-size:14px;
+          color: map(colors, green, light);
+        }
+      }
+
+      &[type=date] {
+        ~ label {
+          top:-20px;
+          font-size:14px;
+          color: map(colors, green, light);
+        }
+      }
+
+      &.has-value {
+        ~ label {
+          top:-20px;
+          font-size:14px;
+          color: map(colors, green, light);
+        }
       }
     }
+
+    label {
+      color:#999; 
+      font-size:14px;
+      font-weight:normal;
+      position:absolute;
+      pointer-events:none;
+      left:5px;
+      top:10px;
+      transition:0.2s ease all; 
+      -moz-transition:0.2s ease all; 
+      -webkit-transition:0.2s ease all;
+    }
   }
-}
-
-label {
-  color:#999; 
-  font-size:14px;
-  font-weight:normal;
-  position:absolute;
-  pointer-events:none;
-  left:5px;
-  top:10px;
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
-}
-
-/* active state */
-input:focus ~ label, input:valid ~ label {
-  top:-20px;
-  font-size:14px;
-  color: #009688;
 }
