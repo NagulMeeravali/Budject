@@ -1,0 +1,10 @@
+mixin loginForm()
+  form(action=`/login` method="POST" class="grid")
+    .form-group.grid-cell
+      input(type="email" name="email")
+      label(for="email") Email
+    .form-group.grid-cell
+      input(type="password" name="password")
+      label(for="password") Password
+    .form-group.grid-cell.w100
+      input(type="submit" value="Submit")

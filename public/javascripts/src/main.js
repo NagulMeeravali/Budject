@@ -30,6 +30,23 @@
     }
   }
 
+  // Add validation to email input as you type
+
+  function validateEmail(email) {
+    const emailValidation = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailValidation.test(email);
+  }
+  const emailInputs = [...document.querySelectorAll('input[type=email]')];
+  for (const emailInput of emailInputs) {
+    emailInput.addEventListener('keydown', function(e) {
+      if (validateEmail(this.value)) {
+        this.classList.remove('invalid-input');
+      } else {
+        this.classList.add('invalid-input');
+      }
+    });
+  }
+
   // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
 
   function changeBudgetColor() {

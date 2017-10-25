@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const categoryController = require('../controllers/categoryController');
 const itemController = require('../controllers/itemController');
+const userController = require('../controllers/userController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 /* GET home page. */
@@ -38,6 +39,9 @@ router.get(`/delete/:id`, catchErrors(itemController.deleteItem));
 // logout
 // dashboard
 // edit 
+
+router.get('/register', userController.registerForm);
+router.get('/login', userController.loginForm);
 
 // Month View - Show total amount budgeted and total amount spent
 // Leftover money for savings - https://dribbble.com/shots/3685757-Finance-App-New-Budget/attachments/825117

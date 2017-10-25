@@ -21,7 +21,7 @@ block content
               span #{month} #{year} 
               != h.icon('caret-down')
             if numItems
-              p #{numItems.count} transactions this month
+              p #{numItems.count} transaction#{numItems.count === 1 ? '' : 's'} this month
           p
             if itemSum
               span.budget-spent #{h.formatPrice(itemSum.sum)} 

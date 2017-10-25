@@ -60,7 +60,45 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
   }
 
-  // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
+  // Add validation to email input as you type
+
+  function validateEmail(email) {
+    var emailValidation = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailValidation.test(email);
+  }
+  var emailInputs = [].concat(_toConsumableArray(document.querySelectorAll('input[type=email]')));
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = emailInputs[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var emailInput = _step2.value;
+
+      emailInput.addEventListener('keydown', function (e) {
+        if (validateEmail(this.value)) {
+          this.classList.remove('invalid-input');
+        } else {
+          this.classList.add('invalid-input');
+        }
+      });
+    }
+
+    // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2.return) {
+        _iterator2.return();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
 
   function changeBudgetColor() {
     var budgetDetails = [].concat(_toConsumableArray(document.querySelectorAll('.budget-meta')));

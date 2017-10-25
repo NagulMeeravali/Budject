@@ -24,7 +24,7 @@ form {
     }
 
     input {
-      &[type=text], &[type=number] {
+      &[type=text], &[type=number], &[type=email], &[type=password] {
         display: block;
         padding: 10px 10px 9px 5px;
         width: 90%;
@@ -33,6 +33,10 @@ form {
         color: map(colors, gray, base);
         text-indent: 10px;
         border: 1px solid map(colors, black, base);
+
+        &.invalid-input {
+          border-color: map(colors, red, base) !important;
+        }
 
         &:focus ~ label {
           top:-20px;
