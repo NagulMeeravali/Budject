@@ -16,8 +16,5 @@ mixin itemForm(item={})
       select(name="category" required)
         option(value="") Select a Category
         each category in categoryList
-          - const selected = (JSON.stringify(`${item.category}`) === JSON.stringify(category._id)) ? "test" : ""
-          - console.log(selected)
-
-          option(value=category._id `${selected}`)= category.title
+          option(value=category._id selected=(JSON.stringify(`${item.category}`) == JSON.stringify(category._id)))= category.title
     input(type="submit" value="Submit")
