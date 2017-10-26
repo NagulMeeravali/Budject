@@ -1,0 +1,28 @@
+.flash-messages {
+  margin-top: 15px;
+  width: 100%;
+
+  .flash {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    &.flash-error {
+      background: map(colors, red, base);
+    }
+
+    p {
+      font-family: map(fonts, istok);
+      font-size: 18px;
+      color: map(colors, white, base);
+    }
+
+    button {
+      position: absolute;
+      right: 0;
+      background: none;
+      border: none;
+      height: 100%;
+    }
+  }
+}
