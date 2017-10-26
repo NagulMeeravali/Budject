@@ -1,10 +1,10 @@
 mixin categoryForm(category={})
   form(action=`/category/${category.slug}/edit` method="POST" class="grid")
-    .form-group.grid-cell
+    .form-group.grid-cell.w48
       input(type="text" name="title")
       label(for="title") Category Title
-    .form-group.grid-cell.amount-field
-      input(type="number" name="amount")
+    .form-group.grid-cell.w48.amount-field
+      input(type="number" name="amount" min="0.00" step="0.01")
       label(for="amount") Amount
     .form-group.grid-cell.w100
       input(type="submit" value="Submit")
