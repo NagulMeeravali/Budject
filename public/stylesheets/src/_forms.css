@@ -20,21 +20,16 @@ form {
         font-family: map(fonts, istok);
         font-size: 14px;
         color: map(colors, gray, base);
+        visibility: hidden;
+        opacity: 0;
       }
 
-      &.income-field {
+      &.active-element {
         &::before {
-          visibility: hidden;
-          opacity: 0;
+          visibility: visible;
+          opacity: 1;
         }
-
-        &.active-element {
-          &::before {
-            visibility: visible;
-            opacity: 1;
-          }
-        }
-      }
+      }   
     }
 
     input {
@@ -50,6 +45,10 @@ form {
 
         &.invalid-input {
           border-color: map(colors, red, base) !important;
+        }
+
+        &.passwords-match {
+          border-color: map(colors, green, light) !important;
         }
 
         &:focus ~ label {
@@ -77,13 +76,8 @@ form {
         &.amount-field {
           &::before {
             font-size: 18px;
-          }
-
-          &.income-field {
-            &::before {
-              visibility: visible;
-              opacity: 1;
-            }
+            visibility: visible;
+            opacity: 1;
           }
         }
 

@@ -3,7 +3,7 @@ mixin itemForm(item={})
     .form-group.grid-cell.w100
       input(type="text" name="title" value=item.title required)
       label(for="title") Item
-    .form-group.grid-cell.w50
+    .form-group.grid-cell.w50.amount-field
       input(type="number" name="amount" value=item.amount step=".01" min="0.00" required)
       label(for="amount") Amount
     .form-group.grid-cell.w50

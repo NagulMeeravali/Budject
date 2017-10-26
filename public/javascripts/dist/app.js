@@ -104,29 +104,38 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var passwordInput = document.querySelector('input[name=password]');
   var confirmPasswordInput = document.querySelector('input[name=confirm-password]');
 
-  confirmPasswordInput.addEventListener('keyup', function (e) {
-    if (this.value !== passwordInput.value) {
-      this.classList.add('invalid-input');
-    } else {
-      this.classList.remove('invalid-input');
-    }
-  });
-
-  // Add class to parent container when income field is in focus
-  var incomeInput = document.querySelector('input[name=income]');
-
-  function addIncomeInputClass() {
-    console.log(incomeInput);
-    console.log(document.activeElement);
-    if (incomeInput === document.activeElement) {
-      this.parentElement.classList.add('active-element');
-    } else {
-      this.parentElement.classList.remove('active-element');
-    }
+  if (passwordInput && confirmPasswordInput) {
+    confirmPasswordInput.addEventListener('keyup', function (e) {
+      if (this.value !== passwordInput.value) {
+        this.classList.add('invalid-input');
+      } else {
+        this.classList.remove('invalid-input');
+        this.classList.add('passwords-match');
+        passwordInput.classList.add('passwords-match');
+      }
+    });
   }
 
-  incomeInput.addEventListener('click', addIncomeInputClass);
-  incomeInput.addEventListener('keydown', addIncomeInputClass);
+  // Add class to parent container when amount field is in focus
+  var amountInput = document.querySelector('.amount-field input');
+
+  function addAmountInputClass() {
+    this.parentElement.classList.add('active-element');
+  }
+
+  function removeAmountInputClass() {
+    if (this.value) {
+      return;
+    }
+
+    this.parentElement.classList.remove('active-element');
+  }
+
+  if (amountInput) {
+    amountInput.addEventListener('focus', addAmountInputClass, true);
+    amountInput.addEventListener('blur', addAmountInputClass, true);
+    amountInput.addEventListener('focusout', removeAmountInputClass, true);
+  }
 
   // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
 
