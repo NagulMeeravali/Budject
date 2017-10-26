@@ -1,3 +1,7 @@
+* {
+  box-sizing: content-box;
+}
+
 body {
   background: map(colors, white, light);
 }

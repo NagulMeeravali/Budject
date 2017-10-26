@@ -1,5 +1,6 @@
 form {
   margin-top: 40px !important;
+  justify-content: space-between;
 
   .form-group {
     position: relative;
@@ -33,10 +34,10 @@ form {
     }
 
     input {
-      &[type=text], &[type=number], &[type=email], &[type=password] {
+      &[type=text], &[type=number], &[type=email], &[type=password], &[type=date] {
         display: block;
         padding: 10px 10px 9px 5px;
-        width: 90%;
+        width: 100%;
         font-family: map(fonts, istok);
         font-size: 18px;
         color: map(colors, gray, base);
@@ -65,10 +66,16 @@ form {
       }
 
       &[type=date] {
+        padding-top: 7px;
+        padding-bottom: 5px;
+        text-indent: 3px;
+
         ~ label {
-          top:-20px;
+          top: -20px;
+          left: 0;
           font-size: 14px;
           color: map(colors, blue, base);
+          text-indent: 0;
         }
       }
 
@@ -90,6 +97,66 @@ form {
 
         input {
           border-color: map(colors, blue, base);
+        }
+      }
+    }
+
+    select {
+      display: block;
+      padding: 10px 10px 9px 5px;
+      width: 100%;
+      font-family: map(fonts, istok);
+      font-size: 18px;
+      color: map(colors, gray, base);
+      text-indent: 10px;
+      background: url(/images/caret-down.svg) 98% no-repeat map(colors, white, base);
+      background-size: 20px;
+      border: 1px solid map(colors, black, base);
+      border-radius: 0;
+      outline: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        font-size: 14px;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        font-size: 14px;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        font-size: 14px;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        font-size: 14px;
+      }
+
+      &:active, &:focus {
+        border-color: map(colors, blue, base);
+      }
+    }
+
+    textarea {
+      padding: 10px 10px 9px 5px;
+      font-family: map(fonts, istok);
+      font-size: 18px;
+      color: map(colors, gray, base);
+      text-indent: 10px;
+      border: 1px solid map(colors, black, base);
+      width: 100%;
+
+      ~ label {
+        left: 0;
+      }
+
+      &:focus, &:active {
+        border-color: map(colors, blue, base);
+
+        ~ label {
+          top: -20px;
+          font-size: 14px;
+          color: map(colors, blue, base);
+          text-indent: 0;
         }
       }
     }
