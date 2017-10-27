@@ -1,11 +1,55 @@
+@keyframes slideIn {
+  0% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .flash-messages {
   margin-top: 15px;
   width: 100%;
 
   .flash {
     position: relative;
+    margin-bottom: 15px;
     display: flex;
     justify-content: center;
+    box-shadow: 0 3px 10px rgba(map(colors, black, base), 0.15);
+    animation: slideIn forwards .2s ease-in-out 2;
+    animation-timing-function: cubic-bezier(0.01, 1.68, 0.58, 1);
+
+    & + .flash {
+    animation-delay: 0.35s;
+      & + .flash {
+        animation-delay: 0.55s;
+        & + .flash {
+          animation-delay: 0.75s;
+        }
+      }
+    }
 
     &.flash-error {
       background: map(colors, red, base);
@@ -19,10 +63,19 @@
 
     button {
       position: absolute;
-      right: 0;
+      right: 5px;
+      font-family: map(fonts, istok);
+      font-size: 34px;
+      color: map(colors, white, base);
+      height: 100%;
       background: none;
       border: none;
-      height: 100%;
+      cursor: pointer;
+
+      &:hover, &:active, &:focus {
+        animation: pulse .8s infinite;
+        animation-timing-function: ease;
+      }
     }
   }
 }
