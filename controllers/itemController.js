@@ -30,8 +30,9 @@ exports.getItem = async (req, res) => {
 exports.updateItem = async (req, res) => {
   const categoryList = await Category.find();
   const item = await Item.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+  const category = await Category.findOne({_id: req.body.category})
   confirmOwner(item, req.user)
-  res.redirect(`/add/${item._id}`);
+  res.redirect(`/category/${category.slug}`);
 }
 
 exports.deleteItem = async (req, res) => {
