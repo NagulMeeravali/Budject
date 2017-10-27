@@ -14,6 +14,11 @@ const confirmOwner = (category, user) => {
 };
 
 exports.getCategories = async (req, res) => {
+  if (typeof(req.user) === 'undefined' || !req.user) {
+    req.flash('error', 'You must login to see your categories');
+    res.redirect('/login');
+  }
+
   const startDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).startOf('month') : moment().startOf('month');
   const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
   const month = startDate.format('MMMM');
