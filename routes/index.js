@@ -42,12 +42,13 @@ router.get(`/delete/:id`, catchErrors(itemController.deleteItem));
 // edit 
 
 router.get('/register', userController.registerForm);
-router.get('/login', userController.loginForm);
-router.post('/register', 
+router.post('/register',
   userController.validateRegister,
   userController.register,
   authController.login
 );
+router.get('/login', userController.loginForm);
+router.post('/login', authController.login);
 router.get('/logout', authController.logout);
 
 // Month View - Show total amount budgeted and total amount spent

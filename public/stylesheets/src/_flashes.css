@@ -55,6 +55,10 @@
       background: map(colors, red, base);
     }
 
+    &.flash-success {
+      background: map(colors, green, light);
+    }
+
     p {
       font-family: map(fonts, istok);
       font-size: 18px;
