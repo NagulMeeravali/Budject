@@ -48,6 +48,7 @@ router.post('/register',
   userController.register,
   authController.login
 );
+router.get('/logout', authController.logout);
 
 // Month View - Show total amount budgeted and total amount spent
 // Leftover money for savings - https://dribbble.com/shots/3685757-Finance-App-New-Budget/attachments/825117

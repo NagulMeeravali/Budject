@@ -10,9 +10,7 @@ exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
 exports.siteName = `Budgeter`;
 
 exports.menu = [
-  { slug: '/about', title: 'About' },
-  { slug: '/login', title: 'Login' },
-  { slug: '/register', title: 'Register' }
+  { slug: '/about', title: 'About' }
 ];
 
 exports.formatPrice = function(amount) {

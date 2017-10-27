@@ -6,6 +6,7 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body.grid
     block header
+      != h.dump(user)
       header.grid-cell.w100
         .logo-section.grid-cell.w35
           a(href="/") Logo
@@ -17,6 +18,14 @@ html
               each item in h.menu
                 li.menu-item
                   a(href=item.slug)= item.title
+              if user
+                li.logout
+                  a(href="/logout") Logout
+              else
+                li.menu-item
+                  a(href="/login") Login 
+                li.menu-item
+                  a(href="/register") Register
           .mobile-menu
             .mobile-menu-toggle
               a(href="#" class="mobile-menu-toggle")
@@ -28,6 +37,9 @@ html
         each item in h.menu
           li.menu-item
             a(href=item.slug)= item.title
+        if user
+          li.logout
+            a(href="/logout") Logout
     block messages
       if locals.flashes
         .container
