@@ -9,7 +9,7 @@ const confirmOwner = (item, user) => {
 };
 
 exports.addItem = async (req, res) => {
-  const categoryList = await Category.find();
+  const categoryList = await Category.find({ author: req.user });
   res.render('editItem', { title: 'Add Item', categoryList});
 }
 
@@ -21,7 +21,7 @@ exports.createItem = async (req, res) => {
 }
 
 exports.getItem = async (req, res) => {
-  const categoryList = await Category.find();
+  const categoryList = await Category.find({author: req.user});
   const item = await Item.findOne({_id: req.params.id});
   confirmOwner(item, req.user)
   res.render('editItem', { title: `Edit ${item.title}`, item, categoryList});
