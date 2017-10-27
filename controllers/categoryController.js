@@ -7,12 +7,18 @@ const d3 = require('d3');
 const D3Node = require('d3-node');
 const d3n = new D3Node();
 
+const confirmOwner = (category, user) => {
+  if (!category.author.equals(user._id)) {
+    throw Error('You must own a category to view it!');
+  }
+};
+
 exports.getCategories = async (req, res) => {
   const startDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).startOf('month') : moment().startOf('month');
   const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
   const month = startDate.format('MMMM');
   const year = startDate.format('YYYY');
-  const categories = await Category.find().sort({ title: 1 });
+  const categories = await Category.find({'author' : req.user._id}).sort({ title: 1 });
   const itemArr = await Promise.all(categories.map(async (category) => {
     const count = await Item.numItemsByCategory(category._id, startDate, endDate);
     const itemSum = await Item.sumItemsByCategory(category._id, startDate, endDate);
@@ -27,17 +33,20 @@ exports.addCategory = (req, res) => {
 }
 
 exports.createCategory = async (req, res) => {
+  req.body.author = req.user._id;
   const category = await (new Category(req.body)).save();
   res.redirect(`/category/${category.slug}`);
 }
 
 exports.getCategory = async (req, res) => {
   const category = await Category.findOne({slug: req.params.slug});
+  confirmOwner(category, req.user);
   res.render('editCategory', { title: `Edit ${category.title}`, category});
 }
 
 exports.updateCategory = async (req, res) => {
   const category = await Category.findOneAndUpdate({ slug: req.params.slug }, req.body, { new: true });
+  confirmOwner(category, req.user);
   res.redirect(`/category/${category.slug}`);
 }
 
@@ -63,7 +72,7 @@ exports.displayCategory = async (req, res) => {
   const numItems = await Item.numItemsByCategory(category._id, startDate, endDate);
   const itemsByCatAndMonth = await Item.getItemsByCatAndMonth(category._id, startDate, endDate);
   const getItemsByQueriedYear = await Item.getItemsByQueriedYear(category._id, startDate, endDate);
-  console.log(getItemsByQueriedYear)
+  confirmOwner(category, req.user);
   
   res.render('category', { title: `${category.title}`, month, year, categories, category, oldestItem, itemSum: itemSum[0], numItems: numItems[0], itemsByCatAndMonth, getItemsByQueriedYear, oldestItemDate: oldestItem[0].date, newestItemDate: newestItem[0].date });
 }

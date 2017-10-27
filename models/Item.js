@@ -27,6 +27,11 @@ const itemSchema = new mongoose.Schema({
   description: {
     type: String,
     trim: true
+  },
+  author: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: 'You must supply an author'
   }
 });
 

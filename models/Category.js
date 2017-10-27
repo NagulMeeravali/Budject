@@ -19,7 +19,11 @@ const categorySchema = new mongoose.Schema({
     trim: true
   },
   items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
-  creator: String,
+  author: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: 'You must supply an author'
+  },
   icon: String
   },
   {

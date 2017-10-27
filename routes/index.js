@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 // Category Routes
 
 router.get('/categories', categoryController.getCategories);
-router.get('/category/add', categoryController.addCategory)
+router.get('/category/add', authController.isLoggedIn, categoryController.addCategory)
 router.post('/category/add', catchErrors(categoryController.createCategory));
 router.get('/category/:slug', catchErrors(categoryController.displayCategory));
 router.get('/category/:slug/edit', catchErrors(categoryController.getCategory));
@@ -27,7 +27,7 @@ router.get(`/category/:slug/delete`, catchErrors(categoryController.deleteCatego
 
 // Item Routes
 
-router.get('/add', catchErrors(itemController.addItem));
+router.get(`/add`, authController.isLoggedIn, catchErrors(itemController.addItem));
 router.post(`/add`, catchErrors(itemController.createItem));
 router.get(`/add/:id`, catchErrors(itemController.getItem));
 router.post(`/add/:id`, catchErrors(itemController.updateItem));
