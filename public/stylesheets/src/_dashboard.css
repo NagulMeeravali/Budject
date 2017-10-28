@@ -32,9 +32,13 @@
   }
 }
 
-.dashboard-categories {
-  h5 {
-    margin: 0 0 5px;
-    color: map(colors, white, base);
+.dashboard-grid {
+  justify-content: space-between;
+
+  .dashboard-categories {
+    h5 {
+      margin: 0 0 5px;
+      color: map(colors, white, base);
+    }
   }
 }

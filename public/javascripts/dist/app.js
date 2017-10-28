@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -7,8 +7,26 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 (function () {
   'use strict';
 
-  // Mobile Menu Toggle Functionality
+  function updateQueryStringParameter(uri, key, value) {
+    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+    if (uri.match(re)) {
+      return uri.replace(re, '$1' + key + "=" + value + '$2');
+    } else {
+      return uri + separator + key + "=" + value;
+    }
+  }
 
+  var dashboardCategoryFilter = document.querySelector('select[name=category-type-filter]');
+  console.log(dashboardCategoryFilter);
+
+  dashboardCategoryFilter.addEventListener('change', function (e) {
+    var sort = this.options[this.selectedIndex].getAttribute('data-name');
+    var value = this.value;
+    window.location.href = updateQueryStringParameter(window.location.href, sort, value);
+  });
+
+  // Mobile Menu Toggle Functionality
   var mobileMenuIcon = document.querySelector('.mobile-menu-toggle');
 
   var mobileMenuToggle = function mobileMenuToggle() {
