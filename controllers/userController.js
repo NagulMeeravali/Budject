@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 const User = mongoose.model('User');
 const promisify = require('es6-promisify');
 const Category = mongoose.model('Category');
@@ -51,8 +52,24 @@ exports.register = async (req, res, next) => {
 }
 
 exports.getDashboard = async (req, res, next) => {
-  const categories = await Category.find({author: req.user._id}).sort({title:1});
+  const startDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).startOf('month') : moment().startOf('month');
+  const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
+  const month = startDate.format('MMMM');
+  const year = startDate.format('YYYY');
+
+  const categoriesPromise = Category.find({ 'author': req.user._id }).sort({title:1});
+  const categoryPromise = Category.findOne({ slug: req.params.slug });
+  const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
+
   const recentItems = await Item.find({ author: req.user._id }).sort({"date": -1}).limit(5);
-  console.log(recentItems)
-  res.render('dashboard', { title: `${req.user.name} Dashboard`, categories, recentItems})
+  const budgetedPerMonth = await Category.budgetedPerMonth(req.user);
+  const itemArr = await Promise.all(categories.map(async (category) => {
+    const count = await Item.numItemsByCategory(category._id, startDate, endDate);
+    const itemSum = await Item.sumItemsByCategory(category._id, startDate, endDate);
+    return [(count[0] || '0'), itemSum[0] || '0'];
+  }));
+  console.log(itemArr)
+
+  console.log(budgetedPerMonth[0])
+  res.render('dashboard', { title: `${req.user.name} Dashboard`, categories, recentItems, budgetedPerMonth: budgetedPerMonth[0], itemArr})
 }

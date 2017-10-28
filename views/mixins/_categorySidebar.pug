@@ -1,9 +1,13 @@
 mixin categorySidebar(category = {})
   aside.grid-cell.w30
     ul.category-list
-      each category in categories
+      each category, index in categories
+        - const itemSum = itemArr[index][1].sum || 0  
         li
           a(href=`/category/${category.slug}`) 
-            span #{category.title} (#{h.formatPrice(category.amount)})
+            h5 #{category.title} 
+            span.budget-spent #{h.formatPrice(itemSum)}
+            |  of 
+            span.budget-goal #{h.formatPrice(category.amount)}
           a.icon(href=`/category/${category.slug}/edit` title="Edit") 
             != h.icon('edit')

@@ -8,9 +8,10 @@ block content
     h1 #{user.name}'s Dashboard
     p Income: #{h.formatPrice(user.income)}
     p Income per month: #{h.formatPrice(user.income/12)}
+    p Budgeted per month #{h.formatPrice(budgetedPerMonth.sum)}
 
     .grid
-      .grid-cell.w30
+      .grid-cell.w30.dashboard-categories
         h3 Top Categories
         select(name="category-type-filter")
           option(value="created") Created
