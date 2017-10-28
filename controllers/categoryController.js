@@ -61,7 +61,7 @@ exports.displayCategory = async (req, res) => {
   const month = startDate.format('MMMM');
   const year = startDate.format('YYYY');
 
-  const categoriesPromise = Category.find().sort({title:1});
+  const categoriesPromise = Category.find({ 'author': req.user._id }).sort({title:1});
   const categoryPromise = Category.findOne({ slug: req.params.slug });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
   

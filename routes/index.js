@@ -8,8 +8,10 @@ const { catchErrors } = require('../handlers/errorHandlers');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Budgeter' });
 });
+
+router.get('/dashboard', catchErrors(userController.getDashboard));
 
 // Category Routes
 
@@ -20,10 +22,6 @@ router.get('/category/:slug', catchErrors(categoryController.displayCategory));
 router.get('/category/:slug/edit', catchErrors(categoryController.getCategory));
 router.post('/category/:slug/edit', catchErrors(categoryController.updateCategory));
 router.get(`/category/:slug/delete`, catchErrors(categoryController.deleteCategory));
-
-// Need routes for sub-categories
-
-
 
 // Item Routes
 
@@ -36,20 +34,23 @@ router.get(`/delete/:id`, catchErrors(itemController.deleteItem));
 // User Routes
 
 // login
-// register
-// logout
-// dashboard
-// edit 
+router.get('/login', userController.loginForm);
+router.post('/login', authController.login);
 
+// register
 router.get('/register', userController.registerForm);
 router.post('/register',
   userController.validateRegister,
   userController.register,
   authController.login
 );
-router.get('/login', userController.loginForm);
-router.post('/login', authController.login);
+
+// logout
 router.get('/logout', authController.logout);
+
+// dashboard
+// edit 
+
 
 // Month View - Show total amount budgeted and total amount spent
 // Leftover money for savings - https://dribbble.com/shots/3685757-Finance-App-New-Budget/attachments/825117

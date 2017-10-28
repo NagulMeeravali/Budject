@@ -1,9 +1,11 @@
 extends layout
 
 block content
-  h1 Welcome, David
-  p Welcome to #{title}
-  p test
+  .container
+    if user
+      h1 Welcome, #{user.name}
+    p Welcome to #{title} 
+    p test
 
   //- Total expenses daily, weekly, monthly
   //- https://dribbble.com/shots/3329597-Home-Budget-App-Dashboard

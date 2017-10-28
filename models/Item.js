@@ -35,6 +35,7 @@ const itemSchema = new mongoose.Schema({
   }
 });
 
+// Get all items by queried category
 itemSchema.statics.getItemsByCat = function getItemsByCat(category) {
   return this.aggregate([
     {
@@ -45,6 +46,7 @@ itemSchema.statics.getItemsByCat = function getItemsByCat(category) {
   ]);
 }
 
+// Get all items in queried category and queried month
 itemSchema.statics.getItemsByCatAndMonth = function getItemsByCatAndMonth(category, start, end) {
   return this.aggregate([
     {
@@ -56,6 +58,7 @@ itemSchema.statics.getItemsByCatAndMonth = function getItemsByCatAndMonth(catego
   ]);
 }
 
+// Sum the items in a queried category by queried date range
 itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category, start, end) {
   return this.aggregate([
     {
@@ -73,6 +76,7 @@ itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category, st
   ]);
 }
 
+// Get all items between queried date range
 itemSchema.statics.getItemsByQueriedYear = function getItemsByQueriedYear(category, start, end) {
   return this.aggregate([
     {

@@ -1,0 +1,24 @@
+extends layout
+
+include mixins/_categorySidebar
+include mixins/_item
+
+block content
+  .container
+    h1 #{user.name}'s Dashboard
+    p Income: #{h.formatPrice(user.income)}
+    p Income per month: #{h.formatPrice(user.income/12)}
+
+    .grid
+      .grid-cell.w30
+        h3 Top Categories
+        select(name="category-type-filter")
+          option(value="created") Created
+          option(value="spent") Spent
+          option(value="numItems") Number of Transactions
+        +categorySidebar(categories)
+        a.btn(href="/categories") View All Categories
+      .grid-cell.w30
+        h3 Recent Items
+        each item in recentItems
+          +item(item)

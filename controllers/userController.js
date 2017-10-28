@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const promisify = require('es6-promisify');
+const Category = mongoose.model('Category');
+const Item = mongoose.model('Item');
 
 exports.loginForm = (req, res) => {
   res.render('login', { title: 'Login' });
@@ -46,4 +48,11 @@ exports.register = async (req, res, next) => {
 
   await registerWithPromise(user, req.body.password); // encrypts password
   next();
+}
+
+exports.getDashboard = async (req, res, next) => {
+  const categories = await Category.find({author: req.user._id}).sort({title:1});
+  const recentItems = await Item.find({ author: req.user._id }).sort({"date": -1}).limit(5);
+  console.log(recentItems)
+  res.render('dashboard', { title: `${req.user.name} Dashboard`, categories, recentItems})
 }
