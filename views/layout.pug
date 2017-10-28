@@ -19,7 +19,13 @@ html
                 li.menu-item
                   a(href=item.slug)= item.title
               if user
-                li.logout
+                li.menu-item
+                  a(href="/dashboard") Dashboard
+                li.menu-items
+                  a(href="/categories") Categories
+                li.menu-item
+                  a(href="#") Settings
+                li.menu-item
                   a(href="/logout") Logout
               else
                 li.menu-item
@@ -37,9 +43,20 @@ html
         each item in h.menu
           li.menu-item
             a(href=item.slug)= item.title
-        if user
-          li.logout
-            a(href="/logout") Logout
+          if user
+            li.menu-item
+              a(href="/dashboard") Dashboard
+            li.menu-items
+              a(href="/categories") Categories
+            li.menu-item
+              a(href="#") Settings
+            li.menu-item
+              a(href="/logout") Logout
+          else
+            li.menu-item
+              a(href="/login") Login 
+            li.menu-item
+              a(href="/register") Register
     block messages
       if locals.flashes
         .container
