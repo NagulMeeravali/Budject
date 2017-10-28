@@ -58,6 +58,24 @@ itemSchema.statics.getItemsByCatAndMonth = function getItemsByCatAndMonth(catego
   ]);
 }
 
+// Sum all items from a queried date range
+itemSchema.statics.spentPerMonth = function spentPerMonth(user, start, end) {
+  return this.aggregate([
+    {
+      $match: {
+        author: mongoose.Types.ObjectId(user._id),
+        date: { $gte: new Date(start), $lte: new Date(end) }
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        sum: { $sum: "$amount" }
+      }
+    }
+  ])
+}
+
 // Sum the items in a queried category by queried date range
 itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category, start, end) {
   return this.aggregate([

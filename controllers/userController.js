@@ -63,13 +63,13 @@ exports.getDashboard = async (req, res, next) => {
 
   const recentItems = await Item.find({ author: req.user._id }).sort({"date": -1}).limit(5);
   const budgetedPerMonth = await Category.budgetedPerMonth(req.user);
+  const spentPerMonth = await Item.spentPerMonth(req.user, startDate, endDate);
   const itemArr = await Promise.all(categories.map(async (category) => {
     const count = await Item.numItemsByCategory(category._id, startDate, endDate);
     const itemSum = await Item.sumItemsByCategory(category._id, startDate, endDate);
     return [(count[0] || '0'), itemSum[0] || '0'];
   }));
-  console.log(itemArr)
 
-  console.log(budgetedPerMonth[0])
-  res.render('dashboard', { title: `${req.user.name} Dashboard`, categories, recentItems, budgetedPerMonth: budgetedPerMonth[0], itemArr})
+  console.log(spentPerMonth[0])
+  res.render('dashboard', { title: `${req.user.name} Dashboard`, categories, recentItems, budgetedPerMonth: budgetedPerMonth[0], spentPerMonth: spentPerMonth[0], itemArr})
 }

@@ -139,18 +139,6 @@
         }
       }
 
-      .progress-bar {
-        height: 20px;
-        border: 1px solid map(colors, gray, base);
-        width: 100%;
-        overflow: hidden;
-        
-        .progress-fill {
-          background: linear-gradient(to right, map(colors, green, light), map(colors, green, base));
-          height: 20px;
-        }
-      }
-
       .budget-percent {
         margin: 5px 0 25px;
         font-size: 12px;
@@ -164,6 +152,18 @@
         width: 75%;
       }
     }
+  }
+}
+
+.progress-bar {
+  height: 20px;
+  border: 1px solid map(colors, gray, base);
+  width: 100%;
+  overflow: hidden;
+
+  .progress-fill {
+    background: linear-gradient(to right, map(colors, green, light), map(colors, green, base));
+    height: 20px;
   }
 }
 

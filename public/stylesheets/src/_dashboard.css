@@ -1,3 +1,37 @@
+.user-dashboard {
+  &.overspend {
+    border-color: map(colors, red, base);
+
+    .progress-bar {
+      .progress-fill {
+        background: linear-gradient(to right, map(colors, red, base), map(colors, orange, base));
+      }
+    }
+
+    .budget-percent {
+      span {
+        color: map(colors, red, base);
+      }
+    }
+  }
+
+  &.underspend {
+    border-color: map(colors, green, base);
+
+    .budget-percent {
+      span {
+        color: map(colors, green, light);
+      }
+    }
+  }
+
+  .budget-percent {
+    span {
+      font-weight: 700;
+    }
+  }
+}
+
 .dashboard-categories {
   h5 {
     margin: 0 0 5px;
