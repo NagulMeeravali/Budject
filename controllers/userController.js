@@ -58,9 +58,7 @@ exports.getDashboard = async (req, res, next) => {
   const year = startDate.format('YYYY');
   console.log(req.query.sort)
 
-  const sortOrder = (req.query.sort === 'titleDesc') ? { title: 1 } : (req.query.sort === 'titleDesc' ? { title: -1 } : (req.query.sort = 'spentDesc' ? {amount: -1} : {title: 1}));
-
-
+  const sortOrder = (req.query.sort === 'titleDesc') ? { title: 1 } : (req.query.sort === 'titleDesc' ? { title: -1 } : (req.query.sort === 'spentDesc' ? {amount: -1} : ( req.query.sort === 'spentAsc' ? {amount: 1} : {title: 1})));
 
   // console.log(sortOrder)
 

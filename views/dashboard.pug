@@ -28,14 +28,12 @@ block content
         h3 Top Categories for #{month}, #{year} 
         p Filter By:
         select(name="category-type-filter")
+          //- Sort by category name
           option(value="titleDesc") Name A-Z
           option(value="titleAsc") Name Z-A
           //- Sort by amount spent per category
           option(value="spentDesc") Budget High to Low
-          option(value="spent-asc") Budget Low to High
-          //- Sort by number of transactions per category
-          option(value="transaction-desc") Number of Transactions Most to Fewest
-          option(value="transaction-asc") Number of Transactions Fewest to Most
+          option(value="spentAsc") Budget Low to High
         +categorySidebar(categories)
         a.btn(href="/categories") View All Categories
       .grid-cell.w30
