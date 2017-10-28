@@ -56,11 +56,15 @@ exports.getDashboard = async (req, res, next) => {
   const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
   const month = startDate.format('MMMM');
   const year = startDate.format('YYYY');
-  const sortOrder = (req.query.sort === '-1') ? -1 : 1;
   console.log(req.query.sort)
-  console.log(sortOrder);
 
-  const categoriesPromise = Category.find({ 'author': req.user._id }).sort({title: sortOrder});
+  const sortOrder = (req.query.sort === 'titleDesc') ? { title: 1 } : (req.query.sort === 'titleDesc' ? { title: -1 } : (req.query.sort = 'spentDesc' ? {amount: -1} : {title: 1}));
+
+
+
+  // console.log(sortOrder)
+
+  const categoriesPromise = Category.find({ 'author': req.user._id }).sort(sortOrder);
   const categoryPromise = Category.findOne({ slug: req.params.slug });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
 

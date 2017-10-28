@@ -26,17 +26,16 @@ block content
     .grid.dashboard-grid
       .grid-cell.w30.dashboard-categories
         h3 Top Categories for #{month}, #{year} 
-        form(method="POST" onchange=)
+        p Filter By:
         select(name="category-type-filter")
-          option(value="") Filter By: 
-          option(value="1" data-name="sort") Name A-Z
-          option(value="-1" data-name="sort") Name Z-A
+          option(value="titleDesc") Name A-Z
+          option(value="titleAsc") Name Z-A
           //- Sort by amount spent per category
-          option(value="1" data-name="spend") Spent High to Low
-          option(value="-1" data-name="spend") Spent Low to High
+          option(value="spentDesc") Budget High to Low
+          option(value="spent-asc") Budget Low to High
           //- Sort by number of transactions per category
-          option(value="1" data-name="transactions") Number of Transactions Most to Fewest
-          option(value="-1" data-name="transactions") Number of Transactions Fewest to Most
+          option(value="transaction-desc") Number of Transactions Most to Fewest
+          option(value="transaction-asc") Number of Transactions Fewest to Most
         +categorySidebar(categories)
         a.btn(href="/categories") View All Categories
       .grid-cell.w30

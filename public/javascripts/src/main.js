@@ -18,7 +18,7 @@
   console.log(dashboardCategoryFilter)
   
   dashboardCategoryFilter.addEventListener('change', function(e) {
-    const sort = this.options[this.selectedIndex].getAttribute('data-name');
+    const sort = 'sort';
     const value = this.value;
     window.location.href = updateQueryStringParameter(window.location.href, sort, value);
   });

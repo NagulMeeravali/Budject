@@ -21,7 +21,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   console.log(dashboardCategoryFilter);
 
   dashboardCategoryFilter.addEventListener('change', function (e) {
-    var sort = this.options[this.selectedIndex].getAttribute('data-name');
+    var sort = 'sort';
     var value = this.value;
     window.location.href = updateQueryStringParameter(window.location.href, sort, value);
   });
