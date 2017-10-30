@@ -20,9 +20,9 @@ html
                   a(href=item.slug)= item.title
               if user
                 li.menu-item
-                  a(href="/dashboard") Dashboard
+                  a(href=`${user.username}/dashboard`) Dashboard
                 li.menu-items
-                  a(href="/categories") Categories
+                  a(href=`${user.username}/categories`) Categories
                 li.menu-item
                   a(href="#") Settings
                 li.menu-item
@@ -45,9 +45,9 @@ html
             a(href=item.slug)= item.title
           if user
             li.menu-item
-              a(href="/dashboard") Dashboard
+              a(href=`${user.username}/dashboard`) Dashboard
             li.menu-items
-              a(href="/categories") Categories
+              a(href=`${user.username}/categories`) Categories
             li.menu-item
               a(href="#") Settings
             li.menu-item

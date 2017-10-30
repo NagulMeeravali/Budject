@@ -45,7 +45,7 @@ exports.validateRegister = (req, res, next) => {
 }
 
 exports.register = async (req, res, next) => {
-  const user = new User({ email: req.body.email, name: req.body.name, income: req.body.income })
+  const user = new User({ email: req.body.email, name: req.body.name, username: req.body.username, income: req.body.income })
 
   const registerWithPromise = promisify(User.register, User);
 
