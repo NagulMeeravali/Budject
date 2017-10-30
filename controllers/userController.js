@@ -16,9 +16,11 @@ exports.registerForm = (req, res) => {
 // Validate registration form
 exports.validateRegister = (req, res, next) => {
   req.sanitizeBody('name');
+  req.sanitizeBody('username');
   req.sanitizeBody('income');
 
   req.checkBody('name', 'Please supply a name.').notEmpty();
+  req.checkBody('username', 'Please supply a username.').notEmpty();
   req.checkBody('email', 'Please enter a valid email address.').isEmail();
 
   // Allow dots, extensions and subaddresses
