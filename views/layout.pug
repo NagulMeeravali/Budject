@@ -20,11 +20,11 @@ html
                   a(href=item.slug)= item.title
               if user
                 li.menu-item
-                  a(href=`${user.username}/dashboard`) Dashboard
+                  a(href=`/${user.username}/dashboard`) Dashboard
                 li.menu-items
-                  a(href=`${user.username}/categories`) Categories
+                  a(href=`/${user.username}/categories`) Categories
                 li.menu-item
-                  a(href="#") Settings
+                  a(href=`/${user.username}/account`) Account
                 li.menu-item
                   a(href="/logout") Logout
               else
@@ -45,11 +45,11 @@ html
             a(href=item.slug)= item.title
           if user
             li.menu-item
-              a(href=`${user.username}/dashboard`) Dashboard
+              a(href=`/${user.username}/dashboard`) Dashboard
             li.menu-items
-              a(href=`${user.username}/categories`) Categories
+              a(href=`/${user.username}/categories`) Categories
             li.menu-item
-              a(href="#") Settings
+              a(href=`/${user.username}/account`) Account
             li.menu-item
               a(href="/logout") Logout
           else

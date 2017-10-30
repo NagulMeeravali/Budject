@@ -46,6 +46,17 @@ itemSchema.statics.getItemsByCat = function getItemsByCat(category) {
   ]);
 }
 
+// Get all items in queried month
+itemSchema.statics.getItemsByMonth = function getItemsByMonth(start, end) {
+  return this.aggregate([
+    {
+      $match: {
+        date: { $gte: new Date(start), $lte: new Date(end) }
+      }
+    }
+  ]);
+}
+
 // Get all items in queried category and queried month
 itemSchema.statics.getItemsByCatAndMonth = function getItemsByCatAndMonth(category, start, end) {
   return this.aggregate([

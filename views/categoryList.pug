@@ -13,7 +13,7 @@ block content
       span #{month} #{year} 
       != h.icon('caret-down')
     p.add-btn
-      a.btn(href="/category/add") + Add Category
+      a.btn(href=`/${user.username}/category/add`) + Add Category
     +categories()
             
           

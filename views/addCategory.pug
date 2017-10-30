@@ -3,7 +3,7 @@ extends layout
 block content
   .container
     h1 Add Category
-    form(action="/category/add" method="POST" class="grid")
+    form(action=`/${user.username}/category/add` method="POST" class="grid")
       .form-group.grid-cell
         input(type="text" name="title")
         label(for="title") Category Title
