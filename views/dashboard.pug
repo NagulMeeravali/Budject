@@ -7,16 +7,13 @@ block content
   .container.user-dashboard
     .budget-meta
       h1 #{user.name}'s Dashboard
-      p Income: #{h.formatPrice(user.income)}
-      p Income per month: #{h.formatPrice(user.income/12)}
       if categories.length 
-        p Budgeted per month #{h.formatPrice(budgetedPerMonth.sum)}
         if getItemsByMonth.length
-          p Spent per month: #{h.formatPrice(spentPerMonth.sum)}
           p.budget-meta.grid-cell
             span.budget-spent #{h.formatPrice(spentPerMonth.sum)}
-            |  of 
+            |  spent of 
             span.budget-goal #{h.formatPrice(budgetedPerMonth.sum)}
+            |  budgeted for #{month}, #{year}
           - const percentSpent = (spentPerMonth.sum / budgetedPerMonth.sum) * 100
           .progress-bar
             .progress-fill(style=`width: ${percentSpent}%`)
@@ -29,18 +26,18 @@ block content
       .grid-cell.w30.dashboard-categories
         h3 Top Categories for #{month}, #{year} 
         if categories.length
-          p Filter By:
-          select(name="category-type-filter")
-            //- Sort by category name
-            option(value="titleDesc") Name A-Z
-            option(value="titleAsc") Name Z-A
-            //- Sort by amount spent per category
-            option(value="spentDesc") Budget High to Low
-            option(value="spentAsc") Budget Low to High
+          p.filter-intro Filter By:
+          form.category-type-filter(method="GET")
+            .form-group
+              select(name="category-type-filter")
+                //- Sort by category name
+                option(value="titleDesc") Name A-Z
+                option(value="titleAsc") Name Z-A
+                //- Sort by amount spent per category
+                option(value="spentDesc") Budget High to Low
+                option(value="spentAsc") Budget Low to High
         else
           p You currently don't have any categories set up. 
-        p.add-btn
-          a.btn(href=`/category/add`) + Add Category
         if categories.length
           +categorySidebar(categories)
           a.btn(href=`/categories`) View All Categories
@@ -51,6 +48,6 @@ block content
             +item(item)
         else
           p You haven't added any transactions yet.
-        a.btn(href=`/add`) Add Item
+        a.btn(href=`/add`) + Add Item
       .grid-cell.w30
         p Line chart showing total amount spent per month over a year?

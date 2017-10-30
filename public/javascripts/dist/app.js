@@ -40,7 +40,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   // Add class to form input if input has value
 
-  var formInputs = [].concat(_toConsumableArray(document.querySelectorAll('input:not([type=submit]):not([type=date])')));
+  var formInputs = [].concat(_toConsumableArray(document.querySelectorAll('input:not([type=submit]):not([type=date]), select, textarea')));
   if (formInputs) {
     var _loop = function _loop(formInput) {
       if (formInput.value) {

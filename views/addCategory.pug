@@ -4,10 +4,10 @@ block content
   .container
     h1 Add Category
     form(action=`/category/add` method="POST" class="grid")
-      .form-group.grid-cell
+      .form-group.grid-cell.w48
         input(type="text" name="title")
         label(for="title") Category Title
-      .form-group.grid-cell.amount-field
+      .form-group.grid-cell.w48.amount-field
         input(type="number" name="amount")
         label(for="amount") Amount
       .form-group.grid-cell.w100

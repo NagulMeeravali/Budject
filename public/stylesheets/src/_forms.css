@@ -2,6 +2,10 @@ form {
   margin-top: 40px !important;
   justify-content: space-between;
 
+  &.category-type-filter {
+    margin-top: 0 !important;
+  }
+
   .form-group {
     position: relative;
     margin-bottom: 35px;
@@ -113,6 +117,7 @@ form {
       border: 1px solid map(colors, black, base);
       border-radius: 0;
       outline: none;
+      cursor: pointer;
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
@@ -133,6 +138,27 @@ form {
       &:active, &:focus {
         border-color: map(colors, blue, base);
       }
+
+      &.has-value {
+        &.amount-field {
+          &::before {
+            font-size: 18px;
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+
+        ~ label {
+          top:-20px;
+          font-size: 14px;
+          color: map(colors, blue, base);
+          text-indent: 0;
+        }
+
+        input {
+          border-color: map(colors, blue, base);
+        }
+      }
     }
 
     textarea {
@@ -146,6 +172,27 @@ form {
 
       ~ label {
         left: 0;
+      }
+
+      &.has-value {
+        &.amount-field {
+          &::before {
+            font-size: 18px;
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+
+        ~ label {
+          top:-20px;
+          font-size: 14px;
+          color: map(colors, blue, base);
+          text-indent: 0;
+        }
+
+        input {
+          border-color: map(colors, blue, base);
+        }
       }
 
       &:focus, &:active {

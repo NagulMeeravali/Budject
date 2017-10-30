@@ -9,12 +9,15 @@ block sidebar
 block content
   div.grid-cell.w100.container.category-list
     h1 Categories
-    h3.datepicker 
-      span #{month} #{year} 
-      != h.icon('caret-down')
-    p.add-btn
+    if categories.length
+      h3.datepicker 
+        span #{month} #{year} 
+        != h.icon('caret-down')
+      p.add-btn
+        a.btn(href=`/category/add`) + Add Category
+      +categories()
+    else
       a.btn(href=`/category/add`) + Add Category
-    +categories()
             
           
 

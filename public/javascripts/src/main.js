@@ -37,7 +37,7 @@
 
   // Add class to form input if input has value
 
-  const formInputs = [...document.querySelectorAll('input:not([type=submit]):not([type=date])')];
+  const formInputs = [...document.querySelectorAll('input:not([type=submit]):not([type=date]), select, textarea')];
   if (formInputs) {
     for (const formInput of formInputs) {
       if (formInput.value) {

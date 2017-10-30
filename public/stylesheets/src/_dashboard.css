@@ -40,5 +40,13 @@
       margin: 0 0 5px;
       color: map(colors, white, base);
     }
+
+    p {
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 90%;
+    }
   }
 }

@@ -10,10 +10,11 @@ mixin itemForm(item={})
       input(type="date" name="date" value=h.moment(item.date).utc().format("YYYY-MM-D") required)
       label(for="date") Date
     .form-group.grid-cell.w48
-      select(name="category" required)
+      select.has-value(name="category" required)
         option(value="") Select a Category
         each category in categoryList
           option(value=category._id selected=(JSON.stringify(`${item.category}`) == JSON.stringify(category._id)))= category.title
+      label(for="category") Category
     .form-group.grid-cell.w100
       textarea(name="description", cols="30", rows="10") #{item.description}
       label(for="description") Description

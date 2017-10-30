@@ -11,6 +11,10 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Budgeter' });
 });
 
+router.get('/about', (req, res) => {
+  res.render('about', {title: 'About Budgeter' });
+});
+
 // Category Routes
 
 router.get('/categories', categoryController.getCategories);
@@ -52,6 +56,8 @@ router.get('/dashboard', authController.isLoggedIn, catchErrors(userController.g
 // edit 
 router.get('/account', authController.isLoggedIn, userController.account);
 router.post('/account', catchErrors(userController.updateAccount));
+
+// forgot password
 
 // Month View - Show total amount budgeted and total amount spent
 // Leftover money for savings - https://dribbble.com/shots/3685757-Finance-App-New-Budget/attachments/825117
