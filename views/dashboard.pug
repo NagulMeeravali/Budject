@@ -40,10 +40,10 @@ block content
         else
           p You currently don't have any categories set up. 
         p.add-btn
-          a.btn(href=`/${user.username}/category/add`) + Add Category
+          a.btn(href=`/category/add`) + Add Category
         if categories.length
           +categorySidebar(categories)
-          a.btn(href=`/${user.username}/categories`) View All Categories
+          a.btn(href=`/categories`) View All Categories
       .grid-cell.w30
         h3 Recent Items
         if recentItems.length
@@ -51,6 +51,6 @@ block content
             +item(item)
         else
           p You haven't added any transactions yet.
-        a.btn(href=`/${user.username}/add`) Add Item
+        a.btn(href=`/add`) Add Item
       .grid-cell.w30
         p Line chart showing total amount spent per month over a year?

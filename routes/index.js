@@ -13,21 +13,21 @@ router.get('/', (req, res, next) => {
 
 // Category Routes
 
-router.get('/:username/categories', categoryController.getCategories);
-router.get('/:username/category/add', authController.isLoggedIn, categoryController.addCategory)
-router.post('/:username/category/add', catchErrors(categoryController.createCategory));
-router.get('/:username/category/:slug', catchErrors(categoryController.displayCategory));
-router.get('/:username/category/:slug/edit', catchErrors(categoryController.getCategory));
-router.post('/:username/category/:slug/edit', catchErrors(categoryController.updateCategory));
-router.get(`/:username/category/:slug/delete`, catchErrors(categoryController.deleteCategory));
+router.get('/categories', categoryController.getCategories);
+router.get('/category/add', authController.isLoggedIn, categoryController.addCategory)
+router.post('/category/add', catchErrors(categoryController.createCategory));
+router.get('/category/:slug', catchErrors(categoryController.displayCategory));
+router.get('/category/:slug/edit', catchErrors(categoryController.getCategory));
+router.post('/category/:slug/edit', catchErrors(categoryController.updateCategory));
+router.get(`/category/:slug/delete`, catchErrors(categoryController.deleteCategory));
 
 // Item Routes
 
-router.get(`/:username/add`, authController.isLoggedIn, catchErrors(itemController.addItem));
-router.post(`/:username/add`, catchErrors(itemController.createItem));
-router.get(`/:username/add/:id`, catchErrors(itemController.getItem));
-router.post(`/:username/add/:id`, catchErrors(itemController.updateItem));
-router.get(`/:username/delete/:id`, catchErrors(itemController.deleteItem));
+router.get(`/add`, authController.isLoggedIn, catchErrors(itemController.addItem));
+router.post(`/add`, catchErrors(itemController.createItem));
+router.get(`/add/:id`, catchErrors(itemController.getItem));
+router.post(`/add/:id`, catchErrors(itemController.updateItem));
+router.get(`/delete/:id`, catchErrors(itemController.deleteItem));
 
 // User Routes
 
@@ -47,11 +47,11 @@ router.post('/register',
 router.get('/logout', authController.logout);
 
 // dashboard
-router.get('/:username/dashboard', authController.isLoggedIn, catchErrors(userController.getDashboard));
+router.get('/dashboard', authController.isLoggedIn, catchErrors(userController.getDashboard));
 
 // edit 
-router.get('/:username/account', authController.isLoggedIn, userController.account);
-router.post('/:username/account', catchErrors(userController.updateAccount));
+router.get('/account', authController.isLoggedIn, userController.account);
+router.post('/account', catchErrors(userController.updateAccount));
 
 // Month View - Show total amount budgeted and total amount spent
 // Leftover money for savings - https://dribbble.com/shots/3685757-Finance-App-New-Budget/attachments/825117

@@ -1,5 +1,5 @@
 mixin itemForm(item={})
-  form(action=`/${user.username}/add/${item._id || ''}` method="POST" class="itemForm grid")
+  form(action=`/add/${item._id || ''}` method="POST" class="itemForm grid")
     .form-group.grid-cell.w48
       input(type="text" name="title" value=item.title required)
       label(for="title") Item

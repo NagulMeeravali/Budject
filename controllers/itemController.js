@@ -17,7 +17,7 @@ exports.createItem = async (req, res) => {
   req.body.author = req.user._id;
   const item = await (new Item(req.body)).save();
   const category = await Category.findOne({_id: req.body.category})
-  res.redirect(`/${req.user.username}/category/${category.slug}`);
+  res.redirect(`/category/${category.slug}`);
 }
 
 exports.getItem = async (req, res) => {
@@ -32,7 +32,7 @@ exports.updateItem = async (req, res) => {
   const item = await Item.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
   const category = await Category.findOne({_id: req.body.category})
   confirmOwner(item, req.user)
-  res.redirect(`/${req.user.username}/category/${category.slug}`);
+  res.redirect(`/category/${category.slug}`);
 }
 
 exports.deleteItem = async (req, res) => {

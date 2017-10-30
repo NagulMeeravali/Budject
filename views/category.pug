@@ -6,7 +6,7 @@ include mixins/_categorySidebar
 block content
   .back-bar
     .container
-      a(href="/categories") 
+      a(href=`/categories`) 
         != h.icon('arrow-left')
         | See All Categories
   .container.grid-cell.w100.category.category-page
@@ -30,7 +30,7 @@ block content
             | of 
             span.budget-goal #{h.formatPrice(category.amount)}
         p.add-btn
-          a.btn(href="/add") Add Item
+          a.btn(href=`/add`) Add Item
 
         - const entries = itemsByCatAndMonth
         if entries.length === 0

@@ -40,7 +40,7 @@ exports.addCategory = (req, res) => {
 exports.createCategory = async (req, res) => {
   req.body.author = req.user._id;
   const category = await (new Category(req.body)).save();
-  res.redirect(`/${req.user.username}/category/${category.slug}`);
+  res.redirect(`/category/${category.slug}`);
 }
 
 exports.getCategory = async (req, res) => {
@@ -52,7 +52,7 @@ exports.getCategory = async (req, res) => {
 exports.updateCategory = async (req, res) => {
   const category = await Category.findOneAndUpdate({ slug: req.params.slug }, req.body, { new: true });
   confirmOwner(category, req.user);
-  res.redirect(`/${req.user.username}/category/${category.slug}`);
+  res.redirect(`/category/${category.slug}`);
 }
 
 exports.displayCategory = async (req, res) => {
