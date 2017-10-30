@@ -18,13 +18,13 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   var dashboardCategoryFilter = document.querySelector('select[name=category-type-filter]');
-  console.log(dashboardCategoryFilter);
-
-  dashboardCategoryFilter.addEventListener('change', function (e) {
-    var sort = 'sort';
-    var value = this.value;
-    window.location.href = updateQueryStringParameter(window.location.href, sort, value);
-  });
+  if (dashboardCategoryFilter) {
+    dashboardCategoryFilter.addEventListener('change', function (e) {
+      var sort = 'sort';
+      var value = this.value;
+      window.location.href = updateQueryStringParameter(window.location.href, sort, value);
+    });
+  }
 
   // Mobile Menu Toggle Functionality
   var mobileMenuIcon = document.querySelector('.mobile-menu-toggle');

@@ -15,14 +15,14 @@
   }
 
   const dashboardCategoryFilter = document.querySelector('select[name=category-type-filter]');
-  console.log(dashboardCategoryFilter)
+  if (dashboardCategoryFilter) {
+    dashboardCategoryFilter.addEventListener('change', function(e) {
+      const sort = 'sort';
+      const value = this.value;
+      window.location.href = updateQueryStringParameter(window.location.href, sort, value);
+    });
+  }
   
-  dashboardCategoryFilter.addEventListener('change', function(e) {
-    const sort = 'sort';
-    const value = this.value;
-    window.location.href = updateQueryStringParameter(window.location.href, sort, value);
-  });
-
   // Mobile Menu Toggle Functionality
   const mobileMenuIcon = document.querySelector('.mobile-menu-toggle');
 

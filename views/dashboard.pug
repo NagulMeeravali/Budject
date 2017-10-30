@@ -34,6 +34,8 @@ block content
           //- Sort by amount spent per category
           option(value="spentDesc") Budget High to Low
           option(value="spentAsc") Budget Low to High
+        p.add-btn
+          a.btn(href="/category/add") + Add Category
         +categorySidebar(categories)
         a.btn(href="/categories") View All Categories
       .grid-cell.w30

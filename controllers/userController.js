@@ -51,6 +51,10 @@ exports.register = async (req, res, next) => {
   next();
 }
 
+exports.account = (req, res) => {
+  res.render('account', {title: 'Edit Your Account'});
+}
+
 exports.getDashboard = async (req, res, next) => {
   const startDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).startOf('month') : moment().startOf('month');
   const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
@@ -75,6 +79,5 @@ exports.getDashboard = async (req, res, next) => {
     return [(count[0] || '0'), itemSum[0] || '0'];
   }));
 
-  console.log(spentPerMonth[0])
   res.render('dashboard', { title: `${req.user.name} Dashboard`, month, year, categories, recentItems, budgetedPerMonth: budgetedPerMonth[0], spentPerMonth: spentPerMonth[0], itemArr})
 }

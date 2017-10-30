@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .container
+    h1 Edit Your Account
+    form(action="/account" method="POST" class="grid")
+      .form-group.grid-cell.w48
+        input(type="text" name="name" value=user.name)
+        label(for="name") Name
+      .form-group.grid-cell.w48
+        input(type="email" name="email" value=user.email)
+        label(for="email") Email
+      .form-group.grid-cell.w48
+        input(type="text" name="income" value=user.income)
+        label(for="income") Income
+      .form-group.grid-cell.w100
+        input(type="submit" value="Submit")
+
