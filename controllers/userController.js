@@ -57,6 +57,23 @@ exports.account = (req, res) => {
   res.render('account', {title: 'Edit Your Account'});
 }
 
+exports.updateAccount = async(req, res) => {
+  const updatedValues = {
+    name: req.body.name,
+    email: req.body.email,
+    income: req.body.income
+  };
+
+  const user = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $set: updatedValues },
+    { new: true, runValidators: true, content: 'query' } 
+  );
+
+  req.flash('success', 'Your profile has been successfully updated.');
+  res.redirect('back');
+}
+
 exports.getDashboard = async (req, res, next) => {
   const startDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).startOf('month') : moment().startOf('month');
   const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
