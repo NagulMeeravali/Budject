@@ -43,6 +43,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var formInputs = [].concat(_toConsumableArray(document.querySelectorAll('input:not([type=submit]):not([type=date])')));
   if (formInputs) {
     var _loop = function _loop(formInput) {
+      if (formInput.value) {
+        formInput.classList.add('has-value');
+      }
+
       formInput.addEventListener('change', function (e) {
         if (formInput.value) {
           this.classList.add('has-value');

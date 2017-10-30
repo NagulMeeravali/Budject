@@ -40,6 +40,10 @@
   const formInputs = [...document.querySelectorAll('input:not([type=submit]):not([type=date])')];
   if (formInputs) {
     for (const formInput of formInputs) {
+      if (formInput.value) {
+        formInput.classList.add('has-value');
+      }
+      
       formInput.addEventListener('change', function(e) {
         if (formInput.value) {
           this.classList.add('has-value');
