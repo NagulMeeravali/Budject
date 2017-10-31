@@ -58,6 +58,8 @@ router.get('/account', authController.isLoggedIn, userController.account);
 router.post('/account', catchErrors(userController.updateAccount));
 
 // forgot password
+router.post('/account/forgot', catchErrors(authController.forgot));
+router.get('/account/reset/:token', catchErrors(authController.reset));
 
 // Month View - Show total amount budgeted and total amount spent
 // Leftover money for savings - https://dribbble.com/shots/3685757-Finance-App-New-Budget/attachments/825117

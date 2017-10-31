@@ -3,9 +3,6 @@ const moment = require('moment');
 const db = mongoose.connection;
 const Category = mongoose.model('Category');
 const Item = mongoose.model('Item');
-const d3 = require('d3');
-const D3Node = require('d3-node');
-const d3n = new D3Node();
 
 const confirmOwner = (category, user) => {
   if (!category.author.equals(user._id)) {
