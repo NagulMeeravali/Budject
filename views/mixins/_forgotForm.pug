@@ -1,0 +1,8 @@
+mixin forgotForm()
+  form(action="/account/forgot" method="POST")
+    h2 Reset Your Password
+    .form-group
+      input(type="email" name="email")
+      label(for="email") Email
+    .form-group
+      input(type="submit" value="Reset Password")

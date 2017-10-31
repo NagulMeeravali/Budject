@@ -86,3 +86,10 @@ exports.deleteCategory = async (req, res) => {
   await Category.remove({ slug: req.params.slug });
   res.json({ category });
 }
+
+// Retrieve how much was spent per category over timespan
+exports.getCategoryData = async (req, res, next) => {
+  const category = await Category.findOne({ slug: req.params.slug });
+  console.log(category); 
+  next();
+}

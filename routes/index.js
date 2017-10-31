@@ -20,7 +20,7 @@ router.get('/about', (req, res) => {
 router.get('/categories', categoryController.getCategories);
 router.get('/category/add', authController.isLoggedIn, categoryController.addCategory)
 router.post('/category/add', catchErrors(categoryController.createCategory));
-router.get('/category/:slug', catchErrors(categoryController.displayCategory));
+router.get('/category/:slug', catchErrors(categoryController.getCategoryData), catchErrors(categoryController.displayCategory));
 router.get('/category/:slug/edit', catchErrors(categoryController.getCategory));
 router.post('/category/:slug/edit', catchErrors(categoryController.updateCategory));
 router.get(`/category/:slug/delete`, catchErrors(categoryController.deleteCategory));

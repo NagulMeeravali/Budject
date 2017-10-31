@@ -1,8 +1,10 @@
 extends layout
 
 include mixins/_loginForm
+include mixins/_forgotForm
 
 block content
   .container
     h1 Login
     +loginForm()
+    +forgotForm()
