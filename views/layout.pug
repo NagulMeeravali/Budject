@@ -88,17 +88,18 @@ html
 
         console.log(numItems.length === 0)
         console.log(document.querySelector('.category-page') !== null)
+        console.log(moment().endOf('month'))
 
-        if ((document.querySelector('.category-page') !== null && numItems.length !== 0) || document.querySelector('.category-list') !== null) {
+        //- if ((document.querySelector('.category-page') !== null && numItems.length !== 0) || document.querySelector('.category-list') !== null) {
           const picker = new Pikaday({ 
             field: document.querySelector('.datepicker'),
             minDate: moment(oldestItemDate).toDate(),
-            maxDate: moment(newestItemDate).toDate(),
+            maxDate: moment().endOf('month').toDate(), //- Replace with next month
             onSelect: function() {
               document.querySelector('.datepicker span').innerHTML = this.getMoment().format('MMMM YYYY');
               window.location = `${window.location.href.split('?')[0]}?month=${this.getMoment().month()+1}&year=${this.getMoment().year()}`;
             }
           });
-        }
+        //- }
       }
       
