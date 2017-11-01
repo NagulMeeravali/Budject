@@ -42,7 +42,7 @@ block content
 
       .category-charts.grid-cell.w50
         != h.dump(getItemsByQueriedYear)
-        svg.line-chart
+        canvas#myChart
         each entry in entries
           p= entry.amount
 
