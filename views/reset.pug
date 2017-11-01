@@ -5,10 +5,10 @@ block content
     form(method="POST")
       h2 Reset Your Password
       .form-group
-        input(type="password" name="password")
+        input(type="password" name="password" required)
         label(for="password") Password
       .form-group
-        input(type="password" name="confirm-password")
+        input(type="password" name="confirm-password" required)
         label(for="confirm-password") Confirm Password
       .form-group
         input(type="submit" value="Reset Password")
