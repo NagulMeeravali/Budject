@@ -1,35 +1,56 @@
 'use strict';
 
+function loadItems(category) {
+  var year = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : moment().startOf('year').format('YYYY');
+
+  axios.get('/api/category/' + category + '?year=' + year).then(function (res) {
+    var data = res.data;
+    console.log('year: ' + 2017);
+    console.log(data['sumByMonth'][year]);
+    var labels = Object.keys(data['sumByMonth'][year]);
+    var values = Object.values(data['sumByMonth'][year]);
+
+    var ctx = document.getElementById("myChart");
+
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Amount Spent Per Month',
+          data: values,
+          backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
+          borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: category.charAt(0).toUpperCase() + category.slice(1) + ' Spending for ' + year
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              callback: function callback(value, index, values) {
+                return '$' + value;
+              }
+            }
+          }]
+        }
+      }
+    });
+  });
+}
+"use strict";
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /*jslint browser:true */
 
 (function () {
   'use strict';
-
-  var ctx = document.getElementById("myChart");
-  var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-        borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-  });
 
   function updateQueryStringParameter(uri, key, value) {
     var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");

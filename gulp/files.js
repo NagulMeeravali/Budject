@@ -17,6 +17,7 @@ var paths = {
 var globs = {
   js: {
     src: [
+      paths.js.src + 'charts.js',
       paths.js.src + 'main.js',
     ],
     dist: {

@@ -76,7 +76,7 @@ exports.displayCategory = async (req, res) => {
   const getItemsByQueriedYear = await Item.getItemsByQueriedYear(category._id, startDate, endDate);
   confirmOwner(category, req.user);
   
-  res.render('category', { title: `${category.title}`, month, year, categories, category, oldestItem, itemSum: itemSum[0], numItems: numItems[0], itemsByCatAndMonth, getItemsByQueriedYear, oldestItemDate: oldestItem[0].date, newestItemDate: newestItem[0].date });
+  res.render('category', { title: `${category.title}`, slug: `${category.slug}`, month, year, categories, category, oldestItem, itemSum: itemSum[0], numItems: numItems[0], itemsByCatAndMonth, getItemsByQueriedYear, oldestItemDate: oldestItem[0].date, newestItemDate: newestItem[0].date });
 }
 
 exports.deleteCategory = async (req, res) => {
@@ -87,7 +87,6 @@ exports.deleteCategory = async (req, res) => {
 // Retrieve how much was spent per category over timespan
 exports.getCategoryData = async (req, res, next) => {
   const category = await Category.findOne({ slug: req.params.slug });
-  console.log(category); 
   next();
 }
 
@@ -98,8 +97,6 @@ exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
   const categoryPromise = Category.findOne({ slug: req.params.slug });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
   const getItemsByQueriedYear = await Item.getItemsByQueriedYear(category._id, queriedYear);
-
-  // console.log(getItemsByQueriedYear)
   const sumByMonth = {};
 
   getItemsByQueriedYear.forEach((item) => {
@@ -121,5 +118,5 @@ exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
     }
   }
 
-  res.json({ sumByMonth })
+  res.json({ sumByMonth });
 }
