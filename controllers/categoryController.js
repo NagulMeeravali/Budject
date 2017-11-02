@@ -90,3 +90,36 @@ exports.getCategoryData = async (req, res, next) => {
   console.log(category); 
   next();
 }
+
+exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
+  const queriedYear = (req.query.year) ? moment().year(req.query.year).startOf('year') : moment().startOf('year');
+  const year = queriedYear.format('YYYY');
+  const categoriesPromise = Category.find({ 'author': req.user._id }).sort({title:1});
+  const categoryPromise = Category.findOne({ slug: req.params.slug });
+  const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
+  const getItemsByQueriedYear = await Item.getItemsByQueriedYear(category._id, queriedYear);
+
+  // console.log(getItemsByQueriedYear)
+  const sumByMonth = {};
+
+  getItemsByQueriedYear.forEach((item) => {
+    const date = new Date(item.date),
+    year = date.getUTCFullYear(),
+    month = date.getUTCMonth() + 1;
+
+    sumByMonth[year] = sumByMonth[year] || {};
+    sumByMonth[year][month] = sumByMonth[year][month] || [];
+    sumByMonth[year][month].push(item.amount);
+  });
+
+
+  for (let i = 1; i < 13; i++) {
+    const c = sumByMonth[year][i]
+    if (typeof(c) !== 'undefined') {
+      const b = c.reduce((sum, value) => sum + value)
+      sumByMonth[year][i] = b
+    }
+  }
+
+  res.json({ sumByMonth })
+}

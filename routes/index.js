@@ -17,21 +17,21 @@ router.get('/about', (req, res) => {
 
 // Category Routes
 
-router.get('/categories', categoryController.getCategories);
+router.get('/categories', authController.isLoggedIn, categoryController.getCategories);
 router.get('/category/add', authController.isLoggedIn, categoryController.addCategory)
 router.post('/category/add', catchErrors(categoryController.createCategory));
-router.get('/category/:slug', catchErrors(categoryController.getCategoryData), catchErrors(categoryController.displayCategory));
-router.get('/category/:slug/edit', catchErrors(categoryController.getCategory));
+router.get('/category/:slug', authController.isLoggedIn, catchErrors(categoryController.getCategoryData), catchErrors(categoryController.displayCategory));
+router.get('/category/:slug/edit', authController.isLoggedIn, catchErrors(categoryController.getCategory));
 router.post('/category/:slug/edit', catchErrors(categoryController.updateCategory));
-router.get(`/category/:slug/delete`, catchErrors(categoryController.deleteCategory));
+router.get(`/category/:slug/delete`, authController.isLoggedIn, catchErrors(categoryController.deleteCategory));
 
 // Item Routes
 
 router.get(`/add`, authController.isLoggedIn, catchErrors(itemController.addItem));
-router.post(`/add`, catchErrors(itemController.createItem));
-router.get(`/add/:id`, catchErrors(itemController.getItem));
+router.post(`/add`, authController.isLoggedIn, catchErrors(itemController.createItem));
+router.get(`/add/:id`, authController.isLoggedIn, catchErrors(itemController.getItem));
 router.post(`/add/:id`, catchErrors(itemController.updateItem));
-router.get(`/delete/:id`, catchErrors(itemController.deleteItem));
+router.get(`/delete/:id`, authController.isLoggedIn, catchErrors(itemController.deleteItem));
 
 // User Routes
 
@@ -65,5 +65,7 @@ router.post('/account/reset/:token', authController.confirmedPasswords, catchErr
 // Month View - Show total amount budgeted and total amount spent
 // Leftover money for savings - https://dribbble.com/shots/3685757-Finance-App-New-Budget/attachments/825117
 
+// API Routes
+router.get('/api/category/:slug', catchErrors(categoryController.sumItemsByMonthQueriedYear)) 
 
 module.exports = router;

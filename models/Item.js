@@ -106,7 +106,7 @@ itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category, st
 }
 
 // Get all items between queried date range
-itemSchema.statics.getItemsByQueriedYear = function getItemsByQueriedYear(category, start, end) {
+itemSchema.statics.getItemsByQueriedYear = function getItemsByQueriedYear(category, start, end = start) {
   return this.aggregate([
     {
       $match: {
