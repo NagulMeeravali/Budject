@@ -85,9 +85,11 @@ html
     script.
       
       if (document.querySelector('.datepicker')) {
+        // Add if canvas statement
         const numItems = '!{numItems}'
         const oldestItemDate = '!{oldestItemDate}';
         const newestItemDate = '!{newestItemDate}';
+        // end if 
 
         console.log(numItems.length === 0)
         console.log(document.querySelector('.category-page') !== null)

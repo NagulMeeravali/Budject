@@ -54,6 +54,5 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
       });
     })
   }
-  
 
   

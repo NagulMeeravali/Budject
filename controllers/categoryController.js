@@ -90,6 +90,7 @@ exports.getCategoryData = async (req, res, next) => {
   next();
 }
 
+// API Endpoint - Sum items for months in queried calendar year
 exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
   const queriedYear = (req.query.year) ? moment().year(req.query.year).startOf('year') : moment().startOf('year');
   const year = queriedYear.format('YYYY');
@@ -100,15 +101,17 @@ exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
   const sumByMonth = {};
 
   getItemsByQueriedYear.forEach((item) => {
+    // console.log(category)
     const date = new Date(item.date),
     year = date.getUTCFullYear(),
-    month = date.getUTCMonth() + 1;
+    month = date.getUTCMonth() + 1,
+    budgeted = category.amount;
 
+    sumByMonth['budgeted'] = budgeted || 0;
     sumByMonth[year] = sumByMonth[year] || {};
     sumByMonth[year][month] = sumByMonth[year][month] || [];
     sumByMonth[year][month].push(item.amount);
   });
-
 
   for (let i = 1; i < 13; i++) {
     const c = sumByMonth[year][i]
@@ -120,3 +123,5 @@ exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
 
   res.json({ sumByMonth });
 }
+
+// query for last 12 months? 
