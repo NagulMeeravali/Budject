@@ -126,7 +126,7 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 }
 
 .pika-table {
-    display: none;
+    // display: none;
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;

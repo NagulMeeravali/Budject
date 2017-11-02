@@ -5,12 +5,22 @@ function loadItems(category) {
 
   axios.get('/api/category/' + category + '?year=' + year).then(function (res) {
     var data = res.data;
-    console.log('year: ' + 2017);
     console.log(data['sumByMonth'][year]);
     var labels = Object.keys(data['sumByMonth'][year]);
     var values = Object.values(data['sumByMonth'][year]);
+    var budgeted = data['sumByMonth']['budgeted'];
 
     var ctx = document.getElementById("myChart");
+
+    var backgroundColor = [];
+
+    values.map(function (value) {
+      if (value <= budgeted) {
+        backgroundColor.push('#17B890');
+      } else {
+        backgroundColor.push('#DB504A');
+      }
+    });
 
     var myChart = new Chart(ctx, {
       type: 'bar',
@@ -19,8 +29,8 @@ function loadItems(category) {
         datasets: [{
           label: 'Amount Spent Per Month',
           data: values,
-          backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-          borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+          backgroundColor: backgroundColor,
+          borderColor: backgroundColor,
           borderWidth: 1
         }]
       },
