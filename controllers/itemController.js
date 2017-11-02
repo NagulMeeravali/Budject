@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 const Category = mongoose.model('Category');
 const Item = mongoose.model('Item');
 
@@ -15,6 +16,7 @@ exports.addItem = async (req, res) => {
 
 exports.createItem = async (req, res) => {
   req.body.author = req.user._id;
+  req.body.date = moment(req.body.date).utc();
   const item = await (new Item(req.body)).save();
   const category = await Category.findOne({_id: req.body.category})
   res.redirect(`/category/${category.slug}`);
@@ -29,6 +31,7 @@ exports.getItem = async (req, res) => {
 
 exports.updateItem = async (req, res) => {
   const categoryList = await Category.find();
+  req.body.date = moment(req.body.date).utc();
   const item = await Item.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
   const category = await Category.findOne({_id: req.body.category})
   confirmOwner(item, req.user)
