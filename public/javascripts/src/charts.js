@@ -36,7 +36,19 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
             display: true,
             text: `${category.charAt(0).toUpperCase() + category.slice(1)} Spending for ${year}`
           },
+          legend: {
+            labels: {
+              boxWidth: 0,
+            }
+          },
           scales: {
+            xAxes: [{
+              ticks: {
+                callback: function(tick) {
+                  return moment(tick).format('MMM');
+                }
+              }
+            }],
             yAxes: [{
               ticks: {
                 beginAtZero: true,
@@ -45,7 +57,20 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
                 }
               }
             }]
-          }
+          },
+          tooltips: {
+              enabled: true,
+              mode: 'single',
+              displayColors: false,
+              callbacks: {
+                  title: function(tooltipItem) { 
+                    return moment(this._data.labels[tooltipItem[0].index]).format('MMMM');
+                  },
+                  label: function(tooltipItems, data) { 
+                    return `$${tooltipItems.yLabel}`;
+                  }
+              }
+          },
         }
       });
     })
