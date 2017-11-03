@@ -72,6 +72,11 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
                   }
               }
           },
+          hover: {
+            onHover: function(e) {
+              ctx.style.cursor = e[0] ? "pointer" : "default";
+            }
+          }
         }
       });
 

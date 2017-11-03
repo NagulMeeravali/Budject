@@ -74,6 +74,11 @@ function loadItems(category) {
               return '$' + tooltipItems.yLabel;
             }
           }
+        },
+        hover: {
+          onHover: function onHover(e) {
+            ctx.style.cursor = e[0] ? "pointer" : "default";
+          }
         }
       }
     });
