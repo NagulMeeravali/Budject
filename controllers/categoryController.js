@@ -128,8 +128,26 @@ exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
 exports.sumItemsByMonthQueriedYearNoCat = async (req, res, next) => {
   const queriedYear = (req.query.year) ? moment().year(req.query.year).startOf('year') : moment().startOf('year');
   const year = queriedYear.format('YYYY');
+  const categoriesPromise = Category.find({ 'author': req.user._id }).sort({title:1});
+  const categoryPromise = Category.findOne({ slug: req.params.slug });
+  const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
+
   const getItemsByQueriedYear = await Item.getItemsByQueriedYearNoCat(queriedYear);
   const sumByMonth = {};
+
+  const totalBudgetArr = [];
+  categories.map((category => totalBudgetArr.push(category.amount)));
+  console.log(totalBudgetArr);
+
+  const totalBudget = totalBudgetArr.reduce((sum, value) => sum + value);
+  console.log(parseInt(totalBudget));
+  sumByMonth['totalBudget'] = totalBudget;
+
+  // categories.reduce((category) => {
+  //   const catAmount = category.amount;
+  //   const budget = catAmount.reduce((sum, value) => sum + value);
+  //   sumByMonth[budgeted].push(budget)
+  // });
 
   getItemsByQueriedYear.forEach((item) => {
     // console.log(category)
@@ -149,6 +167,8 @@ exports.sumItemsByMonthQueriedYearNoCat = async (req, res, next) => {
       sumByMonth[year][i] = b
     }
   }
+
+  // TODO: Reduce amount field of all categories and add to JSON
 
   res.json({ sumByMonth });
 }

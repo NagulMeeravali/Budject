@@ -88,6 +88,10 @@ html
         const category = `#{slug}`
         loadItems(category, `#{year}`)
       }
+
+      if (document.querySelector('#dashboardChart')) {
+        loadAllItems(`#{year}`)
+      }
       
       if (document.querySelector('.datepicker')) {
         const numItems = '!{numItems}'

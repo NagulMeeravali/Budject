@@ -91,6 +91,96 @@ function loadItems(category) {
     };
   });
 }
+'use strict';
+
+function loadAllItems() {
+  var year = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : moment().startOf('year').format('YYYY');
+
+  axios.get('/api/categories/items?year=' + year).then(function (res) {
+    var data = res.data;
+    var labels = Object.keys(data['sumByMonth'][year]);
+    var values = Object.values(data['sumByMonth'][year]);
+    var ctx = document.getElementById("dashboardChart");
+    var label = 'Amount Spent Per Month Over ' + year;
+
+    var backgroundColor = ['red'];
+
+    // values.map((value) => {
+    //   if (value <= budgeted) {
+    //     backgroundColor.push('#17B890');
+    //   } else {
+    //     backgroundColor.push('#DB504A')
+    //   }
+    // })
+
+    var categoryChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: label,
+          data: values,
+          backgroundColor: backgroundColor,
+          borderColor: backgroundColor,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        title: {
+          display: true
+        },
+        legend: {
+          labels: {
+            boxWidth: 0
+          }
+        },
+        scales: {
+          xAxes: [{
+            ticks: {
+              callback: function callback(tick) {
+                return moment(tick).format('MMM');
+              }
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              callback: function callback(value, index, values) {
+                return '$' + value;
+              }
+            }
+          }]
+        },
+        tooltips: {
+          enabled: true,
+          mode: 'single',
+          displayColors: false,
+          callbacks: {
+            title: function title(tooltipItem) {
+              return moment(this._data.labels[tooltipItem[0].index]).format('MMMM');
+            },
+            label: function label(tooltipItems, data) {
+              return '$' + tooltipItems.yLabel;
+            }
+          }
+        },
+        hover: {
+          onHover: function onHover(e) {
+            ctx.style.cursor = e[0] ? "pointer" : "default";
+          }
+        }
+      }
+    });
+
+    ctx.onclick = function (evt) {
+      var activePoints = categoryChart.getElementsAtEvent(evt);
+      var firstPoint = activePoints[0];
+      var label = categoryChart.data.labels[firstPoint._index];
+      var value = categoryChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+      if (firstPoint !== undefined) window.location.href = window.location.href.split('?')[0] + '?month=' + label + '&year=' + year;
+    };
+  });
+}
 "use strict";
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
