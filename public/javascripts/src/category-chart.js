@@ -17,7 +17,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
         } else {
           backgroundColor.push('#DB504A')
         }
-      })
+      });
 
       const categoryChart = new Chart(ctx, {
         type: 'bar',

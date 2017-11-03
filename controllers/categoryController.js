@@ -101,7 +101,6 @@ exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
   const sumByMonth = {};
 
   getItemsByQueriedYear.forEach((item) => {
-    // console.log(category)
     const date = new Date(item.date),
     year = date.getUTCFullYear(),
     month = date.getUTCMonth() + 1,
@@ -137,20 +136,11 @@ exports.sumItemsByMonthQueriedYearNoCat = async (req, res, next) => {
 
   const totalBudgetArr = [];
   categories.map((category => totalBudgetArr.push(category.amount)));
-  console.log(totalBudgetArr);
 
   const totalBudget = totalBudgetArr.reduce((sum, value) => sum + value);
-  console.log(parseInt(totalBudget));
   sumByMonth['totalBudget'] = totalBudget;
 
-  // categories.reduce((category) => {
-  //   const catAmount = category.amount;
-  //   const budget = catAmount.reduce((sum, value) => sum + value);
-  //   sumByMonth[budgeted].push(budget)
-  // });
-
   getItemsByQueriedYear.forEach((item) => {
-    // console.log(category)
     const date = new Date(item.date),
       year = date.getUTCFullYear(),
       month = date.getUTCMonth() + 1;
@@ -166,9 +156,7 @@ exports.sumItemsByMonthQueriedYearNoCat = async (req, res, next) => {
       const b = c.reduce((sum, value) => sum + value)
       sumByMonth[year][i] = b
     }
-  }
-
-  // TODO: Reduce amount field of all categories and add to JSON
+}
 
   res.json({ sumByMonth });
 }

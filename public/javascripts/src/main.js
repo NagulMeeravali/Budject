@@ -131,10 +131,4 @@
   
   changeBudgetColor();
 
-  if (document.querySelector('.pika-single')) {
-    const test = [...document.querySelectorAll('.pika-title select')];
-    console.log(test)
-  }
-
-
 }());

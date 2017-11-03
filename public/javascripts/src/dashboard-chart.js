@@ -4,18 +4,19 @@ axios.get(`/api/categories/items?year=${year}`)
     const data = res.data;
     const labels = Object.keys(data['sumByMonth'][year]);
     const values = Object.values(data['sumByMonth'][year]);
+    const budgeted = data['sumByMonth']['totalBudget'];
     const ctx = document.getElementById("dashboardChart");
-    const label = `Amount Spent Per Month Over ${year}`;
+    const label = `Total Monthly Budget: $${budgeted}`;
 
-    const backgroundColor = ['red'];
+    const backgroundColor = [];
 
-    // values.map((value) => {
-    //   if (value <= budgeted) {
-    //     backgroundColor.push('#17B890');
-    //   } else {
-    //     backgroundColor.push('#DB504A')
-    //   }
-    // })
+    values.map((value) => {
+      if (value <= budgeted) {
+        backgroundColor.push('#17B890');
+      } else {
+        backgroundColor.push('#DB504A')
+      }
+    });
 
     const categoryChart = new Chart(ctx, {
       type: 'bar',
@@ -32,6 +33,7 @@ axios.get(`/api/categories/items?year=${year}`)
       options: {
         title: {
           display: true,
+          text: `Spending for ${year}`
         },
         legend: {
           labels: {

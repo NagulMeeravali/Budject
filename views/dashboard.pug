@@ -29,13 +29,13 @@ block content
           p.filter-intro Filter By:
           form.category-type-filter(method="GET")
             .form-group
-              select(name="category-type-filter")
+              select(id="dashboard-filter" name="category-type-filter")
                 //- Sort by category name
-                option(value="titleDesc") Name A-Z
-                option(value="titleAsc") Name Z-A
+                option(name="titleDesc" value="titleDesc" selected=("titleDesc"===`${sortValue}`)) Name A-Z
+                option(value="titleAsc" selected=("titleASC"===`${sortValue}`)) Name Z-A
                 //- Sort by amount spent per category
-                option(value="spentDesc") Budget High to Low
-                option(value="spentAsc") Budget Low to High
+                option(value="spentDesc" selected=("spentDesc"===`${sortValue}`)) Budget High to Low
+                option(value="spentAsc" selected=("spentAsc"===`${sortValue}`)) Budget Low to High
         else
           p You currently don't have any categories set up. 
         if categories.length

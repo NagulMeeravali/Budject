@@ -100,18 +100,19 @@ function loadAllItems() {
     var data = res.data;
     var labels = Object.keys(data['sumByMonth'][year]);
     var values = Object.values(data['sumByMonth'][year]);
+    var budgeted = data['sumByMonth']['totalBudget'];
     var ctx = document.getElementById("dashboardChart");
-    var label = 'Amount Spent Per Month Over ' + year;
+    var label = 'Total Monthly Budget: $' + budgeted;
 
-    var backgroundColor = ['red'];
+    var backgroundColor = [];
 
-    // values.map((value) => {
-    //   if (value <= budgeted) {
-    //     backgroundColor.push('#17B890');
-    //   } else {
-    //     backgroundColor.push('#DB504A')
-    //   }
-    // })
+    values.map(function (value) {
+      if (value <= budgeted) {
+        backgroundColor.push('#17B890');
+      } else {
+        backgroundColor.push('#DB504A');
+      }
+    });
 
     var categoryChart = new Chart(ctx, {
       type: 'bar',
@@ -127,7 +128,8 @@ function loadAllItems() {
       },
       options: {
         title: {
-          display: true
+          display: true,
+          text: 'Spending for ' + year
         },
         legend: {
           labels: {
@@ -362,9 +364,4 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   changeBudgetColor();
-
-  if (document.querySelector('.pika-single')) {
-    var test = [].concat(_toConsumableArray(document.querySelectorAll('.pika-title select')));
-    console.log(test);
-  }
 })();

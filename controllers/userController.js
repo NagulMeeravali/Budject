@@ -80,7 +80,7 @@ exports.getDashboard = async (req, res, next) => {
   const month = startDate.format('MMMM');
   const year = startDate.format('YYYY');
 
-  const sortOrder = (req.query.sort === 'titleDesc') ? { title: 1 } : (req.query.sort === 'titleDesc' ? { title: -1 } : (req.query.sort === 'spentDesc' ? {amount: -1} : ( req.query.sort === 'spentAsc' ? {amount: 1} : {title: 1})));
+  const sortOrder = (req.query.sort === 'titleDesc') ? { title: 1 } : (req.query.sort === 'titleAsc' ? { title: -1 } : (req.query.sort === 'spentDesc' ? {amount: -1} : ( req.query.sort === 'spentAsc' ? {amount: 1} : {title: 1})));
 
   const categoriesPromise = Category.find({ 'author': req.user._id }).sort(sortOrder);
   const categoryPromise = Category.findOne({ slug: req.params.slug });
@@ -96,5 +96,5 @@ exports.getDashboard = async (req, res, next) => {
     return [(count[0] || '0'), itemSum[0] || '0'];
   }));
 
-  res.render('dashboard', { title: `${req.user.name} Dashboard`, month, year, categories, getItemsByMonth, recentItems, budgetedPerMonth: budgetedPerMonth[0], spentPerMonth: spentPerMonth[0], itemArr})
+  res.render('dashboard', { title: `${req.user.name} Dashboard`, month, year, categories, getItemsByMonth, recentItems, budgetedPerMonth: budgetedPerMonth[0], spentPerMonth: spentPerMonth[0], itemArr, sortValue: req.query.sort})
 }
