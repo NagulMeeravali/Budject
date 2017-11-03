@@ -9,6 +9,7 @@ function loadItems(category) {
     var labels = Object.keys(data['sumByMonth'][year]);
     var values = Object.values(data['sumByMonth'][year]);
     var budgeted = data['sumByMonth']['budgeted'];
+    var label = 'Amount Spent Per Month \u2014 Budget: $' + budgeted;
 
     var ctx = document.getElementById("categoryChart");
 
@@ -27,7 +28,7 @@ function loadItems(category) {
       data: {
         labels: labels,
         datasets: [{
-          label: 'Amount Spent Per Month',
+          label: label,
           data: values,
           backgroundColor: backgroundColor,
           borderColor: backgroundColor,
@@ -76,6 +77,14 @@ function loadItems(category) {
         }
       }
     });
+
+    ctx.onclick = function (evt) {
+      var activePoints = categoryChart.getElementsAtEvent(evt);
+      var firstPoint = activePoints[0];
+      var label = categoryChart.data.labels[firstPoint._index];
+      var value = categoryChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+      if (firstPoint !== undefined) window.location.href = window.location.href.split('?')[0] + '?month=' + label + '&year=' + year;
+    };
   });
 }
 "use strict";

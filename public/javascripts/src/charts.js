@@ -6,6 +6,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
       const labels = Object.keys(data['sumByMonth'][year]);
       const values = Object.values(data['sumByMonth'][year]);
       const budgeted = data['sumByMonth']['budgeted'];
+      const label = `Amount Spent Per Month — Budget: $${budgeted}`;
 
       const ctx = document.getElementById("categoryChart");
 
@@ -24,7 +25,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
         data: {
           labels,
           datasets: [{
-            label: 'Amount Spent Per Month',
+            label,
             data: values,
             backgroundColor,
             borderColor: backgroundColor,
@@ -73,7 +74,15 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
           },
         }
       });
+
+      ctx.onclick = function(evt){
+        const activePoints = categoryChart.getElementsAtEvent(evt);
+        const firstPoint = activePoints[0];
+        const label = categoryChart.data.labels[firstPoint._index];
+        const value = categoryChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+        if (firstPoint !== undefined)
+          window.location.href = `${window.location.href.split('?')[0]}?month=${label}&year=${year}`
+      };
     })
   }
 
-  
