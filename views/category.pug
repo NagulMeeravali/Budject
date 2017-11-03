@@ -31,20 +31,18 @@ block content
             span.budget-goal #{h.formatPrice(category.amount)}
         p.add-btn
           a.btn(href=`/add`) Add Item
+        .category-item-grid.grid
 
-        - const entries = itemsByCatAndMonth
-        if entries.length === 0
-          p There are no transactions available for this month. 
-        
-        - entries.sort(function(a, b) { return b.date - a.date })
-        each entry in entries
-          +item(entry)
+          - const entries = itemsByCatAndMonth
+          if entries.length === 0
+            p There are no transactions available for this month. 
+          
+          - entries.sort(function(a, b) { return b.date - a.date })
+          each entry in entries
+            +item(entry)
 
       .category-charts.grid-cell.w50
-        != h.dump(getItemsByQueriedYear)
-        canvas#myChart
-        each entry in entries
-          p= entry.amount
+        canvas#categoryChart
 
 
 

@@ -83,13 +83,16 @@ html
     <script src="https://d3js.org/d3.v4.min.js"></script>
     script(src="/javascripts/dist/app.min.js")
     script.
+
+      if (document.querySelector('#categoryChart')) {
+        const category = `#{slug}`
+        loadItems(category, `#{year}`)
+      }
       
       if (document.querySelector('.datepicker')) {
-        // Add if canvas statement
         const numItems = '!{numItems}'
         const oldestItemDate = '!{oldestItemDate}';
         const newestItemDate = '!{newestItemDate}';
-        // end if 
 
         console.log(numItems.length === 0)
         console.log(document.querySelector('.category-page') !== null)
@@ -106,9 +109,5 @@ html
             }
           });
         //- }
-
-        const category = `#{slug}`
-        
-        loadItems(category, `#{year}`)
       }
       

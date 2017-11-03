@@ -7,7 +7,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
       const values = Object.values(data['sumByMonth'][year]);
       const budgeted = data['sumByMonth']['budgeted'];
 
-      const ctx = document.getElementById("myChart");
+      const ctx = document.getElementById("categoryChart");
 
       const backgroundColor = [];
 
@@ -19,7 +19,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
         }
       })
 
-      const myChart = new Chart(ctx, {
+      const categoryChart = new Chart(ctx, {
         type: 'bar',
         data: {
           labels,

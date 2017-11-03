@@ -10,7 +10,7 @@ function loadItems(category) {
     var values = Object.values(data['sumByMonth'][year]);
     var budgeted = data['sumByMonth']['budgeted'];
 
-    var ctx = document.getElementById("myChart");
+    var ctx = document.getElementById("categoryChart");
 
     var backgroundColor = [];
 
@@ -22,7 +22,7 @@ function loadItems(category) {
       }
     });
 
-    var myChart = new Chart(ctx, {
+    var categoryChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: labels,

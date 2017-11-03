@@ -178,6 +178,18 @@
   .category-details {
     display: flex;
     justify-content: space-between;
+
+    .category-items {
+      @media <=map(bp, tablet) {
+        flex: 0 0 100%;
+      }
+
+      .category-item-grid {
+        @media <=map(bp, tablet) {
+          justify-content: space-between;
+        }
+      }
+    }
     
     .budget-meta {
       display: flex;
@@ -232,5 +244,15 @@
   .add-btn {
     margin-top: 0;
     text-align: right;
+  }
+}
+
+.category-charts {
+  @media <=map(bp, tablet) {
+    flex: 0 0 100% !important;
+  }
+
+  canvas {
+    width: 100% !important;
   }
 }

@@ -2,10 +2,18 @@
   padding: 20px;
   margin: 0 auto 10px;
   display: flex;
+  flex: 0 0 100%;
   align-items: center;
   justify-content: space-around;
   background: map(colors, white, base);
   border: 1px solid map(colors, black, base);
+  @media <=map(bp, tablet) {
+    margin: 0 0 10px;
+    flex: 0 0 48%;
+  }
+  @media <=map(bp, mobile) {
+    flex: 0 0 100%;
+  }
 
   > div {
     display: flex;
