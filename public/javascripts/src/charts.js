@@ -1,8 +1,7 @@
 function loadItems(category, year = moment().startOf('year').format('YYYY')) {
-  axios.get(`/api/category/${category}?year=${year}`)
+  axios.get(`/api/category/${category}/items?year=${year}`)
     .then(res => {
       const data = res.data;
-      console.log(data['sumByMonth'][year])
       const labels = Object.keys(data['sumByMonth'][year]);
       const values = Object.values(data['sumByMonth'][year]);
       const budgeted = data['sumByMonth']['budgeted'];

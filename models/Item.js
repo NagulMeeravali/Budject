@@ -105,12 +105,23 @@ itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category, st
   ]);
 }
 
-// Get all items between queried date range
+// Get all items in category between queried date range
 itemSchema.statics.getItemsByQueriedYear = function getItemsByQueriedYear(category, start, end = start) {
   return this.aggregate([
     {
       $match: {
         category: mongoose.Types.ObjectId(category),
+        date: { $gte: new Date(moment(start).startOf('year')), $lte: new Date(moment(end).endOf('year')) }
+      }
+    }
+  ]);
+}
+
+// Get all items between queried date range
+itemSchema.statics.getItemsByQueriedYearNoCat = function getItemsByQueriedYearNoCat(start, end = start) {
+  return this.aggregate([
+    {
+      $match: {
         date: { $gte: new Date(moment(start).startOf('year')), $lte: new Date(moment(end).endOf('year')) }
       }
     }

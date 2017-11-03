@@ -66,6 +66,7 @@ router.post('/account/reset/:token', authController.confirmedPasswords, catchErr
 // Leftover money for savings - https://dribbble.com/shots/3685757-Finance-App-New-Budget/attachments/825117
 
 // API Routes
-router.get('/api/category/:slug', catchErrors(categoryController.sumItemsByMonthQueriedYear)) 
+router.get('/api/category/:slug/items', catchErrors(categoryController.sumItemsByMonthQueriedYear)); 
+router.get('/api/categories/items', catchErrors(categoryController.sumItemsByMonthQueriedYearNoCat));
 
 module.exports = router;

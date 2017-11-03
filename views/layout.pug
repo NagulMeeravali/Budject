@@ -92,6 +92,7 @@ html
       if (document.querySelector('.datepicker')) {
         const numItems = '!{numItems}'
         const oldestItemDate = '!{oldestItemDate}';
+        console.log(oldestItemDate)
         const newestItemDate = '!{newestItemDate}';
 
         console.log(numItems.length === 0)
@@ -104,7 +105,6 @@ html
             minDate: moment(oldestItemDate).toDate(),
             maxDate: moment().endOf('month').toDate(), //- Replace with next month
             onSelect: function() {
-              document.querySelector('.datepicker span').innerHTML = this.getMoment().format('MMMM YYYY');
               window.location = `${window.location.href.split('?')[0]}?month=${this.getMoment().month()+1}&year=${this.getMoment().year()}`;
             }
           });

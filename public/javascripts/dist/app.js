@@ -3,9 +3,8 @@
 function loadItems(category) {
   var year = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : moment().startOf('year').format('YYYY');
 
-  axios.get('/api/category/' + category + '?year=' + year).then(function (res) {
+  axios.get('/api/category/' + category + '/items?year=' + year).then(function (res) {
     var data = res.data;
-    console.log(data['sumByMonth'][year]);
     var labels = Object.keys(data['sumByMonth'][year]);
     var values = Object.values(data['sumByMonth'][year]);
     var budgeted = data['sumByMonth']['budgeted'];
@@ -273,4 +272,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   changeBudgetColor();
+
+  if (document.querySelector('.pika-single')) {
+    var test = [].concat(_toConsumableArray(document.querySelectorAll('.pika-title select')));
+    console.log(test);
+  }
 })();
