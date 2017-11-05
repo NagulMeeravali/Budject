@@ -3,5 +3,6 @@
 }
 
 body {
+  flex-direction: column;
   background: map(colors, white, light);
 }

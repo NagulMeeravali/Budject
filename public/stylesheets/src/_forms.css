@@ -2,6 +2,12 @@ form {
   margin-top: 40px !important;
   justify-content: space-between;
 
+  &.user-form {
+    @media <=map(bp, mobile) {
+      flex-direction: column;
+    }
+  }
+
   &.category-type-filter {
     margin-top: 0 !important;
   }

@@ -105,6 +105,9 @@
   }
 
   if (amountInput) {
+    if (amountInput.classList.contains('has-value')) {
+      amountInput.parentElement.classList.add('active-element');
+    }
     amountInput.addEventListener('focus', addAmountInputClass, true);
     amountInput.addEventListener('blur', addAmountInputClass, true);
     amountInput.addEventListener('focusout', removeAmountInputClass, true)

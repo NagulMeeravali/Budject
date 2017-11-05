@@ -1,5 +1,5 @@
-var config = require('./gulp/config.json'),
-  files = require('./gulp/files'),
+var config = require('./gulpfiles/config.json'),
+  files = require('./gulpfiles/files'),
   gulp = require('gulp'),
   del = require('del'),
   postcss = require('gulp-postcss'),

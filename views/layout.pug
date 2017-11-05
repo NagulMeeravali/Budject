@@ -6,7 +6,6 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body.grid
     block header
-      != h.dump(user)
       header.grid-cell.w100
         .logo-section.grid-cell.w35
           a(href="/") Logo
@@ -74,7 +73,7 @@ html
     block footer
       footer.grid
         .container
-          p Footer 
+          p &copy; Copyright #{(new Date()).getFullYear()}, David Saunders 
     block scripts
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="/javascripts/vendor/pikaday.js"></script>
