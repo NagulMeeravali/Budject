@@ -7,7 +7,7 @@ function loadItems(category) {
     var data = res.data;
     var labels = Object.keys(data['sumByMonth'][year]);
     var values = Object.values(data['sumByMonth'][year]);
-    var budgeted = data['sumByMonth']['budgeted'];
+    var budgeted = data['sumByMonth']['budgeted'].toFixed(2);
     var label = 'Amount Spent Per Month \u2014 Budget: $' + budgeted;
 
     var ctx = document.getElementById("categoryChart");
@@ -37,6 +37,7 @@ function loadItems(category) {
       options: {
         title: {
           display: true,
+          fontSize: 18,
           text: category.charAt(0).toUpperCase() + category.slice(1) + ' Spending for ' + year
         },
         legend: {
@@ -106,7 +107,7 @@ function loadAllItems() {
     var data = res.data;
     var labels = Object.keys(data['sumByMonth'][year]);
     var values = Object.values(data['sumByMonth'][year]);
-    var budgeted = data['sumByMonth']['totalBudget'];
+    var budgeted = data['sumByMonth']['totalBudget'].toFixed(2);
     var ctx = document.getElementById("dashboardChart");
     var label = 'Total Monthly Budget: $' + budgeted;
 
@@ -135,6 +136,7 @@ function loadAllItems() {
       options: {
         title: {
           display: true,
+          fontSize: 18,
           text: 'Spending for ' + year
         },
         legend: {

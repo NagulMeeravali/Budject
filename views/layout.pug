@@ -93,24 +93,32 @@ html
       }
       
       if (document.querySelector('.datepicker')) {
-        const numItems = '!{numItems}'
+        const month = '!{month}';
+        const monthNum = moment().month(month).format('M');
+        console.log(monthNum);
+        const year = '!{year}';
+        const yearNum = moment().year(year).format('YYYY');
+        const numItems = '!{numItems}';
         const oldestItemDate = '!{oldestItemDate}';
-        console.log(oldestItemDate)
         const newestItemDate = '!{newestItemDate}';
 
-        console.log(numItems.length === 0)
-        console.log(document.querySelector('.category-page') !== null)
-        console.log(moment().endOf('month'))
+        const picker = new Pikaday({ 
+          field: document.querySelector('.datepicker'),
+          defaultDate: moment([parseInt(yearNum), monthNum-1]).toDate(),
+          setDefaultDate: true,
+          minDate: moment(oldestItemDate).toDate(),
+          maxDate: moment().endOf('month').toDate(), //- Replace with next month
+          onDraw: function() {
+            const month = document.querySelector('.pika-label:first-of-type select');
+            const year = document.querySelector('.pika-label:last-of-type select');
 
-        //- if ((document.querySelector('.category-page') !== null && numItems.length !== 0) || document.querySelector('.category-list') !== null) {
-          const picker = new Pikaday({ 
-            field: document.querySelector('.datepicker'),
-            minDate: moment(oldestItemDate).toDate(),
-            maxDate: moment().endOf('month').toDate(), //- Replace with next month
-            onSelect: function() {
-              window.location = `${window.location.href.split('?')[0]}?month=${this.getMoment().month()+1}&year=${this.getMoment().year()}`;
+            if ((parseInt(month.value) + 1 === parseInt(monthNum)) && (year.value === yearNum)) {
+              return;
+            } else {
+              window.location = `${window.location.href.split('?')[0]}?month=${parseInt(month.value) + 1}&year=${year.value}`;
             }
-          });
-        //- }
+          }
+        });
       }
+
       

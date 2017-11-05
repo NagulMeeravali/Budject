@@ -4,7 +4,7 @@ axios.get(`/api/categories/items?year=${year}`)
     const data = res.data;
     const labels = Object.keys(data['sumByMonth'][year]);
     const values = Object.values(data['sumByMonth'][year]);
-    const budgeted = data['sumByMonth']['totalBudget'];
+    const budgeted = (data['sumByMonth']['totalBudget']).toFixed(2);
     const ctx = document.getElementById("dashboardChart");
     const label = `Total Monthly Budget: $${budgeted}`;
 
@@ -33,6 +33,7 @@ axios.get(`/api/categories/items?year=${year}`)
       options: {
         title: {
           display: true,
+          fontSize: 18,
           text: `Spending for ${year}`
         },
         legend: {

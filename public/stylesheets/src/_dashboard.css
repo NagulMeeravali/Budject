@@ -30,6 +30,12 @@
       font-weight: 700;
     }
   }
+
+  .budget-meta {
+    h1 {
+      text-align: center;
+    }
+  }
 }
 
 .dashboard-grid {

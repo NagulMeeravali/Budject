@@ -4,7 +4,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
       const data = res.data;
       const labels = Object.keys(data['sumByMonth'][year]);
       const values = Object.values(data['sumByMonth'][year]);
-      const budgeted = data['sumByMonth']['budgeted'];
+      const budgeted = (data['sumByMonth']['budgeted'].toFixed(2));
       const label = `Amount Spent Per Month — Budget: $${budgeted}`;
 
       const ctx = document.getElementById("categoryChart");
@@ -34,6 +34,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
         options: {
           title: {
             display: true,
+            fontSize: 18,
             text: `${category.charAt(0).toUpperCase() + category.slice(1)} Spending for ${year}`
           },
           legend: {
