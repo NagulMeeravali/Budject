@@ -80,8 +80,10 @@ exports.displayCategory = async (req, res) => {
 }
 
 exports.deleteCategory = async (req, res) => {
+  const category = await Category.findOne({slug: req.params.slug});
   await Category.remove({ slug: req.params.slug });
-  res.json({ category });
+  req.flash('success', `You have successfully deleted the ${category.title} category`);
+  res.redirect('/dashboard');
 }
 
 // Retrieve how much was spent per category over timespan

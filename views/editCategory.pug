@@ -1,8 +1,12 @@
 extends layout
 
 include mixins/_categoryForm
+include mixins/_deleteCategory
 
 block content
   .container
     h1 Edit #{category.title} Category
     +categoryForm(category)
+
+    h3 Delete #{category.title} Category
+    +deleteCategoryForm(category)

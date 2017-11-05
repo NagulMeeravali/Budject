@@ -55,6 +55,12 @@ function loadItems(category) {
           yAxes: [{
             ticks: {
               beginAtZero: true,
+              type: 'linear',
+              ticks: {
+                min: 0,
+                max: 6500,
+                stepSize: 1300
+              },
               callback: function callback(value, index, values) {
                 return '$' + value;
               }

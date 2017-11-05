@@ -24,6 +24,7 @@ router.get('/category/:slug', authController.isLoggedIn, catchErrors(categoryCon
 router.get('/category/:slug/edit', authController.isLoggedIn, catchErrors(categoryController.getCategory));
 router.post('/category/:slug/edit', catchErrors(categoryController.updateCategory));
 router.get(`/category/:slug/delete`, authController.isLoggedIn, catchErrors(categoryController.deleteCategory));
+router.post(`/category/:slug/delete`, authController.isLoggedIn, catchErrors(categoryController.deleteCategory));
 
 // Item Routes
 

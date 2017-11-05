@@ -66,11 +66,11 @@
     grid-template-columns: auto auto auto;
     grid-gap: 15px;
     list-style-type: none;
-    @media <=map(bp, mobile) {
+    @media <=map(bp, tablet) {
       grid-template-columns: auto auto;
       grid-gap: 10px;
     }
-    @media <=map(bp, tiny) {
+    @media <=map(bp, mobile) {
       grid-template-columns: auto;
     }
 
