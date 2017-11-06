@@ -4,7 +4,7 @@ mixin itemForm(item={})
       input(type="text" name="title" value=item.title required)
       label(for="title") Item
     .form-group.grid-cell.w48.amount-field
-      input(type="number" name="amount" value=item.amount step=".01" min="0.00" required)
+      input(type="number" name="amount" value=(item.amount ? (item.amount).toFixed(2) : item.amount) step=".01" min="0.00" required)
       label(for="amount") Amount
     .form-group.grid-cell.w48
       input(type="date" name="date" value=h.moment(item.date).utc().format("YYYY-MM-DD") required)

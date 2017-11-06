@@ -7,9 +7,11 @@
 }
 
 .container {
-  padding-left: 40px !important;
-  padding-right: 40px !important;
+  margin: 0 auto;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
   max-width: 1200px;
+  width: 100%;
 
   @media <=map(bp, mobile) {
     padding-left: 20px !important;

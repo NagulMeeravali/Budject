@@ -16,7 +16,7 @@ form {
     position: relative;
     margin-bottom: 35px;
     @media <=map(bp, mobile) {
-      flex: 0 0 100%;
+      flex: 0 0 100% !important;
     }
 
     &.amount-field {
@@ -52,6 +52,7 @@ form {
         color: map(colors, gray, base);
         text-indent: 10px;
         border: 1px solid map(colors, black, base);
+        
 
         &.invalid-input {
           border-color: map(colors, red, base) !important;

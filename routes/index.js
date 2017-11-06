@@ -28,6 +28,7 @@ router.post(`/category/:slug/delete`, authController.isLoggedIn, catchErrors(cat
 
 // Item Routes
 
+// TODO: Pass category page to add item form -- select category by default
 router.get(`/add`, authController.isLoggedIn, catchErrors(itemController.addItem));
 router.post(`/add`, authController.isLoggedIn, catchErrors(itemController.createItem));
 router.get(`/add/:id`, authController.isLoggedIn, catchErrors(itemController.getItem));
