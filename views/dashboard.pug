@@ -4,7 +4,7 @@ include mixins/_categorySidebar
 include mixins/_item
 
 block content
-  .container.user-dashboard
+  .user-dashboard
     .budget-meta
       h1 #{user.name}'s Dashboard
       if categories.length 
@@ -41,7 +41,7 @@ block content
         if categories.length
           +categorySidebar(categories)
           a.btn(href=`/categories`) View All Categories
-      .grid-cell.w48
+      .grid-cell.w48.dashboard-items
         h3 Recent Items
         if recentItems.length
           each item in recentItems
@@ -50,6 +50,7 @@ block content
           p You haven't added any transactions yet.
         a.btn(href=`/add`) + Add Item
       .grid-cell.w100.dashboard-charts
-        canvas#dashboardChart
-        button(id="bar" value="bar" class="chartBtn") Bar
-        button(id="line" value="line" class="chartBtn") Line
+        .chartContainer
+          canvas#dashboardChart
+          button(id="bar" value="bar" class="chartBtn") Bar
+          button(id="line" value="line" class="chartBtn") Line

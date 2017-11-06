@@ -42,6 +42,10 @@
   justify-content: space-between;
 
   .dashboard-categories {
+    @media <=map(bp, mobile) {
+      flex: 0 0 100%;
+    }
+
     h5 {
       margin: 0 0 5px;
       color: map(colors, white, base);
@@ -55,8 +59,25 @@
       width: 90%;
     }
   }
+
+  aside {
+    @media <=map(bp, mobile) {
+      padding: 0;
+    }
+  }
+}
+
+.dashboard-items {
+  @media <=map(bp, mobile) {
+    flex: 0 0 100% !important;
+  }
 }
 
 .dashboard-charts {
   margin-top: 40px;
+
+  .chartContainer {
+    position: relative;
+    width: 100%;
+  }
 }

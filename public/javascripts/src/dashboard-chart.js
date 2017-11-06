@@ -44,6 +44,7 @@ axios.get(`/api/categories/items?year=${year}`)
     }
 
     const options = {
+      responsive: true,
       title: {
         display: true,
         fontSize: 18,
@@ -102,6 +103,7 @@ axios.get(`/api/categories/items?year=${year}`)
     if (chartBtns) {
       for (const chartBtn of chartBtns) {
         chartBtn.addEventListener('click', function(e) {
+          e.preventDefault();
           chartBtnVal = this.value;
           categoryChart.destroy();
           if (chartBtnVal === 'line') {

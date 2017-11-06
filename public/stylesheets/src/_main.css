@@ -6,3 +6,7 @@ body {
   flex-direction: column;
   background: map(colors, white, light);
 }
+
+canvas {
+  width: 100% !important;
+}

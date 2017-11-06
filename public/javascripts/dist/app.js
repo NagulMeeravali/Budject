@@ -213,6 +213,7 @@ function loadAllItems() {
     };
 
     var options = {
+      responsive: true,
       title: {
         display: true,
         fontSize: 18,
@@ -278,6 +279,7 @@ function loadAllItems() {
           var chartBtn = _step.value;
 
           chartBtn.addEventListener('click', function (e) {
+            e.preventDefault();
             chartBtnVal = this.value;
             categoryChart.destroy();
             if (chartBtnVal === 'line') {
