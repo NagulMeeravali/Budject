@@ -12,23 +12,14 @@ html
         nav.grid-cell.w35
           .menu
             ul.menu-items
-              each item in h.menu
-                li.menu-item
-                  a(href=item.slug)= item.title
               if user
-                li.menu-item
-                  a(href=`/dashboard`) Dashboard
-                li.menu-items
-                  a(href=`/categories`) Categories
-                li.menu-item
-                  a(href=`/account`) Account
-                li.menu-item
-                  a(href="/logout") Logout
+                each item in h.userMenu
+                  li.menu-item
+                    a(href=item.slug)= item.title
               else
-                li.menu-item
-                  a(href="/login") Login 
-                li.menu-item
-                  a(href="/register") Register
+                each item in h.generalMenu
+                  li.menu-item
+                    a(href=item.slug)= item.title
           .mobile-menu
             .mobile-menu-toggle
               a(href="#" class="mobile-menu-toggle")
@@ -37,23 +28,15 @@ html
                   .bar.middle
                   .bar.bottom
       ul.mobile-menu-items
-        each item in h.menu
-          li.menu-item
-            a(href=item.slug)= item.title
+        each item in h.userMenu
           if user
-            li.menu-item
-              a(href=`/dashboard`) Dashboard
-            li.menu-items
-              a(href=`/categories`) Categories
-            li.menu-item
-              a(href=`/account`) Account
-            li.menu-item
-              a(href="/logout") Logout
+              each item in h.userMenu
+                li.menu-item
+                  a(href=item.slug)= item.title
           else
-            li.menu-item
-              a(href="/login") Login 
-            li.menu-item
-              a(href="/register") Register
+            each item in h.generalMenu
+              li.menu-item
+                a(href=item.slug)= item.title
     block messages
       if locals.flashes
         .container
