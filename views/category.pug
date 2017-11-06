@@ -9,43 +9,44 @@ block content
       a(href=`/categories`) 
         != h.icon('arrow-left')
         | See All Categories
+  .container
     .grid-cell.w100.category.category-page
-    .budget-title
-      h1 #{title}
+      .budget-title
+        h1 #{title}
 
-    .grid.category-details
-      .category-items.grid-cell.w40
-        .budget-meta 
-          .month-details
-            h3.datepicker 
-              span #{month} #{year} 
-              != h.icon('caret-down')
-            if numItems
-              p #{numItems.count} transaction#{numItems.count === 1 ? '' : 's'} this month
-          p
-            if itemSum
-              span.budget-spent #{h.formatPrice(itemSum.sum)} 
-            else
-              span.budget-spent #{h.formatPrice(0)}
-            | of 
-            span.budget-goal #{h.formatPrice(category.amount)}
+      .grid.category-details
+        .category-items.grid-cell.w40
+          .budget-meta 
+            .month-details
+              h3.datepicker 
+                span #{month} #{year} 
+                != h.icon('caret-down')
+              if numItems
+                p #{numItems.count} transaction#{numItems.count === 1 ? '' : 's'} this month
+            p
+              if itemSum
+                span.budget-spent #{h.formatPrice(itemSum.sum)} 
+              else
+                span.budget-spent #{h.formatPrice(0)}
+              | of 
+              span.budget-goal #{h.formatPrice(category.amount)}
 
-        p.add-btn
-          a.btn(href=`/add`) + Add Item
-        .category-item-grid.grid
+          p.add-btn
+            a.btn(href=`/add`) + Add Item
+          .category-item-grid.grid
 
-          - const entries = itemsByCatAndMonth
-          if entries.length === 0
-            p There are no transactions available for this month. 
-          
-          - entries.sort(function(a, b) { return b.date - a.date })
-          each entry in entries
-            +item(entry)
+            - const entries = itemsByCatAndMonth
+            if entries.length === 0
+              p There are no transactions available for this month. 
+            
+            - entries.sort(function(a, b) { return b.date - a.date })
+            each entry in entries
+              +item(entry)
 
-      .category-charts.grid-cell.w50
-        canvas#categoryChart
-        button(id="bar" value="bar" class="chartBtn") Bar
-        button(id="line" value="line" class="chartBtn") Line
+        .category-charts.grid-cell.w50
+          canvas#categoryChart
+          button(id="bar" value="bar" class="chartBtn") Bar
+          button(id="line" value="line" class="chartBtn") Line
 
 
 

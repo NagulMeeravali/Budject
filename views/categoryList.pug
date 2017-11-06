@@ -7,17 +7,18 @@ block sidebar
   //- +categorySidebar()
 
 block content
-  div.grid-cell.w100.category-list
-    h1 Categories
-    if categories.length
-      h3.datepicker 
-        span #{month} #{year} 
-        != h.icon('caret-down')
-      p.add-btn
+  .container
+    .grid-cell.w100.category-list
+      h1 Categories
+      if categories.length
+        h3.datepicker 
+          span #{month} #{year} 
+          != h.icon('caret-down')
+        p.add-btn
+          a.btn(href=`/category/add`) + Add Category
+        +categories()
+      else
         a.btn(href=`/category/add`) + Add Category
-      +categories()
-    else
-      a.btn(href=`/category/add`) + Add Category
             
           
 

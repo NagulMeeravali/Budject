@@ -4,53 +4,54 @@ include mixins/_categorySidebar
 include mixins/_item
 
 block content
-  .user-dashboard
-    .budget-meta
-      h1 #{user.name}'s Dashboard
-      if categories.length 
-        if getItemsByMonth.length
-          p.budget-meta.grid-cell
-            span.budget-spent #{h.formatPrice(spentPerMonth.sum)}
-            |  spent of 
-            span.budget-goal #{h.formatPrice(budgetedPerMonth.sum)}
-            |  budgeted for #{month}, #{year}
-          - const percentSpent = (spentPerMonth.sum / budgetedPerMonth.sum) * 100
-          .progress-bar
-            .progress-fill(style=`width: ${percentSpent}%`)
-          p.budget-percent 
-            span #{percentSpent.toFixed(2)}%
-            |  of monthly budget used
+  .container
+    .user-dashboard
+      .budget-meta
+        h1 #{user.name}'s Dashboard
+        if categories.length 
+          if getItemsByMonth.length
+            p.budget-meta.grid-cell
+              span.budget-spent #{h.formatPrice(spentPerMonth.sum)}
+              |  spent of 
+              span.budget-goal #{h.formatPrice(budgetedPerMonth.sum)}
+              |  budgeted for #{month}, #{year}
+            - const percentSpent = (spentPerMonth.sum / budgetedPerMonth.sum) * 100
+            .progress-bar
+              .progress-fill(style=`width: ${percentSpent}%`)
+            p.budget-percent 
+              span #{percentSpent.toFixed(2)}%
+              |  of monthly budget used
 
 
-    .grid.dashboard-grid
-      .grid-cell.w48.dashboard-categories
-        h3 Top Categories for #{month}, #{year} 
-        if categories.length
-          p.filter-intro Filter By:
-          form.category-type-filter(method="GET")
-            .form-group
-              select(id="dashboard-filter" name="category-type-filter")
-                //- Sort by category name
-                option(name="titleDesc" value="titleDesc" selected=("titleDesc"===`${sortValue}`)) Name A-Z
-                option(value="titleAsc" selected=("titleASC"===`${sortValue}`)) Name Z-A
-                //- Sort by amount spent per category
-                option(value="spentDesc" selected=("spentDesc"===`${sortValue}`)) Budget High to Low
-                option(value="spentAsc" selected=("spentAsc"===`${sortValue}`)) Budget Low to High
-        else
-          p You currently don't have any categories set up. 
-        if categories.length
-          +categorySidebar(categories)
-          a.btn(href=`/categories`) View All Categories
-      .grid-cell.w48.dashboard-items
-        h3 Recent Items
-        if recentItems.length
-          each item in recentItems
-            +item(item)
-        else
-          p You haven't added any transactions yet.
-        a.btn(href=`/add`) + Add Item
-      .grid-cell.w100.dashboard-charts
-        .chartContainer
-          canvas#dashboardChart
-          button(id="bar" value="bar" class="chartBtn") Bar
-          button(id="line" value="line" class="chartBtn") Line
+      .grid.dashboard-grid
+        .grid-cell.w48.dashboard-categories
+          h3 Top Categories for #{month}, #{year} 
+          if categories.length
+            p.filter-intro Filter By:
+            form.category-type-filter(method="GET")
+              .form-group
+                select(id="dashboard-filter" name="category-type-filter")
+                  //- Sort by category name
+                  option(name="titleDesc" value="titleDesc" selected=("titleDesc"===`${sortValue}`)) Name A-Z
+                  option(value="titleAsc" selected=("titleASC"===`${sortValue}`)) Name Z-A
+                  //- Sort by amount spent per category
+                  option(value="spentDesc" selected=("spentDesc"===`${sortValue}`)) Budget High to Low
+                  option(value="spentAsc" selected=("spentAsc"===`${sortValue}`)) Budget Low to High
+          else
+            p You currently don't have any categories set up. 
+          if categories.length
+            +categorySidebar(categories)
+            a.btn(href=`/categories`) View All Categories
+        .grid-cell.w48.dashboard-items
+          h3 Recent Items
+          if recentItems.length
+            each item in recentItems
+              +item(item)
+          else
+            p You haven't added any transactions yet.
+          a.btn(href=`/add`) + Add Item
+        .grid-cell.w100.dashboard-charts
+          .chartContainer
+            canvas#dashboardChart
+            button(id="bar" value="bar" class="chartBtn") Bar
+            button(id="line" value="line" class="chartBtn") Line
