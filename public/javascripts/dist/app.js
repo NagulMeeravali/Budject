@@ -40,8 +40,10 @@ function loadItems(category) {
       datasets: [{
         label: label,
         data: values,
-        backgroundColor: '#17B890',
-        borderWidth: 1,
+        borderColor: '#748386',
+        pointBackgroundColor: backgroundColor,
+        pointBorderColor: backgroundColor,
+        borderWidth: 2,
         fill: false
       }]
     };
