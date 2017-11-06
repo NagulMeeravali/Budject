@@ -13,7 +13,7 @@ mixin itemForm(item={})
       select.has-value(name="category" required)
         option(value="") Select a Category
         each category in categoryList
-          option(value=category._id selected=(JSON.stringify(`${item.category}`) == JSON.stringify(category._id)))= category.title
+          option(value=category._id selected=((String(category._id) === (String(`${item.category}`)) || (String(category._id) === `${referrer}`))))= category.title
       label(for="category") Category
     .form-group.grid-cell.w100
       textarea(name="description", cols="30", rows="10") #{item.description}

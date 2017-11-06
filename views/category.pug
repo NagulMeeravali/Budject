@@ -32,7 +32,7 @@ block content
               span.budget-goal #{h.formatPrice(category.amount)}
 
           p.add-btn
-            a.btn(href=`/add`) + Add Item
+            a.btn(href=`/add?ref=${category.slug}`) + Add Item
           .category-item-grid.grid
 
             - const entries = itemsByCatAndMonth

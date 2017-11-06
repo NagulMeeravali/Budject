@@ -11,7 +11,8 @@ const confirmOwner = (item, user) => {
 
 exports.addItem = async (req, res) => {
   const categoryList = await Category.find({ author: req.user });
-  res.render('editItem', { title: 'Add Item', categoryList});
+  const category = await Category.findOne({slug: req.query.ref});
+  res.render('editItem', { title: 'Add Item', categoryList, referrer: category._id});
 }
 
 exports.createItem = async (req, res) => {
