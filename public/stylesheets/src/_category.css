@@ -258,4 +258,12 @@
     width: 100% !important;
     height: 100% !important;
   }
+
+  button {
+    margin-top: 20px;
+
+    &:first-of-type {
+      margin-right: 10px;
+    }
+  }
 }

@@ -9,4 +9,14 @@ body {
 
 canvas {
   width: 100% !important;
+  height: 60vh;
+}
+
+footer {
+  margin-top: 60px !important;
+  text-align: center;
+
+  p {
+    font-size: 14px;
+  }
 }

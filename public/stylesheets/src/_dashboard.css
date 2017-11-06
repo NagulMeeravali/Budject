@@ -79,5 +79,13 @@
   .chartContainer {
     position: relative;
     width: 100%;
+
+    button {
+      margin-top: 20px;
+      
+      &:first-of-type {
+        margin-right: 10px;
+      }
+    }
   }
 }

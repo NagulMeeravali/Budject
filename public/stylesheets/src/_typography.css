@@ -50,7 +50,7 @@ a {
   }
 }
 
-button(:not(class^=pika)) {
+button.chartBtn {
   padding: 8px 25px;
   display: inline-block;
   font-family: map(fonts, lora);
