@@ -23,7 +23,7 @@ block content
 
 
     .grid.dashboard-grid
-      .grid-cell.w30.dashboard-categories
+      .grid-cell.w48.dashboard-categories
         h3 Top Categories for #{month}, #{year} 
         if categories.length
           p.filter-intro Filter By:
@@ -41,7 +41,7 @@ block content
         if categories.length
           +categorySidebar(categories)
           a.btn(href=`/categories`) View All Categories
-      .grid-cell.w30
+      .grid-cell.w48
         h3 Recent Items
         if recentItems.length
           each item in recentItems
@@ -49,5 +49,5 @@ block content
         else
           p You haven't added any transactions yet.
         a.btn(href=`/add`) + Add Item
-      .grid-cell.w30
+      .grid-cell.w100.dashboard-charts
         canvas#dashboardChart

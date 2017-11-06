@@ -1,5 +1,7 @@
 'use strict';
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function loadItems(category) {
   var year = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : moment().startOf('year').format('YYYY');
 
@@ -9,7 +11,6 @@ function loadItems(category) {
     var values = Object.values(data['sumByMonth'][year]);
     var budgeted = data['sumByMonth']['budgeted'].toFixed(2);
     var label = 'Amount Spent Per Month \u2014 Budget: $' + budgeted;
-
     var ctx = document.getElementById("categoryChart");
 
     var backgroundColor = [];
@@ -22,72 +23,133 @@ function loadItems(category) {
       }
     });
 
-    var categoryChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: label,
-          data: values,
-          backgroundColor: backgroundColor,
-          borderColor: backgroundColor,
-          borderWidth: 1
+    var barData = {
+      labels: labels,
+      datasets: [{
+        label: label,
+        data: values,
+        backgroundColor: backgroundColor,
+        borderColor: backgroundColor,
+        borderWidth: 1,
+        fill: false
+      }]
+    };
+
+    var lineData = {
+      labels: labels,
+      datasets: [{
+        label: label,
+        data: values,
+        backgroundColor: '#17B890',
+        borderWidth: 1,
+        fill: false
+      }]
+    };
+
+    var options = {
+      title: {
+        display: true,
+        fontSize: 18,
+        text: category.charAt(0).toUpperCase() + category.slice(1) + ' Spending for ' + year
+      },
+      legend: {
+        labels: {
+          boxWidth: 0
+        }
+      },
+      scales: {
+        xAxes: [{
+          ticks: {
+            callback: function callback(tick) {
+              return moment(tick).format('MMM');
+            }
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            type: 'linear',
+            ticks: {
+              min: 0,
+              max: 6500,
+              stepSize: 1300
+            },
+            callback: function callback(value, index, values) {
+              return '$' + value;
+            }
+          }
         }]
       },
-      options: {
-        title: {
-          display: true,
-          fontSize: 18,
-          text: category.charAt(0).toUpperCase() + category.slice(1) + ' Spending for ' + year
-        },
-        legend: {
-          labels: {
-            boxWidth: 0
+      tooltips: {
+        enabled: true,
+        mode: 'single',
+        displayColors: false,
+        callbacks: {
+          title: function title(tooltipItem) {
+            return moment(this._data.labels[tooltipItem[0].index]).format('MMMM');
+          },
+          label: function label(tooltipItems, data) {
+            return '$' + tooltipItems.yLabel;
           }
-        },
-        scales: {
-          xAxes: [{
-            ticks: {
-              callback: function callback(tick) {
-                return moment(tick).format('MMM');
-              }
+        }
+      },
+      hover: {
+        onHover: function onHover(e) {
+          ctx.style.cursor = e[0] ? "pointer" : "default";
+        }
+      }
+    };
+
+    var categoryChart = new Chart(ctx, {
+      type: 'bar',
+      data: barData,
+      options: options
+    });
+
+    var chartBtns = [].concat(_toConsumableArray(document.querySelectorAll('button.chartBtn')));
+    var chartBtnVal = 'bar';
+    if (chartBtns) {
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = chartBtns[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var chartBtn = _step.value;
+
+          chartBtn.addEventListener('click', function (e) {
+            chartBtnVal = this.value;
+            categoryChart.destroy();
+            if (chartBtnVal === 'line') {
+              categoryChart = new Chart(ctx, {
+                type: 'line',
+                data: lineData,
+                options: options
+              });
+            } else {
+              categoryChart = new Chart(ctx, {
+                type: 'bar',
+                data: barData,
+                options: options
+              });
             }
-          }],
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              type: 'linear',
-              ticks: {
-                min: 0,
-                max: 6500,
-                stepSize: 1300
-              },
-              callback: function callback(value, index, values) {
-                return '$' + value;
-              }
-            }
-          }]
-        },
-        tooltips: {
-          enabled: true,
-          mode: 'single',
-          displayColors: false,
-          callbacks: {
-            title: function title(tooltipItem) {
-              return moment(this._data.labels[tooltipItem[0].index]).format('MMMM');
-            },
-            label: function label(tooltipItems, data) {
-              return '$' + tooltipItems.yLabel;
-            }
+          });
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
           }
-        },
-        hover: {
-          onHover: function onHover(e) {
-            ctx.style.cursor = e[0] ? "pointer" : "default";
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
           }
         }
       }
-    });
+    }
 
     ctx.onclick = function (evt) {
       var activePoints = categoryChart.getElementsAtEvent(evt);
