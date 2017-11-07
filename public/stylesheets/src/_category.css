@@ -221,6 +221,10 @@
         }
       }
 
+      p {
+        text-align: right;
+      }
+
       .budget-spent {
         display: block;
         font-size: 24px;

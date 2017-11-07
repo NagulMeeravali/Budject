@@ -28,15 +28,14 @@ html
                   .bar.middle
                   .bar.bottom
       ul.mobile-menu-items
-        each item in h.userMenu
-          if user
-              each item in h.userMenu
-                li.menu-item
-                  a(href=item.slug)= item.title
-          else
-            each item in h.generalMenu
-              li.menu-item
-                a(href=item.slug)= item.title
+        if user
+          each item in h.userMenu
+            li.menu-item
+              a(href=item.slug)= item.title
+        else
+          each item in h.generalMenu
+            li.menu-item
+              a(href=item.slug)= item.title
     block messages
       if locals.flashes
         .container
