@@ -40,15 +40,6 @@ categorySchema.pre('save', async function(next) {
 
   this.slug = slug(this.title, {lower: true});
 
-  const slugRegEx = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i'); 
-
-  // pass regex into query
-  const categoriesWithSlug = await this.constructor.find({ slug: slugRegEx });
-
-  if (categoriesWithSlug.length) { // if slug already exists
-    this.slug = `${this.slug}-${categoriesWithSlug.length + 1}`; // create a new slug and with number value at the end
-  }
-
   next();
 });
 

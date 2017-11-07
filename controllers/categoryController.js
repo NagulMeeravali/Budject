@@ -41,13 +41,13 @@ exports.createCategory = async (req, res) => {
 }
 
 exports.getCategory = async (req, res) => {
-  const category = await Category.findOne({slug: req.params.slug});
+  const category = await Category.findOne({ slug: req.params.slug, 'author': req.user._id});
   confirmOwner(category, req.user);
   res.render('editCategory', { title: `Edit ${category.title}`, category});
 }
 
 exports.updateCategory = async (req, res) => {
-  const category = await Category.findOneAndUpdate({ slug: req.params.slug }, req.body, { new: true });
+  const category = await Category.findOneAndUpdate({ slug: req.params.slug, 'author': req.user._id }, req.body, { new: true });
   confirmOwner(category, req.user);
   res.redirect(`/category/${category.slug}`);
 }
@@ -59,7 +59,7 @@ exports.displayCategory = async (req, res) => {
   const year = startDate.format('YYYY');
 
   const categoriesPromise = Category.find({ 'author': req.user._id }).sort({title:1});
-  const categoryPromise = Category.findOne({ slug: req.params.slug });
+  const categoryPromise = Category.findOne({ slug: req.params.slug, 'author': req.user._id });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
   
   let oldestItem = await Item.getItemsByCat(category._id).sort({"date": 1}).limit(1);
@@ -80,15 +80,15 @@ exports.displayCategory = async (req, res) => {
 }
 
 exports.deleteCategory = async (req, res) => {
-  const category = await Category.findOne({slug: req.params.slug});
-  await Category.remove({ slug: req.params.slug });
+  const category = await Category.findOne({ slug: req.params.slug, 'author': req.user._id});
+  await Category.remove({ slug: req.params.slug, 'author': req.user._id });
   req.flash('success', `You have successfully deleted the ${category.title} category`);
   res.redirect('/dashboard');
 }
 
 // Retrieve how much was spent per category over timespan
 exports.getCategoryData = async (req, res, next) => {
-  const category = await Category.findOne({ slug: req.params.slug });
+  const category = await Category.findOne({ slug: req.params.slug, 'author': req.user._id });
   next();
 }
 
@@ -97,7 +97,7 @@ exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
   const queriedYear = (req.query.year) ? moment().year(req.query.year).startOf('year') : moment().startOf('year');
   const year = queriedYear.format('YYYY');
   const categoriesPromise = Category.find({ 'author': req.user._id }).sort({title:1});
-  const categoryPromise = Category.findOne({ slug: req.params.slug });
+  const categoryPromise = Category.findOne({ slug: req.params.slug, 'author': req.user._id });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
   const getItemsByQueriedYear = await Item.getItemsByQueriedYear(category._id, queriedYear);
   const sumByMonth = {};
@@ -130,7 +130,7 @@ exports.sumItemsByMonthQueriedYearNoCat = async (req, res, next) => {
   const queriedYear = (req.query.year) ? moment().year(req.query.year).startOf('year') : moment().startOf('year');
   const year = queriedYear.format('YYYY');
   const categoriesPromise = Category.find({ 'author': req.user._id }).sort({title:1});
-  const categoryPromise = Category.findOne({ slug: req.params.slug });
+  const categoryPromise = Category.findOne({ slug: req.params.slug, 'author': req.user._id });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
 
   const getItemsByQueriedYear = await Item.getItemsByQueriedYearNoCat(queriedYear);
