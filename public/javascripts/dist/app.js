@@ -61,6 +61,7 @@ function loadItems(category) {
       },
       scales: {
         xAxes: [{
+          stacked: true,
           ticks: {
             callback: function callback(tick) {
               return moment(tick).format('MMM');
@@ -68,6 +69,7 @@ function loadItems(category) {
           }
         }],
         yAxes: [{
+          stacked: true,
           ticks: {
             beginAtZero: true,
             type: 'linear',

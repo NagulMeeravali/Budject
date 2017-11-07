@@ -56,6 +56,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
         },
         scales: {
           xAxes: [{
+            stacked: true,
             ticks: {
               callback: function(tick) {
                 return moment(tick).format('MMM');
@@ -63,6 +64,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
             }
           }],
           yAxes: [{
+            stacked: true,
             ticks: {
               beginAtZero: true,
               type: 'linear',
