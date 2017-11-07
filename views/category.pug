@@ -19,7 +19,8 @@ block content
           .budget-meta 
             .month-details
               h3.datepicker 
-                span #{month} #{year} 
+                span.month #{month} 
+                span.year #{year} 
                 != h.icon('caret-down')
               if numItems
                 p #{numItems.count} transaction#{numItems.count === 1 ? '' : 's'} this month
@@ -44,6 +45,9 @@ block content
               +item(entry)
 
         .category-charts.grid-cell.w50
+          .chartContainer
+            canvas#categoryPieChart
+        .category-charts.grid-cell.w100
           .chartContainer
             canvas#categoryChart
             button(id="bar" value="bar" class="chartBtn") Bar

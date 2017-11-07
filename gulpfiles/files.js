@@ -18,6 +18,7 @@ var globs = {
   js: {
     src: [
       paths.js.src + 'category-chart.js',
+      paths.js.src + 'category-pie-chart.js',
       paths.js.src + 'dashboard-chart.js',
       paths.js.src + 'main.js',
     ],

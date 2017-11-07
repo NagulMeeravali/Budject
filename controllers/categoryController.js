@@ -140,7 +140,7 @@ exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
     sumByMonth[year][month] = sumByMonth[year][month] || {};
     sumByMonth[year][month]['items'] = sumByMonth[year][month]['items'] || [];
     sumByMonth[year][month]['sum'] = sumByMonth[year][month]['sum'] || 0;
-    sumByMonth[year][month]['items'].push({title, amount});
+    sumByMonth[year][month]['items'].push({title, amount, date});
   });
 
   for (let i = 1; i < 13; i++) {

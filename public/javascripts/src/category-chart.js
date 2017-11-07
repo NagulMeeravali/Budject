@@ -1,4 +1,4 @@
-function loadItems(category, year = moment().startOf('year').format('YYYY')) {
+function yearGraphs(category, year = moment().startOf('year').format('YYYY')) {
   axios.get(`/api/category/${category}/items?year=${year}`)
     .then(res => {
       const data = res.data;

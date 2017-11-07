@@ -2,7 +2,7 @@
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-function loadItems(category) {
+function yearGraphs(category) {
   var year = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : moment().startOf('year').format('YYYY');
 
   axios.get('/api/category/' + category + '/items?year=' + year).then(function (res) {
@@ -177,6 +177,87 @@ function loadItems(category) {
       var value = categoryChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
       if (firstPoint !== undefined) window.location.href = window.location.href.split('?')[0] + '?month=' + label + '&year=' + year;
     };
+  });
+}
+'use strict';
+
+function monthGraphs(category) {
+  var year = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : moment().startOf('year').format('YYYY');
+
+  axios.get('/api/category/' + category + '/items?year=' + year).then(function (res) {
+    var data = res.data;
+    var labelsObj = Object.keys(data['sumByMonth'][year]);
+    var labels = labelsObj.map(function (label) {
+      return label;
+    });
+
+    var catMonth = document.querySelector('.datepicker .month').textContent;
+    var catYear = document.querySelector('.datepicker .year').textContent;
+    var queriedMonthData = data['sumByMonth'][moment().year(catYear).format("YYYY")][moment().month(catMonth).format("M")].items;
+    var pieArr = [];
+    queriedMonthData.map(function (item) {
+      pieArr.push(item.amount);
+    });
+
+    var labelArr = [];
+    queriedMonthData.map(function (item) {
+      labelArr.push(item.title);
+    });
+
+    var budgeted = data['sumByMonth']['budgeted'].toFixed(2);
+    var label = 'Amount Spent Per Month \u2014 Budget: $' + budgeted;
+    var ctx = document.getElementById("categoryPieChart");
+
+    var backgroundColor = [];
+
+    var pieData = {
+      labels: labelArr,
+      datasets: [{
+        data: pieArr,
+        borderColor: '#748386',
+        backgroundColor: 'yellow',
+        borderWidth: 1,
+        fill: false
+      }]
+    };
+
+    var options = {
+      title: {
+        display: true,
+        fontSize: 18,
+        text: category.charAt(0).toUpperCase() + category.slice(1) + ' Spending for ' + catMonth + ' ' + year
+      },
+      legend: {
+        display: false,
+        labels: {
+          boxWidth: 0
+        }
+      },
+      tooltips: {
+        enabled: true,
+        mode: 'single',
+        displayColors: false,
+        callbacks: {
+          title: function title(tooltipItem) {
+            return this._data.labels[tooltipItem[0].index];
+          },
+          label: function label(tooltipItems, data) {
+            return '$' + data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index].toFixed(2);
+          }
+        }
+      },
+      hover: {
+        onHover: function onHover(e) {
+          ctx.style.cursor = e[0] ? "pointer" : "default";
+        }
+      }
+    };
+
+    var categoryChart = new Chart(ctx, {
+      type: 'pie',
+      data: pieData,
+      options: options
+    });
   });
 }
 'use strict';
