@@ -2,8 +2,10 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
   axios.get(`/api/category/${category}/items?year=${year}`)
     .then(res => {
       const data = res.data;
-      const labels = Object.keys(data['sumByMonth'][year]);
-      const values = Object.values(data['sumByMonth'][year]);
+      const valuesObj = Object.values(data['sumByMonth'][year]);
+      const labelsObj = Object.keys(data['sumByMonth'][year]);
+      const labels = labelsObj.map((label) => { return label})
+      const values = valuesObj.map((value) => {return value.sum})
       const budgeted = (data['sumByMonth']['budgeted'].toFixed(2));
       const label = `Amount Spent Per Month — Budget: $${budgeted}`;
       const ctx = document.getElementById("categoryChart");

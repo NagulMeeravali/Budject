@@ -7,8 +7,14 @@ function loadItems(category) {
 
   axios.get('/api/category/' + category + '/items?year=' + year).then(function (res) {
     var data = res.data;
-    var labels = Object.keys(data['sumByMonth'][year]);
-    var values = Object.values(data['sumByMonth'][year]);
+    var valuesObj = Object.values(data['sumByMonth'][year]);
+    var labelsObj = Object.keys(data['sumByMonth'][year]);
+    var labels = labelsObj.map(function (label) {
+      return label;
+    });
+    var values = valuesObj.map(function (value) {
+      return value.sum;
+    });
     var budgeted = data['sumByMonth']['budgeted'].toFixed(2);
     var label = 'Amount Spent Per Month \u2014 Budget: $' + budgeted;
     var ctx = document.getElementById("categoryChart");

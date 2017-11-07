@@ -135,15 +135,18 @@ exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
 
     sumByMonth['budgeted'] = budgeted || 0;
     sumByMonth[year] = sumByMonth[year] || {};
-    sumByMonth[year][month] = sumByMonth[year][month] || [];
-    sumByMonth[year][month].push(item.amount);
+    sumByMonth[year][month] = sumByMonth[year][month] || {};
+    sumByMonth[year][month]['items'] = sumByMonth[year][month]['items'] || [];
+    sumByMonth[year][month]['sum'] = sumByMonth[year][month]['sum'] || 0;
+    sumByMonth[year][month]['items'].push(item.amount);
   });
 
   for (let i = 1; i < 13; i++) {
-    const c = sumByMonth[year][i]
-    if (typeof(c) !== 'undefined') {
-      const b = c.reduce((sum, value) => sum + value)
-      sumByMonth[year][i] = b
+    const monthItems = sumByMonth[year][i]
+    if (typeof(monthItems) !== 'undefined') {
+      const itemsArr = monthItems.items;
+      const sum = itemsArr.reduce((sum, value) => sum + value);
+      sumByMonth[year][i]['sum'] = sum;
     }
   }
 
