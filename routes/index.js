@@ -70,6 +70,5 @@ router.post('/account/reset/:token', authController.confirmedPasswords, catchErr
 // API Routes
 router.get('/api/category/:slug/items', catchErrors(categoryController.sumItemsByMonthQueriedYear)); 
 router.get('/api/categories/items', catchErrors(categoryController.sumItemsByMonthQueriedYearNoCat));
-router.get('/api/category/:slug/items/amounts', catchErrors(categoryController.getItemAmountsQueriedYear));
 
 module.exports = router;

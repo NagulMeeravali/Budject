@@ -212,7 +212,6 @@ function monthGraphs(category) {
     });
 
     var budgeted = data['sumByMonth']['budgeted'].toFixed(2);
-    var label = 'Amount Spent Per Month \u2014 Budget: $' + budgeted;
     var ctx = document.getElementById("categoryPieChart");
 
     var backgroundColor = [];
@@ -236,7 +235,7 @@ function monthGraphs(category) {
       title: {
         display: true,
         fontSize: 18,
-        text: category.charAt(0).toUpperCase() + category.slice(1) + ' Spending for ' + catMonth + ' ' + year
+        text: category.charAt(0).toUpperCase() + category.slice(1) + ' Spending for ' + catMonth + year
       },
       legend: {
         display: false,

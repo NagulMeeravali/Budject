@@ -254,6 +254,10 @@
     flex: 0 0 100% !important;
   }
 
+  &.year-chart {
+    margin-top: 40px;
+  }
+
   canvas {
     width: 100% !important;
     height: 100% !important;

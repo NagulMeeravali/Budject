@@ -92,31 +92,6 @@ exports.getCategoryData = async (req, res, next) => {
   next();
 }
 
-// API Endpoint - Get item amounts in queried calendar year
-exports.getItemAmountsQueriedYear = async(req, res, next) => {
-  const queriedYear = (req.query.year) ? moment().year(req.query.year).startOf('year') : moment().startOf('year');
-  const year = queriedYear.format('YYYY');
-  const categoriesPromise = Category.find({ 'author': req.user._id }).sort({title:1});
-  const categoryPromise = Category.findOne({ slug: req.params.slug, 'author': req.user._id });
-  const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
-  const getItemsByQueriedYear = await Item.getItemsByQueriedYear(category._id, queriedYear);
-  const categoryItems = {};
-
-  getItemsByQueriedYear.forEach((item) => {
-    const date = new Date(item.date),
-    year = date.getUTCFullYear(),
-    month = date.getUTCMonth() + 1;
-    const title = item.title;
-    const amount = item.amount;
-
-    categoryItems[year] = categoryItems[year] || {};
-    categoryItems[year][month] = categoryItems[year][month] || [];
-    categoryItems[year][month].push({title, amount, date});
-  });
-
-  res.json(categoryItems);
-}
-
 // API Endpoint - Sum items for months in queried calendar year
 exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
   const queriedYear = (req.query.year) ? moment().year(req.query.year).startOf('year') : moment().startOf('year');

@@ -28,7 +28,6 @@ axios.get(`/api/category/${category}/items?year=${year}`)
     })
 
     const budgeted = (data['sumByMonth']['budgeted'].toFixed(2));
-    const label = `Amount Spent Per Month — Budget: $${budgeted}`;
     const ctx = document.getElementById("categoryPieChart");
 
     const backgroundColor = [];
@@ -52,7 +51,7 @@ axios.get(`/api/category/${category}/items?year=${year}`)
       title: {
         display: true,
         fontSize: 18,
-        text: `${category.charAt(0).toUpperCase() + category.slice(1)} Spending for ${catMonth} ${year}`
+        text: `${category.charAt(0).toUpperCase() + category.slice(1)} Spending for ${catMonth}${year}`
       },
       legend: {
         display: false,
