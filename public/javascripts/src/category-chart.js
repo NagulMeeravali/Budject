@@ -4,8 +4,17 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
       const data = res.data;
       const valuesObj = Object.values(data['sumByMonth'][year]);
       const labelsObj = Object.keys(data['sumByMonth'][year]);
-      const labels = labelsObj.map((label) => { return label})
-      const sum = valuesObj.map((value) => {return value.sum})
+      const labels = labelsObj.map((label) => {return label});
+      const items = valuesObj.map((value) => {
+        const valueItems = value.items;
+        const arr = [];
+        valueItems.forEach((item) => {
+          arr.push(item.amount);
+        });
+        return arr;
+      });
+
+      const sum = valuesObj.map((value) => {return value.sum});
       const budgeted = (data['sumByMonth']['budgeted'].toFixed(2));
       const label = `Amount Spent Per Month — Budget: $${budgeted}`;
       const ctx = document.getElementById("categoryChart");
@@ -120,7 +129,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
                 data: lineData,
                 options
               });
-            } else {
+            } else if (chartBtnVal === 'bar') {
               categoryChart = new Chart(ctx, {
                 type: 'bar',
                 data: barData,

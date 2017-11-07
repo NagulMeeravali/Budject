@@ -12,6 +12,15 @@ function loadItems(category) {
     var labels = labelsObj.map(function (label) {
       return label;
     });
+    var items = valuesObj.map(function (value) {
+      var valueItems = value.items;
+      var arr = [];
+      valueItems.forEach(function (item) {
+        arr.push(item.amount);
+      });
+      return arr;
+    });
+
     var sum = valuesObj.map(function (value) {
       return value.sum;
     });
@@ -136,7 +145,7 @@ function loadItems(category) {
                 data: lineData,
                 options: options
               });
-            } else {
+            } else if (chartBtnVal === 'bar') {
               categoryChart = new Chart(ctx, {
                 type: 'bar',
                 data: barData,
