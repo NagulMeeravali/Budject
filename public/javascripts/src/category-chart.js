@@ -5,14 +5,14 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
       const valuesObj = Object.values(data['sumByMonth'][year]);
       const labelsObj = Object.keys(data['sumByMonth'][year]);
       const labels = labelsObj.map((label) => { return label})
-      const values = valuesObj.map((value) => {return value.sum})
+      const sum = valuesObj.map((value) => {return value.sum})
       const budgeted = (data['sumByMonth']['budgeted'].toFixed(2));
       const label = `Amount Spent Per Month — Budget: $${budgeted}`;
       const ctx = document.getElementById("categoryChart");
 
       const backgroundColor = [];
 
-      values.map((value) => {
+      sum.map((value) => {
         if (value <= budgeted) {
           backgroundColor.push('#17B890');
         } else {
@@ -24,7 +24,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
         labels,
         datasets: [{
           label,
-          data: values,
+          data: sum,
           backgroundColor,
           borderColor: backgroundColor,
           borderWidth: 1,
@@ -36,7 +36,7 @@ function loadItems(category, year = moment().startOf('year').format('YYYY')) {
         labels,
         datasets: [{
           label,
-          data: values,
+          data: sum,
           borderColor: '#748386',
           pointBackgroundColor: backgroundColor,
           pointBorderColor: backgroundColor,

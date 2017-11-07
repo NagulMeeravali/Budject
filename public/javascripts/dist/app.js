@@ -12,7 +12,7 @@ function loadItems(category) {
     var labels = labelsObj.map(function (label) {
       return label;
     });
-    var values = valuesObj.map(function (value) {
+    var sum = valuesObj.map(function (value) {
       return value.sum;
     });
     var budgeted = data['sumByMonth']['budgeted'].toFixed(2);
@@ -21,7 +21,7 @@ function loadItems(category) {
 
     var backgroundColor = [];
 
-    values.map(function (value) {
+    sum.map(function (value) {
       if (value <= budgeted) {
         backgroundColor.push('#17B890');
       } else {
@@ -33,7 +33,7 @@ function loadItems(category) {
       labels: labels,
       datasets: [{
         label: label,
-        data: values,
+        data: sum,
         backgroundColor: backgroundColor,
         borderColor: backgroundColor,
         borderWidth: 1,
@@ -45,7 +45,7 @@ function loadItems(category) {
       labels: labels,
       datasets: [{
         label: label,
-        data: values,
+        data: sum,
         borderColor: '#748386',
         pointBackgroundColor: backgroundColor,
         pointBorderColor: backgroundColor,
