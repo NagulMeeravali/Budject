@@ -1,3 +1,12 @@
+function generateRandomColor() {
+  const digits = '0123456789ABCDEF';
+  let hash = '#';
+  for (let i = 0; i < 6; i++) {
+    hash += digits[Math.floor(Math.random() * 16)];
+  }
+  return hash;
+}
+
 function monthGraphs(category, year = moment().startOf('year').format('YYYY')) {
 axios.get(`/api/category/${category}/items?year=${year}`)
   .then(res => {
@@ -23,13 +32,17 @@ axios.get(`/api/category/${category}/items?year=${year}`)
     const ctx = document.getElementById("categoryPieChart");
 
     const backgroundColor = [];
+    for (let i = 0; i < labelArr.length; i++) {
+      const color = generateRandomColor();
+      backgroundColor.push(color);
+    }
 
     const pieData = {
       labels: labelArr,
       datasets: [{
         data: pieArr,
         borderColor: '#748386',
-        backgroundColor: 'yellow',
+        backgroundColor,
         borderWidth: 1,
         fill: false
       }]

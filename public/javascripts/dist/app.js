@@ -181,6 +181,15 @@ function yearGraphs(category) {
 }
 'use strict';
 
+function generateRandomColor() {
+  var digits = '0123456789ABCDEF';
+  var hash = '#';
+  for (var i = 0; i < 6; i++) {
+    hash += digits[Math.floor(Math.random() * 16)];
+  }
+  return hash;
+}
+
 function monthGraphs(category) {
   var year = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : moment().startOf('year').format('YYYY');
 
@@ -207,13 +216,17 @@ function monthGraphs(category) {
     var ctx = document.getElementById("categoryPieChart");
 
     var backgroundColor = [];
+    for (var i = 0; i < labelArr.length; i++) {
+      var color = generateRandomColor();
+      backgroundColor.push(color);
+    }
 
     var pieData = {
       labels: labelArr,
       datasets: [{
         data: pieArr,
         borderColor: '#748386',
-        backgroundColor: 'yellow',
+        backgroundColor: backgroundColor,
         borderWidth: 1,
         fill: false
       }]
