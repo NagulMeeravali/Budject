@@ -2,11 +2,11 @@ function monthGraphs(category, year = moment().startOf('year').format('YYYY')) {
 axios.get(`/api/category/${category}/items?year=${year}`)
   .then(res => {
     const data = res.data;
-    const labelsObj = Object.keys(data['sumByMonth'][year]);
-    const labels = labelsObj.map((label) => {return label});
+    const valuesObj = Object.values(data['sumByMonth'][year]);
 
     const catMonth = document.querySelector('.datepicker .month').textContent;
     const catYear = document.querySelector('.datepicker .year').textContent;
+    const queriedSum = data['sumByMonth'][moment().year(catYear).format("YYYY")][moment().month(catMonth).format("M")].sum;
     const queriedMonthData = data['sumByMonth'][moment().year(catYear).format("YYYY")][moment().month(catMonth).format("M")].items;
     const pieArr = [];
     queriedMonthData.map((item) => {
@@ -56,8 +56,12 @@ axios.get(`/api/category/${category}/items?year=${year}`)
             return this._data.labels[tooltipItem[0].index];
           },
           label: function(tooltipItems, data) {
-            return `$${(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index]).toFixed(2)}`
-          }
+            const percent = ((Number(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index]) / queriedSum) * 100).toFixed(2);
+            const cost = `$${(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index]).toFixed(2)}`;
+            const percentStatement = `${percent}% of total spending`;
+            const tooltip = new Array(cost, percentStatement);
+            return tooltip;
+          },
         }
       },
       hover: {

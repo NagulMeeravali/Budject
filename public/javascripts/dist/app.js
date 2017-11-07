@@ -186,13 +186,11 @@ function monthGraphs(category) {
 
   axios.get('/api/category/' + category + '/items?year=' + year).then(function (res) {
     var data = res.data;
-    var labelsObj = Object.keys(data['sumByMonth'][year]);
-    var labels = labelsObj.map(function (label) {
-      return label;
-    });
+    var valuesObj = Object.values(data['sumByMonth'][year]);
 
     var catMonth = document.querySelector('.datepicker .month').textContent;
     var catYear = document.querySelector('.datepicker .year').textContent;
+    var queriedSum = data['sumByMonth'][moment().year(catYear).format("YYYY")][moment().month(catMonth).format("M")].sum;
     var queriedMonthData = data['sumByMonth'][moment().year(catYear).format("YYYY")][moment().month(catMonth).format("M")].items;
     var pieArr = [];
     queriedMonthData.map(function (item) {
@@ -242,7 +240,11 @@ function monthGraphs(category) {
             return this._data.labels[tooltipItem[0].index];
           },
           label: function label(tooltipItems, data) {
-            return '$' + data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index].toFixed(2);
+            var percent = (Number(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index]) / queriedSum * 100).toFixed(2);
+            var cost = '$' + data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index].toFixed(2);
+            var percentStatement = percent + '% of total spending';
+            var tooltip = new Array(cost, percentStatement);
+            return tooltip;
           }
         }
       },
