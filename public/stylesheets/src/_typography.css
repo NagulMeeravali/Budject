@@ -6,7 +6,35 @@ h1, h2, h3, h4, h5, h6 {
   color: map(colors, black, base);
 }
 
+h1 {
+  font-size: 56px;
+  line-height: 59px;
+
+  @media <=map(bp, mobile) {
+    font-size: 40px;
+    line-height: 48px;
+  }
+}
+
+h2 {
+  line-height: 42px;
+  line-height: 50px;
+
+  @media <=map(bp, mobile) {
+    font-size: 38px;
+    line-height: 45px;
+  }
+}
+
 h3 {
+  font-size: 36px;
+  line-height: 42px;
+
+  @media <=map(bp, mobile) {
+    font-size: 34px;
+    line-height: 40px;
+  }
+  
   &.datepicker {
     cursor: pointer;
   }

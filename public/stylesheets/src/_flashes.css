@@ -29,11 +29,11 @@
 }
 
 .flash-messages {
-  margin-top: 15px;
   width: 100%;
 
   .flash {
     position: relative;
+    margin-top: 15px;
     margin-bottom: 15px;
     display: flex;
     justify-content: center;

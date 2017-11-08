@@ -1,20 +1,33 @@
 extends layout
 
 block content
+  .hero
+    .container
+      h1 Budgeter
+      h3 Achieve Your Financial Goals
+      a(href="/register" class="btn") Get Started
   .container
-    h1 Welcome to Budgeter
     p Budgeter is a budgeting application designed to allow you to effortlessly manage your finances. 
     p Easily create spending categories and items and see how your purchases reflect your spending goals. 
     .grid
-      .grid-cell
-        p First time user? 
-        a(href="/register" class="btn") Register
-      .grid-cell
-        p Returning user? 
-        a(href="/login" class="btn") Login
-      .grid-cell
-        p Already logged in?
-        a(href="/dashboard" class="btn") Go To Dashboard
+      if user
+        .grid-cell
+          p See your overall progress
+          a(href="/dashboard" class="btn") Go To Dashboard
+        .grid-cell
+          p View your categories
+          a(href="/categories" class="btn") Go To Categories
+        .grid-cell
+          p Add a transaction
+          a(href="/add" class="btn") Add Transaction
+      else
+        .grid-cell
+          p First time user? 
+          a(href="/register" class="btn") Register
+        .grid-cell
+          p Returning user? 
+          a(href="/login" class="btn") Login
+      
 
   //- Total expenses daily, weekly, monthly
   //- https://dribbble.com/shots/3329597-Home-Budget-App-Dashboard

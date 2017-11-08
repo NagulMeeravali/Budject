@@ -7,6 +7,49 @@ body {
   background: map(colors, white, light);
 }
 
+.hero {
+  position: relative;
+  padding: 60px 0;
+  background-image: url(/images/hero-img.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: rgba(map(colors, black, base), .4);
+  }
+
+  .container {
+    position: relative;
+    text-align: center;
+
+    h1 {
+      color: map(colors, white, base);
+    }
+
+    h3 {
+      color: map(colors, white, base);
+    }
+
+    .btn {
+      color: map(colors, white, base);
+      border-color: map(colors, white, base);
+
+      &:hover, &:active, &:focus {
+        border-color: map(colors, blue, base);
+      }
+    }
+  }
+}
+
 canvas {
   width: 100% !important;
   height: 60vh;
