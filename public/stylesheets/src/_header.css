@@ -11,6 +11,15 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    @media <=map(bp, tablet) {
+      justify-content: flex-start;
+    }
+
+    &.logo-section {
+      @media <=map(bp, tablet) {
+        flex: 0 0 80%;
+      }
+    }
   }
 
   nav {

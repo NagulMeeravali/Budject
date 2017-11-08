@@ -55,6 +55,13 @@ body {
   padding: 25px;
   text-align: center;
   border: 2px solid map(colors, blue, base);
+  @media <=map(bp, mobile) {
+    margin: 25px auto 0;
+    flex: 0 0 80%;
+  }
+  @media <=map(bp, tiny) {
+    flex: 0 0 90%;
+  }
 
   h5 {
     margin: 0 0 15px;

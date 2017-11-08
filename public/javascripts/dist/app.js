@@ -259,11 +259,11 @@ function monthGraphs(category) {
         displayColors: false,
         backgroundColor: '#FAFFFD',
         titleFontFamily: "'Lora', serif",
-        titleFontSize: 22,
+        titleFontSize: 16,
         titleFontColor: '#252323',
         titleMarginBottom: 10,
         bodyFontFamily: "'Lora', serif",
-        bodyFontSize: 18,
+        bodyFontSize: 12,
         bodyFontColor: '#252323',
         bodySpacing: 10,
         callbacks: {
