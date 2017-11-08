@@ -29,7 +29,13 @@
 }
 
 .flash-messages {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   width: 100%;
+  max-width: 1200px;
+  z-index: 2;
 
   .flash {
     position: relative;

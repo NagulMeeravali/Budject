@@ -4,7 +4,7 @@ mixin categories()
       li.grid-cell.w30.category
         .category-top
           .category-title.grid-cell
-            h3 #{category.title}
+            h4 #{category.title}
             - const numTransactions = itemArr[index][0].count || 0   
             p #{numTransactions} Transaction#{numTransactions === 1 ? '' : 's'}
           - const itemSum = itemArr[index][1].sum || 0     

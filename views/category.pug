@@ -18,7 +18,7 @@ block content
         .category-items.grid-cell.w40
           .budget-meta 
             .month-details
-              h3.datepicker 
+              h5.datepicker 
                 span.month #{month} 
                 span.year #{year} 
                 != h.icon('caret-down')
@@ -45,7 +45,19 @@ block content
               +item(entry)
 
         .category-charts.grid-cell.w50
-          .chartContainer
+          - const budgeted = category.amount;
+          - const percentSpentCurrentMonth = (((itemSum.sum / budgeted) * 100).toFixed(2));
+          - const percentClass = percentSpentCurrentMonth >= 100 ? 'overspend' : 'underspend'
+          p.spendComparison You have spent 
+            span(class=`${percentClass}`) #{percentSpentCurrentMonth}% 
+            | of your budget for this month.
+          - const percentSpentOverMonth = ((itemSum.sum / itemSumPrevMonth.sum) * 100).toFixed(2);
+          - const percentClassOverMonth = percentSpent >= 100 ? 'overspend' : 'underspend'
+          - const comparisonVal = percentSpent >= 100 ? 'more' : 'less'
+          p.spendComparison You have spent 
+            span(class=`${percentClassOverMonth}`) #{percentSpentOverMonth}% #{comparisonVal} 
+            | than last month.
+          .chartContainer.pieChart
             canvas#categoryPieChart
         .category-charts.year-chart.grid-cell.w100
           .chartContainer

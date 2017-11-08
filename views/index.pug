@@ -11,21 +11,21 @@ block content
     p Easily create spending categories and items and see how your purchases reflect your spending goals. 
     .grid
       if user
-        .grid-cell
-          p See your overall progress
+        .grid-cell.homepage-callout
+          h5 See your overall progress
           a(href="/dashboard" class="btn") Go To Dashboard
-        .grid-cell
-          p View your categories
+        .grid-cell.homepage-callout
+          h5 View your categories
           a(href="/categories" class="btn") Go To Categories
-        .grid-cell
-          p Add a transaction
+        .grid-cell.homepage-callout
+          h5 Add a transaction
           a(href="/add" class="btn") Add Transaction
       else
-        .grid-cell
-          p First time user? 
+        .grid-cell.homepage-callout
+          h5 First time user? 
           a(href="/register" class="btn") Register
-        .grid-cell
-          p Returning user? 
+        .grid-cell.homepage-callout
+          h5 Returning user? 
           a(href="/login" class="btn") Login
       
 

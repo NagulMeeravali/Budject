@@ -9,6 +9,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 56px;
   line-height: 59px;
+  font-weight: 700;
 
   @media <=map(bp, mobile) {
     font-size: 40px;
@@ -34,15 +35,25 @@ h3 {
     font-size: 34px;
     line-height: 40px;
   }
-  
-  &.datepicker {
-    cursor: pointer;
+}
+
+h4 {
+  font-size: 30px;
+  line-height: 38px;
+
+  @media <=map(bp, mobile) {
+    font-size: 28px;
+    line-height: 32px;
   }
 }
 
 h5 {
   font-size: 18px;
   line-height: 24px;
+
+  &.datepicker {
+    cursor: pointer;
+  }
 }
 
 p {

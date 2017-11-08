@@ -103,7 +103,7 @@
         width: 100%;
 
         .category-title {
-          h3 {
+          h4 {
             margin: 0;
           }
 
@@ -198,7 +198,7 @@
       justify-content: space-between;
       font-size: 14px;
 
-      h3.datepicker {
+      h5.datepicker {
         margin: 0;
         display: inline-block;
         align-items: center;
@@ -262,7 +262,29 @@
     margin-top: 40px;
   }
 
+  .spendComparison{
+    span {
+      font-weight: 700;
+
+      &.overspend {
+        color: map(colors, red, base);
+      }
+
+      &.underspend {
+        color: map(colors, green, light);
+      }
+    }
+  }
+
+  .pieChart {
+    canvas {
+      width: auto !important;
+      height: 85vh !important;
+    }
+  }
+
   canvas {
+    margin: 0 auto;
     width: 100% !important;
     height: 100% !important;
   }

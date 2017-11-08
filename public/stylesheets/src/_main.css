@@ -50,6 +50,17 @@ body {
   }
 }
 
+.homepage-callout {
+  margin: 0 25px;
+  padding: 25px;
+  text-align: center;
+  border: 2px solid map(colors, blue, base);
+
+  h5 {
+    margin: 0 0 15px;
+  }
+}
+
 canvas {
   width: 100% !important;
   height: 60vh;

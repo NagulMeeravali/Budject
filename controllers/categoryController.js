@@ -71,12 +71,13 @@ exports.displayCategory = async (req, res) => {
     newestItem = [{'date': new Date()}];
   }
   const itemSum = await Item.sumItemsByCategory(category._id, startDate, endDate);
+  const itemSumPrevMonth = await Item.sumItemsByCategory(category._id, startDate.subtract(1, 'months'), endDate.subtract(1, 'months'));
   const numItems = await Item.numItemsByCategory(category._id, startDate, endDate);
   const itemsByCatAndMonth = await Item.getItemsByCatAndMonth(category._id, startDate, endDate);
   const getItemsByQueriedYear = await Item.getItemsByQueriedYear(category._id, startDate, endDate);
   confirmOwner(category, req.user);
   
-  res.render('category', { title: `${category.title}`, slug: `${category.slug}`, month, year, categories, category, oldestItem, itemSum: itemSum[0], numItems: numItems[0], itemsByCatAndMonth, getItemsByQueriedYear, oldestItemDate: oldestItem[0].date, newestItemDate: newestItem[0].date });
+  res.render('category', { title: `${category.title}`, slug: `${category.slug}`, month, year, categories, category, oldestItem, itemSum: itemSum[0], numItems: numItems[0], itemsByCatAndMonth, getItemsByQueriedYear, oldestItemDate: oldestItem[0].date, newestItemDate: newestItem[0].date, itemSumPrevMonth: itemSumPrevMonth[0] });
 }
 
 exports.deleteCategory = async (req, res) => {
