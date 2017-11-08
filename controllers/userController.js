@@ -86,7 +86,7 @@ exports.getDashboard = async (req, res, next) => {
   const categoryPromise = Category.findOne({ slug: req.params.slug });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
 
-  const getItemsByMonth = await Item.getItemsByMonth(startDate, endDate);
+  const getItemsByMonth = await Item.getItemsByMonth(req.user._id, startDate, endDate);
   const recentItems = await Item.find({ author: req.user._id }).sort({"date": -1}).limit(5);
   const budgetedPerMonth = await Category.budgetedPerMonth(req.user);
   const spentPerMonth = await Item.spentPerMonth(req.user, startDate, endDate);

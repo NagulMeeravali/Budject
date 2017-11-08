@@ -76,7 +76,7 @@ exports.displayCategory = async (req, res) => {
   const itemSumPrevMonth = await Item.sumItemsByCategory(category._id, prevMonthStartDate, prevMonthEndDate);
   const numItems = await Item.numItemsByCategory(category._id, startDate, endDate);
   const itemsByCatAndMonth = await Item.getItemsByCatAndMonth(category._id, startDate, endDate);
-  const getItemsByQueriedYear = await Item.getItemsByQueriedYear(category._id, startDate, endDate);
+  const getItemsByQueriedYear = await Item.getItemsByQueriedYear(req.user._id, category._id, startDate, endDate);
   confirmOwner(category, req.user);
 
   let percentSpentOverMonth = ""
@@ -107,7 +107,7 @@ exports.sumItemsByMonthQueriedYear = async (req, res, next) => {
   const categoriesPromise = Category.find({ 'author': req.user._id }).sort({title:1});
   const categoryPromise = Category.findOne({ slug: req.params.slug, 'author': req.user._id });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
-  const getItemsByQueriedYear = await Item.getItemsByQueriedYear(category._id, queriedYear);
+  const getItemsByQueriedYear = await Item.getItemsByQueriedYear(req.user._id, category._id, queriedYear);
   const sumByMonth = {};
 
   getItemsByQueriedYear.forEach((item) => {
@@ -148,7 +148,7 @@ exports.sumItemsByMonthQueriedYearNoCat = async (req, res, next) => {
   const categoryPromise = Category.findOne({ slug: req.params.slug, 'author': req.user._id });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
 
-  const getItemsByQueriedYear = await Item.getItemsByQueriedYearNoCat(queriedYear);
+  const getItemsByQueriedYear = await Item.getItemsByQueriedYearNoCat(req.user._id, queriedYear);
   const sumByMonth = {};
 
   const totalBudgetArr = [];

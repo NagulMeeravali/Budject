@@ -47,10 +47,11 @@ itemSchema.statics.getItemsByCat = function getItemsByCat(category) {
 }
 
 // Get all items in queried month
-itemSchema.statics.getItemsByMonth = function getItemsByMonth(start, end) {
+itemSchema.statics.getItemsByMonth = function getItemsByMonth(author, start, end) {
   return this.aggregate([
     {
       $match: {
+        author: mongoose.Types.ObjectId(author),
         date: { $gte: new Date(start), $lte: new Date(end) }
       }
     }
@@ -106,10 +107,11 @@ itemSchema.statics.sumItemsByCategory = function sumItemsByCategory(category, st
 }
 
 // Get all items in category between queried date range
-itemSchema.statics.getItemsByQueriedYear = function getItemsByQueriedYear(category, start, end = start) {
+itemSchema.statics.getItemsByQueriedYear = function getItemsByQueriedYear(author, category, start, end = start) {
   return this.aggregate([
     {
       $match: {
+        author: mongoose.Types.ObjectId(author),
         category: mongoose.Types.ObjectId(category),
         date: { $gte: new Date(moment(start).startOf('year')), $lte: new Date(moment(end).endOf('year')) }
       }
@@ -118,10 +120,11 @@ itemSchema.statics.getItemsByQueriedYear = function getItemsByQueriedYear(catego
 }
 
 // Get all items between queried date range
-itemSchema.statics.getItemsByQueriedYearNoCat = function getItemsByQueriedYearNoCat(start, end = start) {
+itemSchema.statics.getItemsByQueriedYearNoCat = function getItemsByQueriedYearNoCat(author, start, end = start) {
   return this.aggregate([
     {
       $match: {
+        author: mongoose.Types.ObjectId(author),
         date: { $gte: new Date(moment(start).startOf('year')), $lte: new Date(moment(end).endOf('year')) }
       }
     }
