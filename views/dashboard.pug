@@ -25,7 +25,10 @@ block content
 
       .grid.dashboard-grid
         .grid-cell.w48.dashboard-categories
-          h3 Top Categories for #{month}, #{year} 
+          h3.datepicker 
+            span.month #{month} 
+            span.year #{year} 
+            != h.icon('caret-down')
           if categories.length
             p.filter-intro Filter By:
             form.category-type-filter(method="GET")

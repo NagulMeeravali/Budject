@@ -31,7 +31,9 @@
     }
   }
 
-  .budget-meta {
+  > .budget-meta {
+    margin-bottom: 40px;
+
     h1 {
       text-align: center;
     }
@@ -44,6 +46,29 @@
   .dashboard-categories {
     @media <=map(bp, mobile) {
       flex: 0 0 100%;
+    }
+
+    h3.datepicker {
+      margin: 0;
+      display: inline-block;
+      align-items: center;
+      transition: all .5s ease;
+
+      svg {
+        position: relative;
+        top: 2px;
+        width: 25px;
+        height: 25px;
+        transition: all .5s ease;
+      }
+
+      &:hover, &:active, &:focus {
+        color: map(colors, blue, base);
+
+        svg {
+          fill: map(colors, blue, base);
+        }
+      }
     }
 
     h5 {
@@ -69,7 +94,12 @@
 
 .dashboard-items {
   @media <=map(bp, mobile) {
+    margin-top: 40px;
     flex: 0 0 100% !important;
+  }
+
+  h3 {
+    margin-top: 0;
   }
 }
 
