@@ -57,6 +57,8 @@ exports.displayCategory = async (req, res) => {
   const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
   const month = startDate.format('MMMM');
   const year = startDate.format('YYYY');
+  const prevMonthStartDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 2).startOf('month') : moment().subtract(1, 'months').startOf('month');
+  const prevMonthEndDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 2).endOf('month') : moment().subtract(1, 'months').endOf('month');
 
   const categoriesPromise = Category.find({ 'author': req.user._id }).sort({title:1});
   const categoryPromise = Category.findOne({ slug: req.params.slug, 'author': req.user._id });
@@ -71,7 +73,7 @@ exports.displayCategory = async (req, res) => {
     newestItem = [{'date': new Date()}];
   }
   const itemSum = await Item.sumItemsByCategory(category._id, startDate, endDate);
-  const itemSumPrevMonth = await Item.sumItemsByCategory(category._id, startDate.subtract(1, 'months'), endDate.subtract(1, 'months'));
+  const itemSumPrevMonth = await Item.sumItemsByCategory(category._id, prevMonthStartDate, prevMonthEndDate);
   const numItems = await Item.numItemsByCategory(category._id, startDate, endDate);
   const itemsByCatAndMonth = await Item.getItemsByCatAndMonth(category._id, startDate, endDate);
   const getItemsByQueriedYear = await Item.getItemsByQueriedYear(category._id, startDate, endDate);
