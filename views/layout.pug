@@ -9,7 +9,8 @@ html
       header.grid-cell.w100
         .logo-section.grid-cell.w35
           a(href="/")= h.siteName
-        nav.grid-cell.w35
+        - const loggedIn = (user ? 'w35' : 'w20')
+        nav(class=`grid-cell ${loggedIn}`)
           .menu
             ul.menu-items
               if user

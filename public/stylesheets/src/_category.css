@@ -32,12 +32,13 @@
     display: inline-block;
     align-items: center;
     transition: all .5s ease;
+    cursor: pointer;
 
     svg {
       position: relative;
       top: 2px;
-      width: 15px;
-      height: 15px;
+      width: 25px;
+      height: 25px;
       transition: all .5s ease;
     }
 
