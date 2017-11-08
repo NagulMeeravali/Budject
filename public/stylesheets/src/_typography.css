@@ -57,7 +57,10 @@ h5 {
 }
 
 p {
+  font-family: map(fonts, lora);
+  font-size: 16px;
   color: map(colors, gray, base);
+  line-height: 1.4;
 }
 
 a {

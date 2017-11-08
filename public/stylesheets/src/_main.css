@@ -9,7 +9,7 @@ body {
 
 .hero {
   position: relative;
-  padding: 60px 0;
+  padding: 100px 0;
   background-image: url(/images/hero-img.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -45,6 +45,66 @@ body {
 
       &:hover, &:active, &:focus {
         border-color: map(colors, blue, base);
+      }
+    }
+  }
+}
+
+.site-callouts { 
+  margin-bottom: 40px;
+  @media <=map(bp, mobile) {
+    margin-bottom: 0;
+  }
+  
+  .site-callout {
+    position: relative;
+    align-items: center;
+
+    .spending-content {
+      padding: 60px 60px;
+
+      @media <=map(bp, mobile) {
+        padding: 60px 30px;
+      }
+
+      h3 {
+        margin: 0;
+      }
+    }
+
+    .spending-img {
+      min-height: 300px;
+      background-image: url(/images/understand-spending.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+
+      @media <=map(bp, mobile) {
+        flex: 0 0 100%;
+      }
+    }
+
+    .tracking-content {
+      padding: 60px 60px;
+
+      @media <=map(bp, mobile) {
+        padding: 60px 30px;
+      }
+
+      h3 {
+        margin: 0;
+      }
+    }
+
+    .tracking-img {
+      min-height: 300px;
+      background-image: url(/images/track-spending.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+
+      @media <=map(bp, mobile) {
+        flex: 0 0 100%;
       }
     }
   }

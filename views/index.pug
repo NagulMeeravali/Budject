@@ -6,9 +6,18 @@ block content
       h1 Budgeter
       h3 Achieve Your Financial Goals
       a(href="/register" class="btn") Get Started
+  .site-callouts
+    .site-callout.understand-spending.grid
+      .grid-cell.spending-content
+        h3 Understand Your Spending
+        p Create spending categories and see how your purchases reflect your personalized spending goals. 
+      .grid-cell.spending-img.w50
+    .site-callout.track-progress.grid
+      .grid-cell.tracking-img.w50
+      .grid-cell.tracking-content
+        h3 Track Your Progress
+        p View your monthly and yearly progress with detailed graphs and analysis.
   .container
-    p Budgeter is a budgeting application designed to allow you to effortlessly manage your finances. 
-    p Easily create spending categories and items and see how your purchases reflect your spending goals. 
     .grid
       if user
         .grid-cell.homepage-callout
@@ -30,6 +39,5 @@ block content
           p Welcome back! 
           a(href="/login" class="btn") Login
       
-
   //- Total expenses daily, weekly, monthly
   //- https://dribbble.com/shots/3329597-Home-Budget-App-Dashboard
