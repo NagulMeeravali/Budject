@@ -51,12 +51,12 @@ block content
           p.spendComparison You have spent 
             span(class=`${percentClass}`) #{percentSpentCurrentMonth}% 
             | of your budget for this month.
-          - const percentSpentOverMonth = ((itemSum.sum / itemSumPrevMonth.sum) * 100).toFixed(2);
-          - const percentClassOverMonth = percentSpent >= 100 ? 'overspend' : 'underspend'
-          - const comparisonVal = percentSpent >= 100 ? 'more' : 'less'
-          p.spendComparison You have spent 
-            span(class=`${percentClassOverMonth}`) #{percentSpentOverMonth}% #{comparisonVal} 
-            | than last month.
+          if percentSpentOverMonth
+            - const percentClassOverMonth = percentSpentOverMonth >= 100 ? 'overspend' : 'underspend'
+            - const comparisonVal = percentSpentOverMonth >= 100 ? 'more' : 'less'
+            p.spendComparison You have spent 
+              span(class=`${percentClassOverMonth}`) #{percentSpentOverMonth}% #{comparisonVal} 
+              | than last month.
           .chartContainer.pieChart
             canvas#categoryPieChart
         .category-charts.year-chart.grid-cell.w100

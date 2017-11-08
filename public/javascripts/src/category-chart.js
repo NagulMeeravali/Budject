@@ -94,6 +94,15 @@ function yearGraphs(category, year = moment().startOf('year').format('YYYY')) {
             enabled: true,
             mode: 'single',
             displayColors: false,
+            backgroundColor: '#FAFFFD',
+            titleFontFamily: "'Lora', serif",
+            titleFontSize: 16,
+            titleFontColor: '#252323',
+            titleMarginBottom: 8,
+            bodyFontFamily: "'Lora', serif",
+            bodyFontSize: 12,
+            bodyFontColor: '#252323',
+            bodySpacing: 10,
             callbacks: {
                 title: function(tooltipItem) { 
                   return moment(this._data.labels[tooltipItem[0].index]).format('MMMM');

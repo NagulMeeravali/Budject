@@ -103,6 +103,15 @@ function yearGraphs(category) {
         enabled: true,
         mode: 'single',
         displayColors: false,
+        backgroundColor: '#FAFFFD',
+        titleFontFamily: "'Lora', serif",
+        titleFontSize: 16,
+        titleFontColor: '#252323',
+        titleMarginBottom: 8,
+        bodyFontFamily: "'Lora', serif",
+        bodyFontSize: 12,
+        bodyFontColor: '#252323',
+        bodySpacing: 10,
         callbacks: {
           title: function title(tooltipItem) {
             return moment(this._data.labels[tooltipItem[0].index]).format('MMMM');
@@ -234,7 +243,8 @@ function monthGraphs(category) {
     var options = {
       title: {
         display: true,
-        fontSize: 18,
+        padding: 20,
+        fontSize: 22,
         text: category.charAt(0).toUpperCase() + category.slice(1) + ' Spending for ' + catMonth + year
       },
       legend: {
@@ -247,6 +257,15 @@ function monthGraphs(category) {
         enabled: true,
         mode: 'single',
         displayColors: false,
+        backgroundColor: '#FAFFFD',
+        titleFontFamily: "'Lora', serif",
+        titleFontSize: 22,
+        titleFontColor: '#252323',
+        titleMarginBottom: 10,
+        bodyFontFamily: "'Lora', serif",
+        bodyFontSize: 18,
+        bodyFontColor: '#252323',
+        bodySpacing: 10,
         callbacks: {
           title: function title(tooltipItem) {
             return this._data.labels[tooltipItem[0].index];
@@ -357,6 +376,15 @@ function loadAllItems() {
         enabled: true,
         mode: 'single',
         displayColors: false,
+        backgroundColor: '#FAFFFD',
+        titleFontFamily: "'Lora', serif",
+        titleFontSize: 16,
+        titleFontColor: '#252323',
+        titleMarginBottom: 8,
+        bodyFontFamily: "'Lora', serif",
+        bodyFontSize: 12,
+        bodyFontColor: '#252323',
+        bodySpacing: 10,
         callbacks: {
           title: function title(tooltipItem) {
             return moment(this._data.labels[tooltipItem[0].index]).format('MMMM');

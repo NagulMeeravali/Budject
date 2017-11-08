@@ -50,7 +50,8 @@ axios.get(`/api/category/${category}/items?year=${year}`)
     const options = {
       title: {
         display: true,
-        fontSize: 18,
+        padding: 20,
+        fontSize: 22,
         text: `${category.charAt(0).toUpperCase() + category.slice(1)} Spending for ${catMonth}${year}`
       },
       legend: {
@@ -63,6 +64,15 @@ axios.get(`/api/category/${category}/items?year=${year}`)
         enabled: true,
         mode: 'single',
         displayColors: false,
+        backgroundColor: '#FAFFFD',
+        titleFontFamily: "'Lora', serif",
+        titleFontSize: 22,
+        titleFontColor: '#252323',
+        titleMarginBottom: 10,
+        bodyFontFamily: "'Lora', serif",
+        bodyFontSize: 18,
+        bodyFontColor: '#252323',
+        bodySpacing: 10,
         callbacks: {
           title: function(tooltipItem) { 
             return this._data.labels[tooltipItem[0].index];
