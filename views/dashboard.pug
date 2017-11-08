@@ -10,17 +10,18 @@ block content
         h1 #{user.name}'s Dashboard
         if categories.length 
           if getItemsByMonth.length
-            p.budget-meta.grid-cell
-              span.budget-spent #{h.formatPrice(spentPerMonth.sum)}
-              |  spent of 
-              span.budget-goal #{h.formatPrice(budgetedPerMonth.sum)}
-              |  budgeted for #{month}, #{year}
-            - const percentSpent = (spentPerMonth.sum / budgetedPerMonth.sum) * 100
-            .progress-bar
-              .progress-fill(style=`width: ${percentSpent}%`)
-            p.budget-percent 
-              span #{percentSpent.toFixed(2)}%
-              |  of monthly budget used
+            if spentPerMonth
+              p.budget-meta.grid-cell
+                span.budget-spent #{h.formatPrice(spentPerMonth.sum)}
+                |  spent of 
+                span.budget-goal #{h.formatPrice(budgetedPerMonth.sum)}
+                |  budgeted for #{month}, #{year}
+              - const percentSpent = (spentPerMonth.sum / budgetedPerMonth.sum) * 100
+              .progress-bar
+                .progress-fill(style=`width: ${percentSpent}%`)
+              p.budget-percent 
+                span #{percentSpent.toFixed(2)}%
+                |  of monthly budget used
 
 
       .grid.dashboard-grid

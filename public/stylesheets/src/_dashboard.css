@@ -53,6 +53,7 @@
       display: inline-block;
       align-items: center;
       transition: all .5s ease;
+      cursor: pointer;
 
       svg {
         position: relative;
