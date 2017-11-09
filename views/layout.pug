@@ -8,36 +8,37 @@ html
   body.grid
     block header
       header.grid-cell.w100
-        .logo-section.grid-cell.w35
-          a(href="/")= h.siteName
-        - const loggedIn = (user ? 'w35' : 'w20')
-        nav(class=`grid-cell ${loggedIn}`)
-          .menu
-            ul.menu-items
-              if user
-                each item in h.userMenu
-                  li.menu-item
-                    a(href=item.slug)= item.title
-              else
-                each item in h.generalMenu
-                  li.menu-item
-                    a(href=item.slug)= item.title
-          .mobile-menu
-            .mobile-menu-toggle
-              a(href="#" class="mobile-menu-toggle")
-                .icon
-                  .bar.top
-                  .bar.middle
-                  .bar.bottom
-      ul.mobile-menu-items
-        if user
-          each item in h.userMenu
-            li.menu-item
-              a(href=item.slug)= item.title
-        else
-          each item in h.generalMenu
-            li.menu-item
-              a(href=item.slug)= item.title
+        .container.grid
+          .logo-section.grid-cell.w35
+            a(href="/")= h.siteName
+          - const loggedIn = (user ? 'w35' : 'w20')
+          nav(class=`grid-cell ${loggedIn}`)
+            .menu
+              ul.menu-items
+                if user
+                  each item in h.userMenu
+                    li.menu-item
+                      a(href=item.slug)= item.title
+                else
+                  each item in h.generalMenu
+                    li.menu-item
+                      a(href=item.slug)= item.title
+            .mobile-menu
+              .mobile-menu-toggle
+                a(href="#" class="mobile-menu-toggle")
+                  .icon
+                    .bar.top
+                    .bar.middle
+                    .bar.bottom
+        ul.mobile-menu-items
+          if user
+            each item in h.userMenu
+              li.menu-item
+                a(href=item.slug)= item.title
+          else
+            each item in h.generalMenu
+              li.menu-item
+                a(href=item.slug)= item.title
     block messages
       if locals.flashes
         .container
@@ -84,7 +85,6 @@ html
       if (document.querySelector('.datepicker')) {
         const month = '!{month}';
         const monthNum = moment().month(month).format('M');
-        console.log(monthNum);
         const year = '!{year}';
         const yearNum = moment().year(year).format('YYYY');
         const numItems = '!{numItems}';

@@ -1,5 +1,4 @@
 header {
-  padding: 0 25px;
   display: flex;
   justify-content: space-between;
   background: map(colors, white, base);
@@ -7,23 +6,40 @@ header {
   height: 65px;
   z-index: 2;
 
-  > .grid-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @media <=map(bp, tablet) {
-      justify-content: flex-start;
-    }
+  > .container {
+    margin: 0 auto;
+    justify-content: space-between;
 
-    &.logo-section {
+    > .grid-cell {
+      display: flex;
+      align-items: center;
       @media <=map(bp, tablet) {
-        flex: 0 0 80%;
+        justify-content: flex-start;
+      }
+
+      &.logo-section {
+        @media <=map(bp, tablet) {
+          flex: 0 0 80%;
+        }
+
+        a {
+          font-family: map(fonts, istok);
+          font-size: 56px;
+          font-weight: 700;
+          letter-spacing: -3px;
+          @media <=map(bp, mobile) {
+            font-size: 48px;
+          }
+          @media <=map(bp, mobile) {
+            font-size: 42px;
+          }
+        }
       }
     }
   }
 
   nav {
-    @media <=map(bp, tiny) {
+    @media <=map(bp, tablet) {
       flex: 1 !important;
     }
   }

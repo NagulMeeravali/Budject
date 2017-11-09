@@ -14,7 +14,7 @@ mixin itemForm(item={})
         option(value="") Select a Category
         each category in categoryList
           option(value=category._id selected=((String(category._id) === (String(`${item.category}`)) || (String(category._id) === `${referrer}`))))= category.title
-      label(for="category") Category
+      label(for="category") Category*
     .form-group.grid-cell.w100
       textarea(name="description", cols="30", rows="10") #{item.description}
       label(for="description") Description
