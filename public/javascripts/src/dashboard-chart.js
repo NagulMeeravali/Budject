@@ -59,7 +59,7 @@ axios.get(`/api/categories/items?year=${year}`)
         xAxes: [{
           ticks: {
             callback: function(tick) {
-              return moment(tick, 'MM').format('MMMM');
+              return moment(tick, 'MM').format('MMM');
             }
           }
         }],

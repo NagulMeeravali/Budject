@@ -70,7 +70,7 @@ function yearGraphs(category, year = moment().startOf('year').format('YYYY')) {
             stacked: true,
             ticks: {
               callback: function(tick) {
-                return moment(tick).format('MMM');
+                return moment(tick, 'MM').format('MMM');
               }
             }
           }],
@@ -105,7 +105,7 @@ function yearGraphs(category, year = moment().startOf('year').format('YYYY')) {
             bodySpacing: 10,
             callbacks: {
                 title: function(tooltipItem) { 
-                  return moment(this._data.labels[tooltipItem[0].index]).format('MMMM');
+                  return moment(this._data.labels[tooltipItem[0].index], 'MM').format('MMMM');
                 },
                 label: function(tooltipItems, data) { 
                   return `$${tooltipItems.yLabel}`;
