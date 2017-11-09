@@ -359,7 +359,7 @@ function loadAllItems() {
         xAxes: [{
           ticks: {
             callback: function callback(tick) {
-              return moment(tick).format('MMM');
+              return moment(tick, 'MM').format('MMMM');
             }
           }
         }],
@@ -387,7 +387,7 @@ function loadAllItems() {
         bodySpacing: 10,
         callbacks: {
           title: function title(tooltipItem) {
-            return moment(this._data.labels[tooltipItem[0].index]).format('MMMM');
+            return moment(this._data.labels[tooltipItem[0].index], 'MM').format('MMMM');
           },
           label: function label(tooltipItems, data) {
             return '$' + tooltipItems.yLabel;

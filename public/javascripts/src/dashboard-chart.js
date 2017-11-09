@@ -59,7 +59,7 @@ axios.get(`/api/categories/items?year=${year}`)
         xAxes: [{
           ticks: {
             callback: function(tick) {
-              return moment(tick).format('MMM');
+              return moment(tick, 'MM').format('MMMM');
             }
           }
         }],
@@ -87,7 +87,7 @@ axios.get(`/api/categories/items?year=${year}`)
           bodySpacing: 10,
           callbacks: {
               title: function(tooltipItem) { 
-                return moment(this._data.labels[tooltipItem[0].index]).format('MMMM');
+                return moment(this._data.labels[tooltipItem[0].index], 'MM').format('MMMM');
               },
               label: function(tooltipItems, data) { 
                 return `$${tooltipItems.yLabel}`;
