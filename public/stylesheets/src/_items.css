@@ -36,6 +36,8 @@
 
   .item-price {
     p {
+      font-family: map(fonts, istok);
+      font-weight: 700;
       color: map(colors, red, base);
     }
   }

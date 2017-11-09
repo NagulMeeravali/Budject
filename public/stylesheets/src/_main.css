@@ -133,6 +133,12 @@ canvas {
   height: 60vh;
 }
 
+.error-container {
+  h4 {
+    margin: 0;
+  }
+}
+
 footer {
   margin-top: 60px !important;
   text-align: center;
