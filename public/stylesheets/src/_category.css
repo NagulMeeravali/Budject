@@ -64,15 +64,15 @@
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
     list-style-type: none;
     @media <=map(bp, tablet) {
-      grid-template-columns: auto auto;
+      grid-template-columns: repeat(2, 1fr);
       grid-gap: 10px;
     }
     @media <=map(bp, mobile) {
-      grid-template-columns: auto;
+      grid-template-columns: 1fr;
     }
 
     li.category {
@@ -115,7 +115,7 @@
         }
 
         .budget-meta {
-          margin: 0;
+          margin: 5px 0 0;
           text-align: right;
 
           .budget-spent {
