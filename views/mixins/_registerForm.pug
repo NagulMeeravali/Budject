@@ -1,22 +1,22 @@
 mixin registerForm()
   form(action=`/register` method="POST" class="grid" class="user-form")
     .form-group.grid-cell.w48
-      input(type="text" name="name")
-      label(for="name") Name
+      input(type="text" name="name" required)
+      label(for="name") Name*
     .form-group.grid-cell.w48
-      input(type="text" name="username")
-      label(for="username") Username
+      input(type="text" name="username" required)
+      label(for="username") Username*
     .form-group.grid-cell.w48
-      input(type="email" name="email")
-      label(for="email") Email
-    .form-group.grid-cell.w48
-      input(type="password" name="password")
-      label(for="password") Password
-    .form-group.grid-cell.w48
-      input(type="password" name="confirm-password")
-      label(for="confirm-password") Confirm Password
+      input(type="email" name="email" required)
+      label(for="email") Email*
     .form-group.grid-cell.w48.amount-field.income-field
       input(type="number" name="income" min="0.00" step="0.01")
       label(for="income") Income
+    .form-group.grid-cell.w48
+      input(type="password" name="password" required)
+      label(for="password") Password*
+    .form-group.grid-cell.w48
+      input(type="password" name="confirm-password" required)
+      label(for="confirm-password") Confirm Password*
     .form-group.grid-cell.w100
       input(type="submit" value="Submit")

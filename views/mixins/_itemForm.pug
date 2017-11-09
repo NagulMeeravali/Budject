@@ -2,13 +2,13 @@ mixin itemForm(item={})
   form(action=`/add/${item._id || ''}` method="POST" class="itemForm grid")
     .form-group.grid-cell.w48
       input(type="text" name="title" value=item.title required)
-      label(for="title") Item
+      label(for="title") Item*
     .form-group.grid-cell.w48.amount-field
       input(type="number" name="amount" value=(item.amount ? (item.amount).toFixed(2) : item.amount) step=".01" min="0.00" required)
-      label(for="amount") Amount
+      label(for="amount") Amount*
     .form-group.grid-cell.w48
       input(type="date" name="date" value=h.moment(item.date).utc().format("YYYY-MM-DD") required)
-      label(for="date") Date
+      label(for="date") Date*
     .form-group.grid-cell.w48
       select.has-value(name="category" required)
         option(value="") Select a Category
