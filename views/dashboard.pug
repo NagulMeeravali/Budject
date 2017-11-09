@@ -23,7 +23,6 @@ block content
                 span #{percentSpent.toFixed(2)}%
                 |  of monthly budget used
 
-
       .grid.dashboard-grid
         .grid-cell.w48.dashboard-categories
           h3.datepicker 
@@ -42,20 +41,23 @@ block content
                   option(value="spentDesc" selected=("spentDesc"===`${sortValue}`)) Budget High to Low
                   option(value="spentAsc" selected=("spentAsc"===`${sortValue}`)) Budget Low to High
           else
-            p You currently don't have any categories set up. 
+            p.no-cat You currently don't have any categories set up. 
+            a(href="/category/add" class="btn") + Add Category
           if categories.length
             +categorySidebar(categories)
             a.btn(href=`/categories`) View All Categories
         .grid-cell.w48.dashboard-items
           h3 Recent Items
           if recentItems.length
-            each item in recentItems
-              +item(item)
+            .items
+              each item in recentItems
+                +item(item)
           else
             p You haven't added any transactions yet.
           a.btn(href=`/add`) + Add Item
-        .grid-cell.w100.dashboard-charts
-          .chartContainer
-            canvas#dashboardChart
-            button(id="bar" value="bar" class="chartBtn") Bar
-            button(id="line" value="line" class="chartBtn") Line
+        if getItemsByMonth.length !== 0
+          .grid-cell.w100.dashboard-charts
+            .chartContainer
+              canvas#dashboardChart
+              button(id="bar" value="bar" class="chartBtn") Bar
+              button(id="line" value="line" class="chartBtn") Line

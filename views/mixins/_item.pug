@@ -8,7 +8,5 @@ mixin item(item = {})
     .item-actions.grid-cell
       a(href=`/add/${item._id}` title="Edit" class="icon-edit") 
         != h.icon('edit')
-      a(href=`/delete/${item._id}` title="Delete" class="icon-delete")
+      a(href=`/delete/${item._id}` title="Delete" class="icon-delete" onclick="return confirm('Are you sure you want to delete this item?');")
         != h.icon('delete')
-
-//- TODO - Add color border designated income or expense 

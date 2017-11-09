@@ -79,6 +79,10 @@
 
     p {
       margin-bottom: 5px;
+
+      &.no-cat {
+        margin-bottom: 1em;
+      }
     }
 
     select {
@@ -101,6 +105,11 @@
 
   h3 {
     margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .items {
+    margin-top: 25px;
   }
 }
 

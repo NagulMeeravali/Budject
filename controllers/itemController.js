@@ -42,7 +42,8 @@ exports.updateItem = async (req, res) => {
 
 exports.deleteItem = async (req, res) => {
   const item = await Item.findByIdAndRemove({ _id: req.params.id });
-  res.json({ message: 'Item deleted'})
+  req.flash('success', 'Your transaction was successfully deleted.')
+  res.redirect('back');
 }
 
 exports.sumAmount = async(req, res, next) => {

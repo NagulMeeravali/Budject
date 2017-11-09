@@ -79,7 +79,7 @@ exports.displayCategory = async (req, res) => {
   const getItemsByQueriedYear = await Item.getItemsByQueriedYear(req.user._id, category._id, startDate, endDate);
   confirmOwner(category, req.user);
 
-  let percentSpentOverMonth = ""
+  let percentSpentOverMonth = "";
   if (typeof (itemSumPrevMonth) !== 'undefined' && itemSumPrevMonth.length > 0) {
     percentSpentOverMonth = ((itemSum[0].sum / itemSumPrevMonth[0].sum) * 100).toFixed(2);
   }   
