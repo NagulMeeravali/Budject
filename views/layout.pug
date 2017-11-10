@@ -5,7 +5,7 @@ html
     link(rel='stylesheet', href='/stylesheets/dist/style.css')
     link(rel="shortcut icon" type="image/png" href="/images/favicon.ico")
     meta(name="viewport" content="width=device-width, initial-scale=1")
-  body.grid
+  body(class=`grid ${bodyClass}`)
     block header
       header.grid-cell.w100
         .container.grid

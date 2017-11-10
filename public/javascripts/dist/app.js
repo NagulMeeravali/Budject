@@ -241,7 +241,6 @@ function monthGraphs(category) {
       backgroundColor.push('#748386');
     }
 
-    console.log(backgroundColor);
     var pieData = {
       labels: labelArr,
       datasets: [{

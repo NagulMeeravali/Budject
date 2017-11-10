@@ -8,7 +8,7 @@ const { catchErrors } = require('../handlers/errorHandlers');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Budgeter' });
+  res.render('index', { title: 'Budgeter', bodyClass: 'home' });
 });
 
 router.get('/about', (req, res) => {
