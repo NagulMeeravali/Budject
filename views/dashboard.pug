@@ -7,7 +7,8 @@ block content
   .container
     .user-dashboard
       .budget-meta
-        h1 #{user.name}'s Dashboard
+        - const possessive = ((user.name).slice(-1)) === ('s' || 'z') ? '' : 's'
+        h1 #{user.name}'#{possessive} Dashboard
         if categories.length 
           if getItemsByMonth.length
             if spentPerMonth
