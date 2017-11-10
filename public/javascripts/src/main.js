@@ -135,4 +135,25 @@
   
   changeBudgetColor();
 
+  // Fade out flash after 5 seconds
+  function fade(element) {
+      let op = 1;  // initial opacity
+      const timer = setTimeout(function() {
+        setInterval(function () {
+          if (op <= 0.3){
+              clearInterval(timer);
+              element.style.display = 'none';
+          }
+          element.style.opacity = op;
+          element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+          op -= op * 0.1;
+      }, 300)
+    }, 3000);
+  }
+
+  const flashes = document.querySelectorAll('.flash');
+  for (const flash of flashes) {
+    fade(flash);
+  }
+
 }());
