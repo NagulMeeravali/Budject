@@ -51,7 +51,7 @@
     justify-content: center;
     box-shadow: 0 3px 10px rgba(map(colors, black, base), 0.15);
     animation: slideIn forwards .2s ease-in-out 2;
-    animation-timing-function: cubic-bezier(0.01, 1.68, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.01, 1.28, 0.78, 1);
 
     & + .flash {
     animation-delay: 0.35s;
