@@ -108,7 +108,7 @@ function yearGraphs(category, year = moment().startOf('year').format('YYYY')) {
                   return moment(this._data.labels[tooltipItem[0].index], 'MM').format('MMMM');
                 },
                 label: function(tooltipItems, data) { 
-                  return `$${tooltipItems.yLabel}`;
+                  return `$${(tooltipItems.yLabel.toFixed(2))}`;
                 }
             }
         },

@@ -117,7 +117,7 @@ function yearGraphs(category) {
             return moment(this._data.labels[tooltipItem[0].index], 'MM').format('MMMM');
           },
           label: function label(tooltipItems, data) {
-            return '$' + tooltipItems.yLabel;
+            return '$' + tooltipItems.yLabel.toFixed(2);
           }
         }
       },
@@ -390,7 +390,7 @@ function loadAllItems() {
             return moment(this._data.labels[tooltipItem[0].index], 'MM').format('MMMM');
           },
           label: function label(tooltipItems, data) {
-            return '$' + tooltipItems.yLabel;
+            return '$' + tooltipItems.yLabel.toFixed(2);
           }
         }
       },
