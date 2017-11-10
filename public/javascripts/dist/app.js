@@ -208,6 +208,7 @@ function monthGraphs(category) {
 
     var catMonth = document.querySelector('.datepicker .month').textContent;
     var catYear = document.querySelector('.datepicker .year').textContent;
+    var budgeted = data['sumByMonth']['budgeted'].toFixed(2);
     var queriedSum = data['sumByMonth'][moment().year(catYear).format("YYYY")][moment().month(catMonth).format("M")].sum;
     var queriedMonthData = data['sumByMonth'][moment().year(catYear).format("YYYY")][moment().month(catMonth).format("M")].items;
     var pieArr = [];
@@ -220,7 +221,6 @@ function monthGraphs(category) {
       labelArr.push(item.title);
     });
 
-    var budgeted = data['sumByMonth']['budgeted'].toFixed(2);
     var ctx = document.getElementById("categoryPieChart");
 
     var backgroundColor = [];
@@ -229,6 +229,19 @@ function monthGraphs(category) {
       backgroundColor.push(color);
     }
 
+    // If budget hasn't been exceeded, add in remaining section to pie chart
+    var itemSum = pieArr.reduce(function (sum, value) {
+      return sum + value;
+    });
+    var unspent = budgeted - itemSum;
+
+    if (unspent > 0) {
+      pieArr.push(unspent);
+      labelArr.push('Remaining in Budget');
+      backgroundColor.push('#748386');
+    }
+
+    console.log(backgroundColor);
     var pieData = {
       labels: labelArr,
       datasets: [{

@@ -15,6 +15,7 @@ axios.get(`/api/category/${category}/items?year=${year}`)
 
     const catMonth = document.querySelector('.datepicker .month').textContent;
     const catYear = document.querySelector('.datepicker .year').textContent;
+    const budgeted = (data['sumByMonth']['budgeted'].toFixed(2));
     const queriedSum = data['sumByMonth'][moment().year(catYear).format("YYYY")][moment().month(catMonth).format("M")].sum;
     const queriedMonthData = data['sumByMonth'][moment().year(catYear).format("YYYY")][moment().month(catMonth).format("M")].items;
     const pieArr = [];
@@ -27,7 +28,6 @@ axios.get(`/api/category/${category}/items?year=${year}`)
       labelArr.push(item.title);
     })
 
-    const budgeted = (data['sumByMonth']['budgeted'].toFixed(2));
     const ctx = document.getElementById("categoryPieChart");
 
     const backgroundColor = [];
@@ -36,6 +36,17 @@ axios.get(`/api/category/${category}/items?year=${year}`)
       backgroundColor.push(color);
     }
 
+    // If budget hasn't been exceeded, add in remaining section to pie chart
+    const itemSum = pieArr.reduce((sum, value) => sum + value);
+    const unspent = budgeted - itemSum;
+
+    if (unspent > 0) {
+      pieArr.push(unspent)
+      labelArr.push('Remaining in Budget')
+      backgroundColor.push('#748386');
+    }
+
+    console.log(backgroundColor)
     const pieData = {
       labels: labelArr,
       datasets: [{
