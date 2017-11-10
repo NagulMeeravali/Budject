@@ -1,9 +1,12 @@
 {
   "name": "budgeter",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
+  "now": {
+    "dotenv": "variables.env.now" 
+  },
   "scripts": {
-    "start": "nodemon start.js",
+    "start": "node start.js",
     "watch": "nodemon ./start.js --ignore public/",
     "dev": "concurrently \"npm run watch\" \"npm run assets\"",
     "assets": "gulp -w"
