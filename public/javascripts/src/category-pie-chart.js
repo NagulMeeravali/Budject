@@ -46,7 +46,6 @@ axios.get(`/api/category/${category}/items?year=${year}`)
       backgroundColor.push('#748386');
     }
 
-    console.log(backgroundColor)
     const pieData = {
       labels: labelArr,
       datasets: [{
