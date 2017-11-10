@@ -1,4 +1,4 @@
-@import "../../../node_modules/normalize.css/normalize.css";
+@import "_normalize.css";
 @import "_grid.css";
 @import "_typography.css";
 @import "_main.css";

@@ -52,6 +52,8 @@ form {
         color: map(colors, gray, base);
         text-indent: 10px;
         border: 1px solid map(colors, black, base);
+        height: 41px;
+        line-height: 41px;
         
         &.invalid-input {
           border-color: map(colors, red, base) !important;
@@ -112,7 +114,8 @@ form {
 
     select {
       display: block;
-      padding: 10px 10px 9px 5px;
+      height: 41px;
+      line-height: 41px;
       width: 100%;
       font-family: map(fonts, istok);
       font-size: 18px;
