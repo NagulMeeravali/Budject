@@ -16,11 +16,8 @@ exports.registerForm = (req, res) => {
 // Validate registration form
 exports.validateRegister = (req, res, next) => {
   req.sanitizeBody('name');
-  req.sanitizeBody('username');
-  req.sanitizeBody('income');
 
   req.checkBody('name', 'Please supply a name.').notEmpty();
-  req.checkBody('username', 'Please supply a username.').notEmpty();
   req.checkBody('email', 'Please enter a valid email address.').isEmail();
 
   // Allow dots, extensions and subaddresses
@@ -45,7 +42,7 @@ exports.validateRegister = (req, res, next) => {
 }
 
 exports.register = async (req, res, next) => {
-  const user = new User({ email: req.body.email, name: req.body.name, username: req.body.username, income: req.body.income })
+  const user = new User({ email: req.body.email, name: req.body.name })
 
   const registerWithPromise = promisify(User.register, User);
 
