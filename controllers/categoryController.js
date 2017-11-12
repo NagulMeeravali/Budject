@@ -27,7 +27,7 @@ exports.getCategories = async (req, res) => {
     return [(count[0] || '0'), itemSum[0] || '0'];
   }));
 
-  res.render('categoryList', {categories, itemArr, month, year});
+  res.render('categoryList', { title: 'Categories', categories, itemArr, month, year});
 };
 
 exports.addCategory = (req, res) => {
