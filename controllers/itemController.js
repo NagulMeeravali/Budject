@@ -13,7 +13,7 @@ exports.addItem = async (req, res) => {
   const categoryList = await Category.find({ author: req.user });
   const category = await Category.findOne({slug: req.query.ref});
   const referrer = (category) ? category._id : "";
-  res.render('editItem', { title: 'Add Item', categoryList, referrer });
+  res.render('editItem', { title: 'Add Transaction', categoryList, referrer });
 }
 
 exports.createItem = async (req, res) => {
