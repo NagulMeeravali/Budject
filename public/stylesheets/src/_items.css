@@ -9,10 +9,6 @@
   border: 1px solid map(colors, black, base);
   @media <=map(bp, tablet) {
     margin: 0 0 10px;
-    flex: 0 0 48%;
-  }
-  @media <=map(bp, mobile) {
-    flex: 0 0 100%;
   }
 
   > div {

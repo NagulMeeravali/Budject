@@ -67,7 +67,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
     list-style-type: none;
-    @media <=map(bp, tablet) {
+    @media <=map(bp, mobile) {
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 10px;
     }
@@ -186,12 +186,12 @@
     justify-content: space-between;
 
     .category-items {
-      @media <=map(bp, tablet) {
+      @media <=map(bp, mobile) {
         flex: 0 0 100%;
       }
 
       .category-item-grid {
-        @media <=map(bp, tablet) {
+        @media <=map(bp, mobile) {
           justify-content: space-between;
         }
       }
@@ -266,7 +266,7 @@
 }
 
 .category-charts {
-  @media <=map(bp, tablet) {
+  @media <=map(bp, mobile) {
     flex: 0 0 100% !important;
   }
 
