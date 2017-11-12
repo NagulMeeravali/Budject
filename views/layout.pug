@@ -2,14 +2,13 @@ doctype html
 html
   head
     //- <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109482186-1"></script>
-    <script>
+    script(async src="https://www.googletagmanager.com/gtag/js?id=UA-109482186-1")
+    script.
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date())
 
       gtag('config', 'UA-109482186-1')
-    </script>
 
     title= title
     link(rel='stylesheet', href='/stylesheets/dist/style.css')
@@ -69,56 +68,56 @@ html
         .container
           p &copy; Copyright #{(new Date()).getFullYear()}, David Saunders 
     block scripts
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="/javascripts/vendor/pikaday.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    script(src="/javascripts/dist/app.min.js")
-    script.
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+      <script src="/javascripts/vendor/pikaday.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+      <script src="https://d3js.org/d3.v4.min.js"></script>
+      script(src="/javascripts/dist/app.min.js")
+      script.
 
-      if (document.querySelector('#categoryChart')) {
-        const category = `#{slug}`
-        const year = `#{year}`;
-        yearGraphs(category, year)
-      }
+        if (document.querySelector('#categoryChart')) {
+          const category = `#{slug}`
+          const year = `#{year}`;
+          yearGraphs(category, year)
+        }
 
-      if (document.querySelector('#categoryPieChart')) {
-        const category = `#{slug}`
-        const year = `#{year}`;
-        monthGraphs(category, year)
-      }
+        if (document.querySelector('#categoryPieChart')) {
+          const category = `#{slug}`
+          const year = `#{year}`;
+          monthGraphs(category, year)
+        }
 
-      if (document.querySelector('#dashboardChart')) {
-        loadAllItems(`#{year}`)
-      }
-      
-      if (document.querySelector('.datepicker')) {
-        const month = '!{month}';
-        const monthNum = moment().month(month).format('M');
-        const year = '!{year}';
-        const yearNum = moment().year(year).format('YYYY');
-        const numItems = '!{numItems}';
-        const oldestItemDate = '!{oldestItemDate}';
-        const newestItemDate = '!{newestItemDate}';
+        if (document.querySelector('#dashboardChart')) {
+          loadAllItems(`#{year}`)
+        }
+        
+        if (document.querySelector('.datepicker')) {
+          const month = '!{month}';
+          const monthNum = moment().month(month).format('M');
+          const year = '!{year}';
+          const yearNum = moment().year(year).format('YYYY');
+          const numItems = '!{numItems}';
+          const oldestItemDate = '!{oldestItemDate}';
+          const newestItemDate = '!{newestItemDate}';
 
-        const picker = new Pikaday({ 
-          field: document.querySelector('.datepicker'),
-          defaultDate: moment([parseInt(yearNum), monthNum-1]).toDate(),
-          setDefaultDate: true,
-          minDate: moment(oldestItemDate).toDate(),
-          maxDate: moment().endOf('month').toDate(), //- Replace with next month
-          onDraw: function() {
-            const month = document.querySelector('.pika-label:first-of-type select');
-            const year = document.querySelector('.pika-label:last-of-type select');
+          const picker = new Pikaday({ 
+            field: document.querySelector('.datepicker'),
+            defaultDate: moment([parseInt(yearNum), monthNum-1]).toDate(),
+            setDefaultDate: true,
+            minDate: moment(oldestItemDate).toDate(),
+            maxDate: moment().endOf('month').toDate(), //- Replace with next month
+            onDraw: function() {
+              const month = document.querySelector('.pika-label:first-of-type select');
+              const year = document.querySelector('.pika-label:last-of-type select');
 
-            if ((parseInt(month.value) + 1 === parseInt(monthNum)) && (year.value === yearNum)) {
-              return;
-            } else {
-              window.location = `${window.location.href.split('?')[0]}?month=${parseInt(month.value) + 1}&year=${year.value}`;
+              if ((parseInt(month.value) + 1 === parseInt(monthNum)) && (year.value === yearNum)) {
+                return;
+              } else {
+                window.location = `${window.location.href.split('?')[0]}?month=${parseInt(month.value) + 1}&year=${year.value}`;
+              }
             }
-          }
-        });
-      }
+          });
+        }
 
-      
+        
