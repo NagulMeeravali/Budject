@@ -3,6 +3,9 @@ const pug = require('pug');
 const juice = require('juice'); // creates inline css
 const htmlToText = require('html-to-text');
 const promisify = require('es6-promisify');
+const sgMail = require('@sendgrid/mail');
+
+sgMail.setApiKey(process.env.SENDGRID_API);
 
 const transport = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
@@ -31,6 +34,5 @@ exports.send = async (options) => {
     text
   };
 
-  const sendMail = promisify(transport.sendMail, transport);
-  return sendMail(mailOptions);
+  return sgMail.send(mailOptions);
 }

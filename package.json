@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "now": {
-    "dotenv": "variables.env.now" 
+    "dotenv": "variables.env.now"
   },
   "scripts": {
     "start": "node start.js",
@@ -12,6 +12,7 @@
     "assets": "gulp -w"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.1.4",
     "axios": "^0.15.3",
     "body-parser": "^1.17.1",
     "chartjs": "^0.3.24",
