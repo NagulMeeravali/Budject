@@ -5,9 +5,15 @@ axios.get(`/api/categories/items?year=${year}`)
     const labels = Object.keys(data['sumByMonth'][year]);
     const values = Object.values(data['sumByMonth'][year]);
     const budgeted = (data['sumByMonth']['totalBudget']).toFixed(2);
-    const axisValue = (Number(budgeted) + (Number(budgeted) * .2)).toFixed(0);
     const ctx = document.getElementById("dashboardChart");
     const label = `Total Monthly Budget: $${budgeted}`;
+
+    let axisValue = "";
+    if (Number(values) > Number(budgeted)) {
+      axisValue = Math.ceil((Number(values) + (Number(values) * .2) + 1) / 10) * 10;
+    } else {
+      axisValue = Math.ceil(Number(budgeted) / 10) * 10;
+    }
 
     const backgroundColor = [];
 

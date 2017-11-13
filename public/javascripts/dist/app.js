@@ -25,9 +25,15 @@ function yearGraphs(category) {
       return value.sum;
     });
     var budgeted = data['sumByMonth']['budgeted'].toFixed(2);
-    var axisValue = (Number(budgeted) + Number(budgeted) * .2).toFixed(0);
     var label = 'Amount Spent Per Month \u2014 Budget: $' + budgeted;
     var ctx = document.getElementById("categoryChart");
+
+    var axisValue = "";
+    if (Number(sum) > Number(budgeted)) {
+      axisValue = Math.ceil((Number(sum) + Number(sum) * .2 + 1) / 10) * 10;
+    } else {
+      axisValue = Math.ceil(Number(budgeted) / 10) * 10;
+    }
 
     var backgroundColor = [];
 
@@ -314,9 +320,15 @@ function loadAllItems() {
     var labels = Object.keys(data['sumByMonth'][year]);
     var values = Object.values(data['sumByMonth'][year]);
     var budgeted = data['sumByMonth']['totalBudget'].toFixed(2);
-    var axisValue = (Number(budgeted) + Number(budgeted) * .2).toFixed(0);
     var ctx = document.getElementById("dashboardChart");
     var label = 'Total Monthly Budget: $' + budgeted;
+
+    var axisValue = "";
+    if (Number(values) > Number(budgeted)) {
+      axisValue = Math.ceil((Number(values) + Number(values) * .2 + 1) / 10) * 10;
+    } else {
+      axisValue = Math.ceil(Number(budgeted) / 10) * 10;
+    }
 
     var backgroundColor = [];
 
@@ -654,7 +666,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var clearUpload = function clearUpload() {
     fileUpload.value = "";
-    fileLabel.textContent = "No File Uploaded";
+    fileLabel.textContent = "No Image Uploaded";
     this.style.display = "none";
     receiptImg.style.display = "none";
   };

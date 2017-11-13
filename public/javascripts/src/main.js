@@ -130,7 +130,7 @@
 
   const clearUpload = function() {
     fileUpload.value = "";
-    fileLabel.textContent = "No File Uploaded";
+    fileLabel.textContent = "No Image Uploaded";
     this.style.display = "none";
     receiptImg.style.display = "none";
   }
