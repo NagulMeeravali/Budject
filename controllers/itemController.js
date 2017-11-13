@@ -24,7 +24,7 @@ const confirmOwner = (item, user) => {
 };
 
 exports.addItem = async (req, res) => {
-  const categoryList = await Category.find({ author: req.user });
+  const categoryList = await Category.find({ author: req.user }).sort({ title: 1 });
   const category = await Category.findOne({slug: req.query.ref});
   const referrer = (category) ? category._id : "";
   res.render('editItem', { title: 'Add Transaction', categoryList, referrer });
@@ -60,7 +60,7 @@ exports.createItem = async (req, res) => {
 }
 
 exports.getItem = async (req, res) => {
-  const categoryList = await Category.find({author: req.user});
+  const categoryList = await Category.find({ author: req.user }).sort({ title: 1 });
   const item = await Item.findOne({_id: req.params.id});
   confirmOwner(item, req.user)
   res.render('editItem', { title: `Edit ${item.title}`, item, categoryList});
