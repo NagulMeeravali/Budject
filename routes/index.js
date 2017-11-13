@@ -29,9 +29,9 @@ router.post(`/category/:slug/delete`, authController.isLoggedIn, catchErrors(cat
 // Item Routes
 
 router.get(`/add`, authController.isLoggedIn, catchErrors(itemController.addItem));
-router.post(`/add`, authController.isLoggedIn, catchErrors(itemController.createItem));
+router.post(`/add`, authController.isLoggedIn, itemController.upload, catchErrors(itemController.resize), catchErrors(itemController.createItem));
 router.get(`/add/:id`, authController.isLoggedIn, catchErrors(itemController.getItem));
-router.post(`/add/:id`, catchErrors(itemController.updateItem));
+router.post(`/add/:id`, authController.isLoggedIn, itemController.upload, catchErrors(itemController.resize), catchErrors(itemController.updateItem));
 router.get(`/delete/:id`, authController.isLoggedIn, catchErrors(itemController.deleteItem));
 
 // User Routes
