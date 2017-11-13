@@ -24,6 +24,7 @@ const itemSchema = new mongoose.Schema({
     required: 'Please enter the date this transaction took place.',
     trim: true
   },
+  receipt: String,
   description: {
     type: String,
     trim: true

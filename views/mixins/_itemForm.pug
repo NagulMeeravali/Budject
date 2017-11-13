@@ -15,6 +15,11 @@ mixin itemForm(item={})
         each category in categoryList
           option(value=category._id selected=((String(category._id) === (String(`${item.category}`)) || (String(category._id) === `${referrer}`))))= category.title
       label(for="category") Category*
+    .form-group.grid-cell.w48.has-value
+      input(type="file" name="receipt" id="receipt" accept="image/gif, image/png, image/jpeg")
+      if item.receipt
+        img(src=`/uploads/${item.receipt}`, alt=item.title width=200) 
+      label(for="receipt") Receipt
     .form-group.grid-cell.w100
       textarea(name="description", cols="30", rows="10") #{item.description}
       label(for="description") Description
