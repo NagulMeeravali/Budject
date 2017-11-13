@@ -640,6 +640,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   // File upload label update
   var fileLabel = document.querySelector('.file-field .labelText');
   var fileUpload = document.querySelector('.js-fileUpload');
+  var receiptImg = document.querySelector('.receipt-img');
   var clearBtn = document.querySelector('.clear-upload');
 
   var changeLabelVal = function changeLabelVal(input, label) {
@@ -655,6 +656,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     fileUpload.value = "";
     fileLabel.textContent = "No File Uploaded";
     this.style.display = "none";
+    receiptImg.style.display = "none";
   };
 
   if (fileUpload) {

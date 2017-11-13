@@ -24,7 +24,7 @@ mixin itemForm(item={})
       span(class="clear-upload" style=`display: ${showClear}`) Clear
       input(type="file" class="js-fileUpload" name="receipt" id="receipt" accept="image/gif, image/png, image/jpeg")
       if item.receipt
-        a(href=`/images/uploads/${item.receipt}`)
+        a(href=`/images/uploads/${item.receipt}` class="receipt-img")
           img(src=`/images/uploads/${item.receipt}`, alt=item.title width=600) 
     .form-group.grid-cell.w100
       textarea(name="description", cols="30", rows="10") #{item.description}

@@ -116,6 +116,7 @@
   // File upload label update
   const fileLabel = document.querySelector('.file-field .labelText');
   const fileUpload = document.querySelector('.js-fileUpload');
+  const receiptImg = document.querySelector('.receipt-img')
   const clearBtn = document.querySelector('.clear-upload');
 
   const changeLabelVal = function(input, label) {
@@ -131,6 +132,7 @@
     fileUpload.value = "";
     fileLabel.textContent = "No File Uploaded";
     this.style.display = "none";
+    receiptImg.style.display = "none";
   }
 
   if (fileUpload) {
