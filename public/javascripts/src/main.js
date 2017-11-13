@@ -132,7 +132,9 @@
     fileUpload.value = "";
     fileLabel.textContent = "No Image Uploaded";
     this.style.display = "none";
-    receiptImg.style.display = "none";
+    if (receiptImg) {
+      receiptImg.style.display = "none";
+    }
   }
 
   if (fileUpload) {
