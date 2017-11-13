@@ -79,7 +79,7 @@ exports.getDashboard = async (req, res, next) => {
 
   const sortOrder = (req.query.sort === 'titleDesc') ? { title: 1 } : (req.query.sort === 'titleAsc' ? { title: -1 } : (req.query.sort === 'spentDesc' ? {amount: -1} : ( req.query.sort === 'spentAsc' ? {amount: 1} : {title: 1})));
 
-  const categoriesPromise = Category.find({ 'author': req.user._id }).sort(sortOrder);
+  const categoriesPromise = Category.find({ 'author': req.user._id }).sort(sortOrder).limit(5);
   const categoryPromise = Category.findOne({ slug: req.params.slug });
   const [categories, category] = await Promise.all([categoriesPromise, categoryPromise]);
 
