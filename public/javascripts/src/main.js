@@ -113,6 +113,40 @@
     amountInput.addEventListener('focusout', removeAmountInputClass, true)
   }
 
+  // File upload label update
+  const fileLabel = document.querySelector('.file-field .labelText');
+  const fileUpload = document.querySelector('.js-fileUpload');
+  const clearBtn = document.querySelector('.clear-upload');
+
+  const changeLabelVal = function(input, label) {
+    if (input.value == "") {
+      label.innerHTML = "No File Uploaded";
+    } else {
+      const splitLabel = input.value.split('\\');
+      label.innerHTML = splitLabel[splitLabel.length - 1];
+    }
+  };
+
+  const clearUpload = function() {
+    fileUpload.value = "";
+    fileLabel.textContent = "No File Uploaded";
+    this.style.display = "none";
+  }
+
+  if (fileUpload) {
+    fileUpload.addEventListener('change', () => {
+      changeLabelVal(fileUpload, fileLabel);
+    });
+
+    fileUpload.addEventListener('change', () => {
+      if (fileUpload.value) {
+        clearBtn.style.display = "block";
+      }
+    });
+
+    clearBtn.addEventListener('click', clearUpload);
+  }
+
   // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
 
   function changeBudgetColor() {

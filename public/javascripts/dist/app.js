@@ -637,6 +637,40 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     amountInput.addEventListener('focusout', removeAmountInputClass, true);
   }
 
+  // File upload label update
+  var fileLabel = document.querySelector('.file-field .labelText');
+  var fileUpload = document.querySelector('.js-fileUpload');
+  var clearBtn = document.querySelector('.clear-upload');
+
+  var changeLabelVal = function changeLabelVal(input, label) {
+    if (input.value == "") {
+      label.innerHTML = "No File Uploaded";
+    } else {
+      var splitLabel = input.value.split('\\');
+      label.innerHTML = splitLabel[splitLabel.length - 1];
+    }
+  };
+
+  var clearUpload = function clearUpload() {
+    fileUpload.value = "";
+    fileLabel.textContent = "No File Uploaded";
+    this.style.display = "none";
+  };
+
+  if (fileUpload) {
+    fileUpload.addEventListener('change', function () {
+      changeLabelVal(fileUpload, fileLabel);
+    });
+
+    fileUpload.addEventListener('change', function () {
+      if (fileUpload.value) {
+        clearBtn.style.display = "block";
+      }
+    });
+
+    clearBtn.addEventListener('click', clearUpload);
+  }
+
   // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
 
   function changeBudgetColor() {
