@@ -5,6 +5,7 @@ axios.get(`/api/categories/items?year=${year}`)
     const labels = Object.keys(data['sumByMonth'][year]);
     const values = Object.values(data['sumByMonth'][year]);
     const budgeted = (data['sumByMonth']['totalBudget']).toFixed(2);
+    const axisValue = (Number(budgeted) + (Number(budgeted)/3)).toFixed(2);
     const ctx = document.getElementById("dashboardChart");
     const label = `Total Monthly Budget: $${budgeted}`;
 
@@ -66,6 +67,7 @@ axios.get(`/api/categories/items?year=${year}`)
         yAxes: [{
           ticks: {
             beginAtZero: true,
+            max: axisValue,
             callback: function(value, index, values) {
                 return '$' + value;
             }

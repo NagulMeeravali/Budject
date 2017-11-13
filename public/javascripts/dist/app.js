@@ -25,6 +25,7 @@ function yearGraphs(category) {
       return value.sum;
     });
     var budgeted = data['sumByMonth']['budgeted'].toFixed(2);
+    var axisValue = (Number(budgeted) + Number(budgeted) / 3).toFixed(2);
     var label = 'Amount Spent Per Month \u2014 Budget: $' + budgeted;
     var ctx = document.getElementById("categoryChart");
 
@@ -87,12 +88,8 @@ function yearGraphs(category) {
           stacked: true,
           ticks: {
             beginAtZero: true,
+            max: axisValue,
             type: 'linear',
-            ticks: {
-              min: 0,
-              max: 6500,
-              stepSize: 1300
-            },
             callback: function callback(value, index, values) {
               return '$' + value;
             }
@@ -317,6 +314,7 @@ function loadAllItems() {
     var labels = Object.keys(data['sumByMonth'][year]);
     var values = Object.values(data['sumByMonth'][year]);
     var budgeted = data['sumByMonth']['totalBudget'].toFixed(2);
+    var axisValue = (Number(budgeted) + Number(budgeted) / 3).toFixed(2);
     var ctx = document.getElementById("dashboardChart");
     var label = 'Total Monthly Budget: $' + budgeted;
 
@@ -378,6 +376,7 @@ function loadAllItems() {
         yAxes: [{
           ticks: {
             beginAtZero: true,
+            max: axisValue,
             callback: function callback(value, index, values) {
               return '$' + value;
             }
