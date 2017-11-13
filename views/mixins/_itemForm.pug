@@ -20,7 +20,7 @@ mixin itemForm(item={})
       label(for="receipt")
         span.labelBtn.btn Upload
         span.labelText= item.receipt ? `${item.receipt}` : 'No Image Uploaded'
-      - const showClear = `${item.receipt}` ? 'block' : 'none' 
+      - const showClear = `${item.receipt}` != 'undefined' ? 'block' : 'none' 
       span(class="clear-upload" style=`display: ${showClear}`) Clear
       input(type="file" class="js-fileUpload" name="receipt" id="receipt" accept="image/gif, image/png, image/jpeg")
       if item.receipt
