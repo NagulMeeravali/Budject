@@ -16,7 +16,7 @@ function yearGraphs(category, year = moment().startOf('year').format('YYYY')) {
 
       const sum = valuesObj.map((value) => {return value.sum});
       const budgeted = (data['sumByMonth']['budgeted'].toFixed(2));
-      const axisValue = (Number(budgeted) + (Number(budgeted)/3)).toFixed(2);
+      const axisValue = (Number(budgeted) + (Number(budgeted) * .2)).toFixed(0);
       const label = `Amount Spent Per Month — Budget: $${budgeted}`;
       const ctx = document.getElementById("categoryChart");
 

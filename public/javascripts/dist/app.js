@@ -25,7 +25,7 @@ function yearGraphs(category) {
       return value.sum;
     });
     var budgeted = data['sumByMonth']['budgeted'].toFixed(2);
-    var axisValue = (Number(budgeted) + Number(budgeted) / 3).toFixed(2);
+    var axisValue = (Number(budgeted) + Number(budgeted) * .2).toFixed(0);
     var label = 'Amount Spent Per Month \u2014 Budget: $' + budgeted;
     var ctx = document.getElementById("categoryChart");
 
@@ -314,7 +314,7 @@ function loadAllItems() {
     var labels = Object.keys(data['sumByMonth'][year]);
     var values = Object.values(data['sumByMonth'][year]);
     var budgeted = data['sumByMonth']['totalBudget'].toFixed(2);
-    var axisValue = (Number(budgeted) + Number(budgeted) / 3).toFixed(2);
+    var axisValue = (Number(budgeted) + Number(budgeted) * .2).toFixed(0);
     var ctx = document.getElementById("dashboardChart");
     var label = 'Total Monthly Budget: $' + budgeted;
 
