@@ -69,6 +69,7 @@ exports.getItem = async (req, res) => {
 exports.updateItem = async (req, res) => {
   const categoryList = await Category.find();
   req.body.date = moment(req.body.date).utc();
+  // req.body.receipt = req.body.receipt;
   const item = await Item.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
   const category = await Category.findOne({_id: req.body.category})
   confirmOwner(item, req.user)

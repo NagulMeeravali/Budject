@@ -665,7 +665,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   };
 
   var clearUpload = function clearUpload() {
-    fileUpload.value = "";
+    fileUpload.setAttribute('value', '');
     fileLabel.textContent = "No Image Uploaded";
     this.style.display = "none";
     if (receiptImg) {
