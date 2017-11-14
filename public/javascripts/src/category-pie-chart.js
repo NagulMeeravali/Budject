@@ -88,7 +88,7 @@ axios.get(`/api/category/${category}/items?year=${year}`)
             return this._data.labels[tooltipItem[0].index];
           },
           label: function(tooltipItems, data) {
-            const percent = ((Number(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index]) / queriedSum) * 100).toFixed(2);
+            const percent = ((Number(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index]) / budgeted) * 100).toFixed(2);
             const cost = `$${(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index]).toFixed(2)}`;
             const percentStatement = `${percent}% of total spending`;
             const tooltip = new Array(cost, percentStatement);
