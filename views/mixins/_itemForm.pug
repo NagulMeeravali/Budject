@@ -23,7 +23,8 @@ mixin itemForm(item={})
       - const showClear = `${item.receipt}` != 'undefined' ? 'block' : 'none' 
       span(class="clear-upload" style=`display: ${showClear}`) Clear
       input(type="file" class="js-fileUpload" name="receipt" id="receipt" accept="image/gif, image/png, image/jpeg")
-      if item.receipt
+    if item.receipt
+      .form-group.grid-cell.w48
         a(href=`/images/uploads/${item.receipt}` class="receipt-img")
           img(src=`/images/uploads/${item.receipt}`, alt=item.title width=600) 
     .form-group.grid-cell.w100
