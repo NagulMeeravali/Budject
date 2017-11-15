@@ -7,7 +7,7 @@ exports.dump = (obj) => JSON.stringify(obj, null, 2);
 
 exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
 
-exports.siteName = `Budgeter`;
+exports.siteName = `Budget Tracker`;
 
 exports.userMenu = [
   { slug: '/dashboard', title: 'Dashboard' },

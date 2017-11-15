@@ -8,11 +8,11 @@ const { catchErrors } = require('../handlers/errorHandlers');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Budgeter', bodyClass: 'home' });
+  res.render('index', { title: 'Budget Tracker', bodyClass: 'home' });
 });
 
 router.get('/about', (req, res) => {
-  res.render('about', {title: 'About Budgeter' });
+  res.render('about', {title: 'About Budget Tracker' });
 });
 
 // Category Routes

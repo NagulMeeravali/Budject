@@ -650,42 +650,42 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   // File upload label update
-  var fileLabel = document.querySelector('.file-field .labelText');
-  var fileUpload = document.querySelector('.js-fileUpload');
-  var receiptImg = document.querySelector('.receipt-img');
-  var clearBtn = document.querySelector('.clear-upload');
+  // const fileLabel = document.querySelector('.file-field .labelText');
+  // const fileUpload = document.querySelector('.js-fileUpload');
+  // const receiptImg = document.querySelector('.receipt-img')
+  // const clearBtn = document.querySelector('.clear-upload');
 
-  var changeLabelVal = function changeLabelVal(input, label) {
-    if (input.value == "") {
-      label.innerHTML = "No File Uploaded";
-    } else {
-      var splitLabel = input.value.split('\\');
-      label.innerHTML = splitLabel[splitLabel.length - 1];
-    }
-  };
+  // const changeLabelVal = function(input, label) {
+  //   if (input.value == "") {
+  //     label.innerHTML = "No File Uploaded";
+  //   } else {
+  //     const splitLabel = input.value.split('\\');
+  //     label.innerHTML = splitLabel[splitLabel.length - 1];
+  //   }
+  // };
 
-  var clearUpload = function clearUpload() {
-    fileUpload.setAttribute('value', '');
-    fileLabel.textContent = "No Image Uploaded";
-    this.style.display = "none";
-    if (receiptImg) {
-      receiptImg.style.display = "none";
-    }
-  };
+  // const clearUpload = function() {
+  //   fileUpload.setAttribute('value', '');
+  //   fileLabel.textContent = "No Image Uploaded";
+  //   this.style.display = "none";
+  //   if (receiptImg) {
+  //     receiptImg.style.display = "none";
+  //   }
+  // }
 
-  if (fileUpload) {
-    fileUpload.addEventListener('change', function () {
-      changeLabelVal(fileUpload, fileLabel);
-    });
+  // if (fileUpload) {
+  //   fileUpload.addEventListener('change', () => {
+  //     changeLabelVal(fileUpload, fileLabel);
+  //   });
 
-    fileUpload.addEventListener('change', function () {
-      if (fileUpload.value) {
-        clearBtn.style.display = "block";
-      }
-    });
+  //   fileUpload.addEventListener('change', () => {
+  //     if (fileUpload.value) {
+  //       clearBtn.style.display = "block";
+  //     }
+  //   });
 
-    clearBtn.addEventListener('click', clearUpload);
-  }
+  //   clearBtn.addEventListener('click', clearUpload);
+  // }
 
   // Change color of budget spent number depending on if it exceeds or is lower than budget goal number
 
