@@ -19,7 +19,7 @@ mixin itemForm(item={})
       legend Receipt (gif, png, jpg only)
       label(for="receipt")
         span.labelBtn.btn Upload
-        span.labelText= item.receipt ? `${item.receipt}` : 'No Image Uploaded'
+        span.labelText= item.receipt ? `Image Uploaded` : 'No Image Uploaded'
       - const showClear = `${item.receipt}` === '' ? 'none' : 'block' 
       span(class="clear-upload" style=`display: ${showClear}`) Clear
       input(type="file" class="js-fileUpload" name="receipt" id="receipt" accept="image/gif, image/png, image/jpeg")
