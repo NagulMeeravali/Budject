@@ -35,12 +35,13 @@ exports.upload = multer(multerOptions).single('receipt'); // Reads photo into me
 exports.resize = async (req, res, next) => {
   // determine if no new file to resize
   if (!req.file) {
+    req.body.receipt = "";
     next(); 
     return;
   }
 
   const extension = req.file.mimetype.split('/')[1];
-  req.body.receipt = `${uuid.v4()}.${extension}`;
+  req.body.receipt = `${uuid.v4()}.${extension}`;  
 
   // Resizing
   const receipt = await jimp.read(req.file.buffer);
@@ -52,6 +53,7 @@ exports.resize = async (req, res, next) => {
 
 
 exports.createItem = async (req, res) => {
+  console.log(req.body)
   req.body.author = req.user._id;
   req.body.date = moment(req.body.date).utc();
   const item = await (new Item(req.body)).save();
@@ -68,8 +70,7 @@ exports.getItem = async (req, res) => {
 
 exports.updateItem = async (req, res) => {
   const categoryList = await Category.find();
-  req.body.date = moment(req.body.date).utc();
-  // req.body.receipt = req.body.receipt;
+  req.body.date = moment(req.body.date).utc();  
   const item = await Item.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
   const category = await Category.findOne({_id: req.body.category})
   confirmOwner(item, req.user)
