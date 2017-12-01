@@ -70,11 +70,13 @@ exports.getItem = async (req, res) => {
 
 exports.updateItem = async (req, res) => {
   const categoryList = await Category.find();
-  req.body.date = moment(req.body.date).utc();  
+  req.body.date = moment(req.body.date).utc();
+  const month = req.body.date.format('M');
+  const year = req.body.date.format('YYYY');
   const item = await Item.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
   const category = await Category.findOne({_id: req.body.category})
   confirmOwner(item, req.user)
-  res.redirect(`/category/${category.slug}`);
+  res.redirect(`/category/${category.slug}?month=${month}&year=${year}`);
 }
 
 exports.deleteItem = async (req, res) => {
