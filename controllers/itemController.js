@@ -51,14 +51,14 @@ exports.resize = async (req, res, next) => {
   next();
 };
 
-
 exports.createItem = async (req, res) => {
-  console.log(req.body)
   req.body.author = req.user._id;
   req.body.date = moment(req.body.date).utc();
+  const month = req.body.date.format('M');
+  const year = req.body.date.format('YYYY');
   const item = await (new Item(req.body)).save();
   const category = await Category.findOne({_id: req.body.category})
-  res.redirect(`/category/${category.slug}`);
+  res.redirect(`/category/${category.slug}?month=${month}&year=${year}`);
 }
 
 exports.getItem = async (req, res) => {
