@@ -19,6 +19,7 @@ exports.getCategories = async (req, res) => {
   const startDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).startOf('month') : moment().startOf('month');
   const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
   const month = startDate.format('MMMM');
+  const monthNum = startDate.format('M');
   const year = startDate.format('YYYY');
   const categories = await Category.find({'author' : req.user._id}).sort({ title: 1 });
   const itemArr = await Promise.all(categories.map(async (category) => {
@@ -27,7 +28,7 @@ exports.getCategories = async (req, res) => {
     return [(count[0] || '0'), itemSum[0] || '0'];
   }));
 
-  res.render('categoryList', { title: 'Categories', categories, itemArr, month, year});
+  res.render('categoryList', { title: 'Categories', categories, itemArr, month, monthNum, year});
 };
 
 exports.addCategory = (req, res) => {

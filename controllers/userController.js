@@ -75,6 +75,7 @@ exports.getDashboard = async (req, res, next) => {
   const startDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).startOf('month') : moment().startOf('month');
   const endDate = (req.query.month && req.query.year) ? moment().year(req.query.year).month(req.query.month - 1).endOf('month') : moment().endOf('month');
   const month = startDate.format('MMMM');
+  const monthNum = startDate.format('M');
   const year = startDate.format('YYYY');
 
   const sortOrder = (req.query.sort === 'titleDesc') ? { title: 1 } : (req.query.sort === 'titleAsc' ? { title: -1 } : (req.query.sort === 'spentDesc' ? {amount: -1} : ( req.query.sort === 'spentAsc' ? {amount: 1} : {title: 1})));
@@ -93,5 +94,5 @@ exports.getDashboard = async (req, res, next) => {
     return [(count[0] || '0'), itemSum[0] || '0'];
   }));
 
-  res.render('dashboard', { title: `${req.user.name} Dashboard`, month, year, categories, getItemsByMonth, recentItems, budgetedPerMonth: budgetedPerMonth[0], spentPerMonth: spentPerMonth[0], itemArr, sortValue: req.query.sort})
+  res.render('dashboard', { title: `${req.user.name} Dashboard`, month, monthNum, year, categories, getItemsByMonth, recentItems, budgetedPerMonth: budgetedPerMonth[0], spentPerMonth: spentPerMonth[0], itemArr, sortValue: req.query.sort})
 }

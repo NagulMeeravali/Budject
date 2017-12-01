@@ -17,7 +17,7 @@ mixin categories()
           .progress-fill(style=`width: ${percentSpent}%`)
         p.budget-percent #{percentSpent.toFixed(2)}% of budget used
         .btn-row
-          a.btn(href=`/category/${category.slug}`) View
+          a.btn(href=`/category/${category.slug}?month=${monthNum}&year=${year}`) View
           //- if user
           a.btn(href=`/category/${category.slug}/edit`) Edit
           

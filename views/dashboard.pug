@@ -46,7 +46,7 @@ block content
             a(href="/category/add" class="btn") + Add Category
           if categories.length
             +categorySidebar(categories)
-            a.btn(href=`/categories`) View All Categories
+            a.btn(href=`/categories?month=${monthNum}&year=${year}`) View All Categories
         .grid-cell.w48.dashboard-items
           h3 Recent Transactions
           if recentItems.length
