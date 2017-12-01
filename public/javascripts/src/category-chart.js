@@ -18,12 +18,11 @@ function yearGraphs(category, year = moment().startOf('year').format('YYYY')) {
       const budgeted = (data['sumByMonth']['budgeted'].toFixed(2));
       const label = `Amount Spent Per Month — Budget: $${budgeted}`;
       const ctx = document.getElementById("categoryChart");
-      console.log(Number(sum))
+      const largestSum = sum.reduce((a,b) => Math.max(a,b));
 
       let axisValue = "";
-      if (Number(sum) > Number(budgeted)) {
-        // axisValue = Math.ceil((Number(sum) + (Number(sum) * .2) + 1) / 10) * 10;
-        axisValue = "";
+      if (largestSum > Number(budgeted)) {
+        axisValue = Math.ceil(largestSum / 10) * 10;
       } else {
         axisValue = Math.ceil(Number(budgeted) / 10) * 10;
       }
