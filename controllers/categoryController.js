@@ -80,9 +80,9 @@ exports.displayCategory = async (req, res) => {
   confirmOwner(category, req.user);
 
   let percentSpentOverMonth = "";
-  if (typeof (itemSumPrevMonth) !== 'undefined' && itemSumPrevMonth.length > 0) {
+  if (typeof (itemSumPrevMonth) !== 'undefined' && itemSumPrevMonth.length > 0 && itemSum.length > 0) {
     percentSpentOverMonth = ((itemSum[0].sum / itemSumPrevMonth[0].sum) * 100).toFixed(2);
-  }   
+  } 
   
   res.render('category', { title: `${category.title}`, slug: `${category.slug}`, month, year, categories, category, oldestItem, itemSum: itemSum[0], numItems: numItems[0], itemsByCatAndMonth, getItemsByQueriedYear, oldestItemDate: oldestItem[0].date, newestItemDate: newestItem[0].date, percentSpentOverMonth });
 }
