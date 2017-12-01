@@ -134,6 +134,8 @@ canvas {
 }
 
 .error-container {
+  margin-top: 40px;
+  
   h4 {
     margin: 0;
   }

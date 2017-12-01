@@ -2,7 +2,6 @@ extends layout
 
 block content
   .container.error-container
-    h1 #{status}!
     if status === 404
       h4 Looks like you've stumbled upon a page that doesn't exist. 
       if user
@@ -12,5 +11,11 @@ block content
         p Why not try logging in instead?
         a(href="/login" class="btn") Continue
     else
-      h4= message
+      h4 Looks like there's been an error. 
+      if user
+        p Why not check out your dashboard instead?
+        a(href="/dashboard" class="btn") Continue
+      else
+        p Why not try logging in instead?
+        a(href="/login" class="btn") Continue
     pre.error!= stackHighlighted
