@@ -4,7 +4,7 @@ mixin categorySidebar(category = {})
       each category, index in categories
         - const itemSum = itemArr[index][1].sum || 0  
         li
-          a(href=`/category/${category.slug}`) 
+          a(href=`/category/${category.slug}?month=${monthNum}&year=${year}`) 
             h5 #{category.title} 
             span.budget-spent #{h.formatPrice(itemSum)}
             |  of 
