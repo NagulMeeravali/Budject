@@ -658,6 +658,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var receiptImg = document.querySelector('.receipt-img');
   var clearBtn = document.querySelector('.clear-upload');
 
+  console.log(receiptImg);
+
   var changeLabelVal = function changeLabelVal(input, label) {
     if (input.value == "") {
       label.innerHTML = "No File Uploaded";
