@@ -322,13 +322,16 @@ function loadAllItems() {
     var data = res.data;
     var labels = Object.keys(data['sumByMonth'][year]);
     var values = Object.values(data['sumByMonth'][year]);
+    var largestVal = Object.keys(values).reduce(function (a, b) {
+      return values[a] > values[b] ? values[a] : values[b];
+    });
     var budgeted = data['sumByMonth']['totalBudget'].toFixed(2);
     var ctx = document.getElementById("dashboardChart");
     var label = 'Total Monthly Budget: $' + budgeted;
 
     var axisValue = "";
-    if (Number(values) > Number(budgeted)) {
-      axisValue = Math.ceil((Number(values) + Number(values) * .2 + 1) / 10) * 10;
+    if (largestVal > Number(budgeted)) {
+      axisValue = Math.ceil((largestVal + largestVal * .2 + 1) / 10) * 10;
     } else {
       axisValue = Math.ceil(Number(budgeted) / 10) * 10;
     }
@@ -657,8 +660,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var fileUpload = document.querySelector('.js-fileUpload');
   var receiptImg = document.querySelector('.receipt-img');
   var clearBtn = document.querySelector('.clear-upload');
-
-  console.log(receiptImg);
 
   var changeLabelVal = function changeLabelVal(input, label) {
     if (input.value == "") {

@@ -4,13 +4,14 @@ axios.get(`/api/categories/items?year=${year}`)
     const data = res.data;
     const labels = Object.keys(data['sumByMonth'][year]);
     const values = Object.values(data['sumByMonth'][year]);
+    const largestVal = Object.keys(values).reduce(function (a, b) { return values[a] > values[b] ? values[a] : values[b] });
     const budgeted = (data['sumByMonth']['totalBudget']).toFixed(2);
     const ctx = document.getElementById("dashboardChart");
     const label = `Total Monthly Budget: $${budgeted}`;
 
     let axisValue = "";
-    if (Number(values) > Number(budgeted)) {
-      axisValue = Math.ceil((Number(values) + (Number(values) * .2) + 1) / 10) * 10;
+    if (largestVal > Number(budgeted)) {
+      axisValue = Math.ceil((largestVal + (largestVal * .2) + 1) / 10) * 10;
     } else {
       axisValue = Math.ceil(Number(budgeted) / 10) * 10;
     }
@@ -150,4 +151,3 @@ axios.get(`/api/categories/items?year=${year}`)
     };
   })
 }
-
