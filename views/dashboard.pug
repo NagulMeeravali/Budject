@@ -36,9 +36,9 @@ block content
               .form-group
                 select(id="dashboard-filter" name="category-type-filter")
                   //- Sort by category name
-                  option(name="titleDesc" value="titleDesc" selected=("titleDesc"===`${sortValue}`)) Name A-Z
-                  option(value="titleAsc" selected=("titleASC"===`${sortValue}`)) Name Z-A
-                  //- Sort by amount spent per category
+                  option(value="titleDesc" selected=("titleDesc"===`${sortValue}`)) Name A-Z
+                  option(value="titleAsc" selected=("titleAsc"===`${sortValue}`)) Name Z-A
+                  //- Sort by amount budgeted per category
                   option(value="spentDesc" selected=("spentDesc"===`${sortValue}`)) Budget High to Low
                   option(value="spentAsc" selected=("spentAsc"===`${sortValue}`)) Budget Low to High
           else
