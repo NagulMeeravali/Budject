@@ -12,6 +12,7 @@ exports.siteName = `Budget Tracker`;
 exports.userMenu = [
   { slug: '/dashboard', title: 'Dashboard' },
   { slug: '/categories', title: 'Categories' },
+  { slug: '/add', title: 'Add' },
   { slug: '/account', title: 'Account' },
   { slug: '/logout', title: 'Logout' }
 ];
